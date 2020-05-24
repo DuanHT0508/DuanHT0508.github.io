@@ -77,6 +77,119 @@
       </tags>
   </entry>
   <entry>
+    <title>常见的NoSQL数据库以及他们的特点&amp;区别</title>
+    <url>/CodeDatao/2020/02/14/%E5%B8%B8%E8%A7%81%E7%9A%84NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5%E5%8F%8A%E4%BB%96%E4%BB%AC%E7%9A%84%E7%89%B9%E7%82%B9&amp;%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h2 id="一、什么是NoSQL"><a href="#一、什么是NoSQL" class="headerlink" title="一、什么是NoSQL"></a>一、什么是NoSQL</h2><p>NoSQL(NoSQL = Not Only SQL)，意即“不仅仅是SQL”，是一项全新的数据库理念，泛指非关系型的数据库。</p>
+<p>关系型数据库（SQL），表与表之间的关系，一个表中字段与字段之间的关系。</p>
+<p>eg：MySQL、Oracle等</p>
+<p>MySQL主子表关系，数据之间是有关系。</p>
+<p>非关系型数据库之间没有任何关系。</p>
+<h2 id="二、NoSQL能够解决三高问题"><a href="#二、NoSQL能够解决三高问题" class="headerlink" title="二、NoSQL能够解决三高问题"></a>二、NoSQL能够解决三高问题</h2><p>High performance - 对数据库高并发读写的需求</p>
+<p>Huge Storage - 对海量数据的高效率存储和访问的需求</p>
+<p>High Scalability &amp;&amp; High Availability- 对数据库的高可扩展性和高可用性的需求</p>
+<p><img src="/images/0.jpeg" alt="NoSQL"></p>
+<h2 id="三、常见的NoSQl"><a href="#三、常见的NoSQl" class="headerlink" title="三、常见的NoSQl"></a>三、常见的NoSQl</h2><table>
+<thead>
+<tr>
+<th>临时性键值存储</th>
+<th>永久性键值存储</th>
+<th>面向文档的数据库</th>
+<th>面向列的数据库</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Memcached</td>
+<td>Tokyo Tyrant</td>
+<td>MangoDB</td>
+<td>Cassandra</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>Flare</td>
+<td>CouchDB</td>
+<td>HBase</td>
+</tr>
+<tr>
+<td></td>
+<td>ROMA</td>
+<td></td>
+<td>HyperTable</td>
+</tr>
+<tr>
+<td></td>
+<td>Redis</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="四、Redis，Memcache，MongoDb的特点"><a href="#四、Redis，Memcache，MongoDb的特点" class="headerlink" title="四、Redis，Memcache，MongoDb的特点"></a>四、Redis，Memcache，MongoDb的特点</h2><h3 id="1-Redis"><a href="#1-Redis" class="headerlink" title="1.Redis"></a>1.Redis</h3><p><strong>优点：</strong></p>
+<p>1.支持多种数据结构，如 string（字符串）、 list(双向链表)、dict(hash表)、set(集合）、zset(排序set)、hyperloglog（基数估算）</p>
+<p>2.支持持久化操作，可以进行aof及rdb数据持久化到磁盘，从而进行数据备份或数据恢复等操作，较好的防止数据丢失　　的手段。</p>
+<p>3.支持通过Replication进行数据复制，通过master-slave机制，可以实时进行数据的同步复制，支持多级复制和增量复制，master-slave机制是Redis进行HA的重要手段。</p>
+<p>4.单线程请求，所有命令串行执行，并发情况下不需要考虑数据一致性问题。</p>
+<p>5.支持pub/sub消息订阅机制，可以用来进行消息订阅与通知。</p>
+<p>6.支持简单的事务需求，但业界使用场景很少，并不成熟。</p>
+<p><strong>缺点：</strong></p>
+<p>1.Redis只能使用单线程，性能受限于CPU性能，故单实例CPU最高才可能达到5-6wQPS每秒（取决于数据结构，数据大小以及服务器硬件性能，日常环境中QPS高峰大约在1-2w左右）。</p>
+<p>2.支持简单的事务需求，但业界使用场景很少，并不成熟，既是优点也是缺点。</p>
+<p>3.Redis在string类型上会消耗较多内存，可以使用dict（hash表）压缩存储以降低内存的消耗。</p>
+<h3 id="2-Memcache"><a href="#2-Memcache" class="headerlink" title="2.Memcache"></a>2.Memcache</h3><p><strong>优点：</strong></p>
+<p>1.Memcached可以利用多核优势，单实例吞吐量极高，可以达到几十万QPS（取决于key、value的字节大小以及服务器硬件性能，日常环境中QPS高峰大约在4-6w左右）。适用于最大程度数据量。</p>
+<p>2.支持直接配置为session handle。</p>
+<p><strong>缺点：</strong></p>
+<p>1只支持简单的key/value数据结构，不像Redis可以支持丰富的数据类型。</p>
+<p>2.无法进行持久化，数据不能备份，只能用于缓存使用，且重启后数据全部丢失。</p>
+<p>3.无法进行数据同步，不能将MC中的数据迁移到其他MC实例中。</p>
+<p>4.Memcached内存分配采用Slab Allocation机制管理内存，value大小分布差异较大时会造成内存利用率降低，并引发低利用率时依然出现溢出等问题需要用户注重value的设计。</p>
+<h3 id="3-MongoDB"><a href="#3-MongoDB" class="headerlink" title="3.MongoDB"></a>3.MongoDB</h3><p><strong>优点：</strong></p>
+<p>1.更高的写负载，MongoDB拥有更高的插入速度。</p>
+<p>2.处理很大的规模的单表，当数据表太大的时候可以很容易的分割表。</p>
+<p>3.高可用性，设置M-S不仅方便而且很快，MongoDB还可以快速、安全及自动化的实现节点（数据中心）故障转移。</p>
+<p>4.快速的查询，MongoDB支持二维空间索引，比如管道，因此可以快速及精确的从指定位置获取数据。MongoDB在启动后会将数据库中的数据以文件映射的方式加载到内存中。如果内存资源相当丰富的话，这将极大地提高数据库的查询速度。</p>
+<p>5.非结构化数据的爆发增长，增加列在有些情况下可能锁定整个数据库，或者增加负载从而导致性能下降，由于MongoDB的弱数据结构模式，添加1个新字段不会对旧表格有任何影响，整个过程会非常快速。</p>
+<p><strong>缺点：</strong></p>
+<p>1.不支持事务。</p>
+<p>2.MongoDB占用空间过大 。</p>
+<p>3.MongoDB没有成熟的维护工具。</p>
+<h2 id="五、Redis、Memcache和MongoDB的区别"><a href="#五、Redis、Memcache和MongoDB的区别" class="headerlink" title="五、Redis、Memcache和MongoDB的区别"></a>五、Redis、Memcache和MongoDB的区别</h2><p><strong>1.性能</strong></p>
+<p>三者的性能都比较高，总的来讲：Memcache和Redis差不多，要高于MongoDB。</p>
+<p><strong>2.便利性</strong></p>
+<p>memcache数据结构单一。</p>
+<p>redis丰富一些，数据操作方面，redis更好一些，较少的网络IO次数。</p>
+<p>mongodb支持丰富的数据表达，索引，最类似关系型数据库，支持的查询语言非常丰富。</p>
+<p><strong>3,存储空间</strong></p>
+<p>redis在2.0版本后增加了自己的VM特性，突破物理内存的限制；可以对key value设置过期时间（类似memcache）。</p>
+<p>memcache可以修改最大可用内存,采用LRU算法。</p>
+<p>mongoDB适合大数据量的存储，依赖操作系统VM做内存管理，吃内存也比较厉害，服务不要</p>
+<p>和别的服务在一起。</p>
+<p><strong>4.可用性</strong></p>
+<p>redis，依赖客户端来实现分布式读写；主从复制时，每次从节点重新连接主节点都要依赖整个快照,无增量复制，因性能和效率问题，所以单点问题比较复杂；不支持自动sharding,需要依赖程序设定一致hash 机制。一种替代方案是，不用redis本身的复制机制，采用自己做主动复制（多份存储），或者改成增量复制的方式（需要自己实现），一致性问题和性能的权衡。</p>
+<p>Memcache本身没有数据冗余机制，也没必要；对于故障预防，采用依赖成熟的hash或者环状的算法，解决单点故障引起的抖动问题。</p>
+<p>mongoDB支持master-slave,replicaset（内部采用paxos选举算法，自动故障恢</p>
+<p>复）,auto sharding机制，对客户端屏蔽了故障转移和切分机制。</p>
+<p><strong>5.可靠性</strong></p>
+<p>redis支持（快照、AOF）：依赖快照进行持久化，aof增强了可靠性的同时，对性能有所影响。</p>
+<p>memcache不支持，通常用在做缓存,提升性能。</p>
+<p>MongoDB从1.8版本开始采用binlog方式支持持久化的可靠性。</p>
+<p><strong>6.一致性</strong></p>
+<p>Memcache 在并发场景下，用cas保证一致性。</p>
+<p>redis事务支持比较弱，只能保证事务中的每个操作连续执行。</p>
+<p>mongoDB不支持事务。</p>
+<p><strong>7.数据分析</strong></p>
+<p>mongoDB内置了数据分析的功能(mapreduce),其他两者不支持。</p>
+<p><strong>8.应用场景</strong></p>
+<p>redis：数据量较小的更性能操作和运算上。</p>
+<p>memcache：用于在动态系统中减少数据库负载，提升性能;做缓存，提高性（适合读多写少，对于数据量比较大，可以采用sharding）。</p>
+<p>MongoDB:主要解决海量数据的访问效率问题。</p>
+]]></content>
+      <categories>
+        <category>NoSQL</category>
+      </categories>
+      <tags>
+        <tag>NoSQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>简历技术点书写规范</title>
     <url>/CodeDatao/2020/01/24/%E7%AE%80%E5%8E%86%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83/</url>
     <content><![CDATA[<h1 id="简历技术点书写规范"><a href="#简历技术点书写规范" class="headerlink" title="简历技术点书写规范"></a>简历技术点书写规范</h1><p><strong>程序员写简历时必须注意的技术词汇拼写</strong></p>
@@ -238,119 +351,6 @@
       </categories>
       <tags>
         <tag>技术点书写规范</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常见的NoSQL数据库以及他们的特点&amp;区别</title>
-    <url>/CodeDatao/2020/02/14/%E5%B8%B8%E8%A7%81%E7%9A%84NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5%E5%8F%8A%E4%BB%96%E4%BB%AC%E7%9A%84%E7%89%B9%E7%82%B9&amp;%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<h2 id="一、什么是NoSQL"><a href="#一、什么是NoSQL" class="headerlink" title="一、什么是NoSQL"></a>一、什么是NoSQL</h2><p>NoSQL(NoSQL = Not Only SQL)，意即“不仅仅是SQL”，是一项全新的数据库理念，泛指非关系型的数据库。</p>
-<p>关系型数据库（SQL），表与表之间的关系，一个表中字段与字段之间的关系。</p>
-<p>eg：MySQL、Oracle等</p>
-<p>MySQL主子表关系，数据之间是有关系。</p>
-<p>非关系型数据库之间没有任何关系。</p>
-<h2 id="二、NoSQL能够解决三高问题"><a href="#二、NoSQL能够解决三高问题" class="headerlink" title="二、NoSQL能够解决三高问题"></a>二、NoSQL能够解决三高问题</h2><p>High performance - 对数据库高并发读写的需求</p>
-<p>Huge Storage - 对海量数据的高效率存储和访问的需求</p>
-<p>High Scalability &amp;&amp; High Availability- 对数据库的高可扩展性和高可用性的需求</p>
-<p><img src="/images/0.jpeg" alt="NoSQL"></p>
-<h2 id="三、常见的NoSQl"><a href="#三、常见的NoSQl" class="headerlink" title="三、常见的NoSQl"></a>三、常见的NoSQl</h2><table>
-<thead>
-<tr>
-<th>临时性键值存储</th>
-<th>永久性键值存储</th>
-<th>面向文档的数据库</th>
-<th>面向列的数据库</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Memcached</td>
-<td>Tokyo Tyrant</td>
-<td>MangoDB</td>
-<td>Cassandra</td>
-</tr>
-<tr>
-<td>Redis</td>
-<td>Flare</td>
-<td>CouchDB</td>
-<td>HBase</td>
-</tr>
-<tr>
-<td></td>
-<td>ROMA</td>
-<td></td>
-<td>HyperTable</td>
-</tr>
-<tr>
-<td></td>
-<td>Redis</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="四、Redis，Memcache，MongoDb的特点"><a href="#四、Redis，Memcache，MongoDb的特点" class="headerlink" title="四、Redis，Memcache，MongoDb的特点"></a>四、Redis，Memcache，MongoDb的特点</h2><h3 id="1-Redis"><a href="#1-Redis" class="headerlink" title="1.Redis"></a>1.Redis</h3><p><strong>优点：</strong></p>
-<p>1.支持多种数据结构，如 string（字符串）、 list(双向链表)、dict(hash表)、set(集合）、zset(排序set)、hyperloglog（基数估算）</p>
-<p>2.支持持久化操作，可以进行aof及rdb数据持久化到磁盘，从而进行数据备份或数据恢复等操作，较好的防止数据丢失　　的手段。</p>
-<p>3.支持通过Replication进行数据复制，通过master-slave机制，可以实时进行数据的同步复制，支持多级复制和增量复制，master-slave机制是Redis进行HA的重要手段。</p>
-<p>4.单线程请求，所有命令串行执行，并发情况下不需要考虑数据一致性问题。</p>
-<p>5.支持pub/sub消息订阅机制，可以用来进行消息订阅与通知。</p>
-<p>6.支持简单的事务需求，但业界使用场景很少，并不成熟。</p>
-<p><strong>缺点：</strong></p>
-<p>1.Redis只能使用单线程，性能受限于CPU性能，故单实例CPU最高才可能达到5-6wQPS每秒（取决于数据结构，数据大小以及服务器硬件性能，日常环境中QPS高峰大约在1-2w左右）。</p>
-<p>2.支持简单的事务需求，但业界使用场景很少，并不成熟，既是优点也是缺点。</p>
-<p>3.Redis在string类型上会消耗较多内存，可以使用dict（hash表）压缩存储以降低内存的消耗。</p>
-<h3 id="2-Memcache"><a href="#2-Memcache" class="headerlink" title="2.Memcache"></a>2.Memcache</h3><p><strong>优点：</strong></p>
-<p>1.Memcached可以利用多核优势，单实例吞吐量极高，可以达到几十万QPS（取决于key、value的字节大小以及服务器硬件性能，日常环境中QPS高峰大约在4-6w左右）。适用于最大程度数据量。</p>
-<p>2.支持直接配置为session handle。</p>
-<p><strong>缺点：</strong></p>
-<p>1只支持简单的key/value数据结构，不像Redis可以支持丰富的数据类型。</p>
-<p>2.无法进行持久化，数据不能备份，只能用于缓存使用，且重启后数据全部丢失。</p>
-<p>3.无法进行数据同步，不能将MC中的数据迁移到其他MC实例中。</p>
-<p>4.Memcached内存分配采用Slab Allocation机制管理内存，value大小分布差异较大时会造成内存利用率降低，并引发低利用率时依然出现溢出等问题需要用户注重value的设计。</p>
-<h3 id="3-MongoDB"><a href="#3-MongoDB" class="headerlink" title="3.MongoDB"></a>3.MongoDB</h3><p><strong>优点：</strong></p>
-<p>1.更高的写负载，MongoDB拥有更高的插入速度。</p>
-<p>2.处理很大的规模的单表，当数据表太大的时候可以很容易的分割表。</p>
-<p>3.高可用性，设置M-S不仅方便而且很快，MongoDB还可以快速、安全及自动化的实现节点（数据中心）故障转移。</p>
-<p>4.快速的查询，MongoDB支持二维空间索引，比如管道，因此可以快速及精确的从指定位置获取数据。MongoDB在启动后会将数据库中的数据以文件映射的方式加载到内存中。如果内存资源相当丰富的话，这将极大地提高数据库的查询速度。</p>
-<p>5.非结构化数据的爆发增长，增加列在有些情况下可能锁定整个数据库，或者增加负载从而导致性能下降，由于MongoDB的弱数据结构模式，添加1个新字段不会对旧表格有任何影响，整个过程会非常快速。</p>
-<p><strong>缺点：</strong></p>
-<p>1.不支持事务。</p>
-<p>2.MongoDB占用空间过大 。</p>
-<p>3.MongoDB没有成熟的维护工具。</p>
-<h2 id="五、Redis、Memcache和MongoDB的区别"><a href="#五、Redis、Memcache和MongoDB的区别" class="headerlink" title="五、Redis、Memcache和MongoDB的区别"></a>五、Redis、Memcache和MongoDB的区别</h2><p><strong>1.性能</strong></p>
-<p>三者的性能都比较高，总的来讲：Memcache和Redis差不多，要高于MongoDB。</p>
-<p><strong>2.便利性</strong></p>
-<p>memcache数据结构单一。</p>
-<p>redis丰富一些，数据操作方面，redis更好一些，较少的网络IO次数。</p>
-<p>mongodb支持丰富的数据表达，索引，最类似关系型数据库，支持的查询语言非常丰富。</p>
-<p><strong>3,存储空间</strong></p>
-<p>redis在2.0版本后增加了自己的VM特性，突破物理内存的限制；可以对key value设置过期时间（类似memcache）。</p>
-<p>memcache可以修改最大可用内存,采用LRU算法。</p>
-<p>mongoDB适合大数据量的存储，依赖操作系统VM做内存管理，吃内存也比较厉害，服务不要</p>
-<p>和别的服务在一起。</p>
-<p><strong>4.可用性</strong></p>
-<p>redis，依赖客户端来实现分布式读写；主从复制时，每次从节点重新连接主节点都要依赖整个快照,无增量复制，因性能和效率问题，所以单点问题比较复杂；不支持自动sharding,需要依赖程序设定一致hash 机制。一种替代方案是，不用redis本身的复制机制，采用自己做主动复制（多份存储），或者改成增量复制的方式（需要自己实现），一致性问题和性能的权衡。</p>
-<p>Memcache本身没有数据冗余机制，也没必要；对于故障预防，采用依赖成熟的hash或者环状的算法，解决单点故障引起的抖动问题。</p>
-<p>mongoDB支持master-slave,replicaset（内部采用paxos选举算法，自动故障恢</p>
-<p>复）,auto sharding机制，对客户端屏蔽了故障转移和切分机制。</p>
-<p><strong>5.可靠性</strong></p>
-<p>redis支持（快照、AOF）：依赖快照进行持久化，aof增强了可靠性的同时，对性能有所影响。</p>
-<p>memcache不支持，通常用在做缓存,提升性能。</p>
-<p>MongoDB从1.8版本开始采用binlog方式支持持久化的可靠性。</p>
-<p><strong>6.一致性</strong></p>
-<p>Memcache 在并发场景下，用cas保证一致性。</p>
-<p>redis事务支持比较弱，只能保证事务中的每个操作连续执行。</p>
-<p>mongoDB不支持事务。</p>
-<p><strong>7.数据分析</strong></p>
-<p>mongoDB内置了数据分析的功能(mapreduce),其他两者不支持。</p>
-<p><strong>8.应用场景</strong></p>
-<p>redis：数据量较小的更性能操作和运算上。</p>
-<p>memcache：用于在动态系统中减少数据库负载，提升性能;做缓存，提高性（适合读多写少，对于数据量比较大，可以采用sharding）。</p>
-<p>MongoDB:主要解决海量数据的访问效率问题。</p>
-]]></content>
-      <categories>
-        <category>NoSQL</category>
-      </categories>
-      <tags>
-        <tag>NoSQL</tag>
       </tags>
   </entry>
 </search>
