@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>SQL优化</title>
-    <url>/CodeDatao/2019/12/13/SQL%E4%BC%98%E5%8C%96/</url>
+    <url>/2019/12/13/SQL%E4%BC%98%E5%8C%96/</url>
     <content><![CDATA[<h2 id="一、为什么要对SQL进行优化"><a href="#一、为什么要对SQL进行优化" class="headerlink" title="一、为什么要对SQL进行优化"></a>一、为什么要对SQL进行优化</h2><p>我们开发项目上线初期，由于业务数据量相对较少，一些SQL的执行效率对程序运行效率的影响不太明显，而开发和运维人员也无法判断SQL对程序的运行效率有多大，故很少针对SQL进行专门的优化，而随着时间的积累，业务数据量的增多，SQL的执行效率对程序的运行效率的影响逐渐增大，此时对SQL的优化就很有必要。</p>
 <p><img src="/images/MySQL.png" alt="MySQL"></p>
 <h2 id="二、SQL优化的一些方法"><a href="#二、SQL优化的一些方法" class="headerlink" title="二、SQL优化的一些方法"></a>二、SQL优化的一些方法</h2><ol>
@@ -78,7 +78,7 @@
   </entry>
   <entry>
     <title>常见的NoSQL数据库以及他们的特点&amp;区别</title>
-    <url>/CodeDatao/2020/02/14/%E5%B8%B8%E8%A7%81%E7%9A%84NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5%E5%8F%8A%E4%BB%96%E4%BB%AC%E7%9A%84%E7%89%B9%E7%82%B9&amp;%E5%8C%BA%E5%88%AB/</url>
+    <url>/2020/02/14/%E5%B8%B8%E8%A7%81%E7%9A%84NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5%E5%8F%8A%E4%BB%96%E4%BB%AC%E7%9A%84%E7%89%B9%E7%82%B9&amp;%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<h2 id="一、什么是NoSQL"><a href="#一、什么是NoSQL" class="headerlink" title="一、什么是NoSQL"></a>一、什么是NoSQL</h2><p>NoSQL(NoSQL = Not Only SQL)，意即“不仅仅是SQL”，是一项全新的数据库理念，泛指非关系型的数据库。</p>
 <p>关系型数据库（SQL），表与表之间的关系，一个表中字段与字段之间的关系。</p>
 <p>eg：MySQL、Oracle等</p>
@@ -191,7 +191,7 @@
   </entry>
   <entry>
     <title>简历技术点书写规范</title>
-    <url>/CodeDatao/2020/01/24/%E7%AE%80%E5%8E%86%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83/</url>
+    <url>/2020/01/24/%E7%AE%80%E5%8E%86%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83/</url>
     <content><![CDATA[<h1 id="简历技术点书写规范"><a href="#简历技术点书写规范" class="headerlink" title="简历技术点书写规范"></a>简历技术点书写规范</h1><p><strong>程序员写简历时必须注意的技术词汇拼写</strong></p>
 <p><img src="/images/%E9%87%91%E4%B8%89%E9%93%B6%E5%9B%9B.jpeg" alt></p>
 <p>每年到了三四月时为找工作的旺季，也就是大家熟知所谓的的“金三银四”。尤其对于程序员来说，这个时候也是最好找工作和跳槽的时机，工作岗位的选择很多。很多程序员用了太多的时间在 自己的技术水平提升和笔试、面试题准备之上，却忽略了找工作最终要的第一部分-简历书写，因此造成最终结果是 技术没问题，但投出去的简历惨不忍睹，有的甚至连面试的机会可能都没有。</p>
