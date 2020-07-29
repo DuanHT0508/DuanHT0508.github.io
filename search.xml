@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AMP之SkyWalking</title>
+    <url>/2020/05/25/AMP%E4%B9%8BSkyWalking/</url>
+    <content><![CDATA[<h1 id="AMP之SkyWalking"><a href="#AMP之SkyWalking" class="headerlink" title="AMP之SkyWalking"></a>AMP之SkyWalking</h1>]]></content>
+  </entry>
+  <entry>
     <title>Linux常用命令</title>
     <url>/2020/05/25/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h2 id="Linux操作系统目录结构"><a href="#Linux操作系统目录结构" class="headerlink" title="Linux操作系统目录结构"></a>Linux操作系统目录结构</h2><p><img src="/images/41.jpg" alt></p>
@@ -197,6 +202,416 @@
       </tags>
   </entry>
   <entry>
+    <title>JavaWeb</title>
+    <url>/2020/07/08/JavaWeb/</url>
+    <content><![CDATA[<h1 id="JavaWeb"><a href="#JavaWeb" class="headerlink" title="JavaWeb"></a>JavaWeb</h1><h2 id="1、基本概念"><a href="#1、基本概念" class="headerlink" title="1、基本概念"></a>1、基本概念</h2><h3 id="1-1、前言"><a href="#1-1、前言" class="headerlink" title="1.1、前言"></a>1.1、前言</h3><p>Web开发</p>
+<ul>
+<li>Web，网页的意思，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></li>
+<li>静态web<ul>
+<li>html，css</li>
+<li>提供给所有人看的数据不会发生变化</li>
+</ul>
+</li>
+<li>动态Web<ul>
+<li>淘宝，几乎左右的网站</li>
+<li>提供给所有人看的数据会发生变化，每个人在不同时间，不同地点看到的信息各不相同！</li>
+<li>技术栈：Servlet、JSP，ASP.NET，PHP</li>
+</ul>
+</li>
+</ul>
+<p>在Java中，动态Web资源开发的技术统称为JavaWeb；</p>
+ <a id="more"></a>
+
+<h3 id="1-2、Web应用程序"><a href="#1-2、Web应用程序" class="headerlink" title="1.2、Web应用程序"></a>1.2、Web应用程序</h3><p>Web应用程序可以提供浏览器访问的程序；</p>
+<ul>
+<li>a.html、b.html…….多个web资源，这些web资源可以被外界访问，对外界提供服务；</li>
+<li>你们能访问到的任何一个页面或者资源，都存在于这个世界的某一个角落的计算机上。</li>
+<li>URL</li>
+<li>这个同意的web资源会被放在同一个文件夹下，web应用程序–&gt;Tomcat：服务器</li>
+<li>一个web应用由多部分组成（静态web，动态web）<ul>
+<li>HTML，CSS，JS</li>
+<li>JSP，Servlet</li>
+<li>Java程序</li>
+<li>Jar包</li>
+<li>配置文件（Properties）</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-静态Web"><a href="#1-3-静态Web" class="headerlink" title="1.3 静态Web"></a>1.3 静态Web</h3><ul>
+<li>*.html, *.hrm这些都是网页后缀，如果服务器上存在这些东西，我们可以直接进行读取</li>
+</ul>
+<p><img src="/images/image-20200708101532141.png" alt="image-20200708101532141"></p>
+<ul>
+<li>静态web存在的缺点<ul>
+<li>Web页面无法动态更新，所有用户看到都是同一个页面<ul>
+<li>轮播图，点击特效：伪动态</li>
+<li>JavaScript[实际开发中，它用的最多]</li>
+<li>VBScript</li>
+</ul>
+</li>
+<li>它无法和数据库交互（数据无法持久化，用户无法交互）</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4-动态Web"><a href="#1-4-动态Web" class="headerlink" title="1.4 动态Web"></a>1.4 动态Web</h3><p>页面会动态展示：“Web的页面展示效果因人而异”；</p>
+<p><img src="/images/image-20200708104041965.png" alt="image-20200708104041965"></p>
+<p>缺点</p>
+<ul>
+<li>加入服务器的动态web资源出现了村务，我们需要重新编写我们的后台程序，重新发布</li>
+<li>它可以与数据库交互（数据持久化：注册，用户信息，商品信息，订单等）</li>
+</ul>
+<p><img src="/images/image-20200708112653776.png" alt="image-20200708112653776"></p>
+<h2 id="2、web服务器"><a href="#2、web服务器" class="headerlink" title="2、web服务器"></a>2、web服务器</h2><h3 id="2-1-、技术讲解"><a href="#2-1-、技术讲解" class="headerlink" title="2.1 、技术讲解"></a>2.1 、技术讲解</h3><p>ASP：</p>
+<ul>
+<li>微软：国内最早出现的web服务器</li>
+<li>在HTML中嵌入了VB的脚本，ASP+COM</li>
+<li>在ASP开发中，基本一个页面都有几千行的代码，极其混乱</li>
+<li>维护成本高</li>
+<li>C#</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%</span></span></span><br><span class="line"><span class="tag">		<span class="attr">System.out.println</span>("<span class="attr">hello</span>")</span></span><br><span class="line"><span class="tag">    %&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>PHP</p>
+<ul>
+<li>PHP开发速度很快，功能很强大，跨平台，代码很简单（）</li>
+<li>无法承载大访问量的情况（局限性）</li>
+</ul>
+<p>JSP/Servlet：</p>
+<p>B/S架构：浏览器端和服务端</p>
+<p>C/S架构：客户端和服务端</p>
+<ul>
+<li>sun公司主推的B/S架构</li>
+<li>基于Java语言的（所有的大公司都是用Java，开源组件也都是用Java来写的）</li>
+<li>能够承载三高</li>
+<li>语法和ASP很像</li>
+</ul>
+<h3 id="2-2、web服务器"><a href="#2-2、web服务器" class="headerlink" title="2.2、web服务器"></a>2.2、web服务器</h3><p>服务器是一种被动操作，用来处理用户的一些请求和给用户一些响应信息；</p>
+<p><strong>IIS</strong></p>
+<p><strong>Tomcat</strong></p>
+<p>Tomcat实际上运行JSP页面和Servlet。Tomcat最 新版本为9.0。</p>
+<h2 id="3、Tomcat"><a href="#3、Tomcat" class="headerlink" title="3、Tomcat"></a>3、Tomcat</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4、Http"><a href="#4、Http" class="headerlink" title="4、Http"></a>4、Http</h2><h3 id="4-1、什么是HTTP"><a href="#4-1、什么是HTTP" class="headerlink" title="4.1、什么是HTTP"></a>4.1、什么是HTTP</h3><p>HTTP（超文本传输协议）是一个简单的请求-响应协议，它通常运行在TCP之上</p>
+<ul>
+<li>文本：文本：html,字符串…</li>
+<li>超文本：图片，音乐，视频，定位，地图…</li>
+<li>默认端口：80</li>
+</ul>
+<p>Https：安全的          默认端口：443</p>
+<h3 id="4-2、两个时代"><a href="#4-2、两个时代" class="headerlink" title="4.2、两个时代"></a>4.2、两个时代</h3><ul>
+<li>http1.0</li>
+<li>http2.0<ul>
+<li>HTTP</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java Web</category>
+      </categories>
+      <tags>
+        <tag>Java Web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL优化</title>
+    <url>/2019/12/13/SQL%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="一、为什么要对SQL进行优化"><a href="#一、为什么要对SQL进行优化" class="headerlink" title="一、为什么要对SQL进行优化"></a>一、为什么要对SQL进行优化</h2><p><img src="/images/MySQL.png" alt="MySQL"></p>
+<p>我们开发项目上线初期，由于业务数据量相对较少，一些SQL的执行效率对程序运行效率的影响不太明显，而开发和运维人员也无法判断SQL对程序的运行效率有多大，故很少针对SQL进行专门的优化，而随着时间的积累，业务数据量的增多，SQL的执行效率对程序的运行效率的影响逐渐增大，此时对SQL的优化就很有必要。</p>
+ <a id="more"></a>
+
+<h2 id="二、SQL优化的一些方法"><a href="#二、SQL优化的一些方法" class="headerlink" title="二、SQL优化的一些方法"></a>二、SQL优化的一些方法</h2><ol>
+<li><p>对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。</p>
+</li>
+<li><p>应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：<br>select id from t where num is null   可以在num上设置默认值0，确保表中num列没有null值，然后这样查询：select id from t where num=0 </p>
+</li>
+<li><p>应尽量避免在 where 子句中使用!=或&lt;&gt;操作符，否则将引擎放弃使用索引而进行全表扫描。</p>
+</li>
+<li><p>应尽量避免在 where 子句中使用 or 来连接条件，否则将导致引擎放弃使用索引而进行全表扫描，如：   select id from t where num=10 or num=20</p>
+<p>可以这样查询：</p>
+<p>select id from t where num= 10 union all</p>
+<p>select id from t where num = 20   </p>
+</li>
+<li><p>in 和 not in 也要慎用，否则会导致全表扫描，如：select id from t where num in(1,2,3)   </p>
+<p>对于连续的数值，能用 between 就不要用 in 了：select id from t where num between 1 and 3   </p>
+</li>
+<li><p>下面的查询也将导致全表扫描：<br>select id from t where name like ‘%abc%’   </p>
+</li>
+<li><p>应尽量避免在 where 子句中对字段进行表达式操作，这将导致引擎放弃使用索引而进行全表扫描。如：<br>select id from t where num/2=100   </p>
+<p>应改为:<br>select id from t where num=100*2   </p>
+</li>
+<li><p>应尽量避免在where子句中对字段进行函数操作，这将导致引擎放弃使用索引而进行全表扫描。如：<br>select id from t where substring(name,1,3)=’abc’–name以abc开头的id<br>应改为：select id from t where name like ‘abc%’   </p>
+</li>
+<li><p>不要在 where 子句中的“=”左边进行函数、算术运算或其他表达式运算，否则系统将可能无法正确使用索引。   </p>
+</li>
+<li><p>在使用索引字段作为条件时，如果该索引是复合索引，那么必须使用到该索引中的第一个字段作为条件时才能保证系统使用该索引，否则该索引将不会被使用，并且应尽可能的让字段顺序与索引顺序相一致。   </p>
+</li>
+</ol>
+<ol start="11">
+<li><p>不要写一些没有意义的查询，如需要生成一个空表结构：<br>select col1,col2 into #t from t where 1=0<br>这类代码不会返回任何结果集，但是会消耗系统资源的，应改成这样：create table #t(…)   </p>
+</li>
+<li><p>很多时候用 exists 代替 in 是一个好的选择：</p>
+<p>select num from a where num in(select num from b)<br>用下面的语句替换：</p>
+<p>select num from a where exists(select 1 from b where num=a.num)   </p>
+</li>
+<li><p>并不是所有索引对查询都有效，SQL是根据表中数据来进行查询优化的，当索引列有大量数据重复时，SQL查询可能不会去利用索引，如一表中有字段sex，male、female几乎各一半，那么即使在sex上建了索引也对查询效率起不了作用。   </p>
+</li>
+<li><p>索引并不是越多越好，索引固然可以提高相应的 select 的效率，但同时也降低了 insert 及 update 的效率，因为 insert 或 update 时有可能会重建索引，所以怎样建索引需要慎重考虑，视具体情况而定。一个表的索引数最好不要超过6个，若太多则应考虑一些不常使用到的列上建的索引是否有必要。   </p>
+</li>
+<li><p>尽量使用数字型字段，若只含数值信息的字段尽量不要设计为字符型，这会降低查询和连接的性能，并会增加存储开销。这是因为引擎在处理查询和连接时会逐个比较字符串中每一个字符，而对于数字型而言只需要比较一次就够了。   </p>
+</li>
+<li><p>尽可能的使用 varchar 代替 char ，因为首先变长字段存储空间小，可以节省存储空间，其次对于查询来说，在一个相对较小的字段内搜索效率显然要高些。   </p>
+</li>
+<li><p>任何地方都不要使用 select * from t ，用具体的字段列表代替“*”，不要返回用不到的任何字段。   </p>
+</li>
+<li><p>避免频繁创建和删除临时表，以减少系统表资源的消耗。</p>
+</li>
+<li><p>临时表并不是不可使用，适当地使用它们可以使某些例程更有效，例如，当需要重复引用大型表或常用表中的某个数据集时。但是，对于一次性事件，最好使用导出表。</p>
+</li>
+<li><p>在新建临时表时，如果一次性插入数据量很大，那么可以使用 select into 代替 create table，避免造成大量 log ，以提高速度；如果数据量不大，为了缓和系统表的资源，应先create table，然后insert。</p>
+</li>
+<li><p>如果使用到了临时表，在存储过程的最后务必将所有的临时表显式删除，先 truncate table ，然后 drop table ，这样可以避免系统表的较长时间锁定。</p>
+</li>
+<li><p>尽量避免使用游标，因为游标的效率较差，如果游标操作的数据超过1万行，那么就应该考虑改写。</p>
+</li>
+<li><p>使用基于游标的方法或临时表方法之前，应先寻找基于集的解决方案来解决问题，基于集的方法通常更有效。</p>
+</li>
+<li><p>与临时表一样，游标并不是不可使用。对小型数据集使用 FAST_FORWARD 游标通常要优于其他逐行处理方法，尤其是在必须引用几个表才能获得所需的数据时。在结果集中包括“合计”的例程通常要比使用游标执行的速度快。如果开发时间允许，基于游标的方法和基于集的方法都可以尝试一下，看哪一种方法的效果更好。</p>
+</li>
+<li><p>尽量避免大事务操作，提高系统并发能力。</p>
+</li>
+<li><p>尽量避免向客户端返回大数据量，若数据量过大，应该考虑相应需求是否合理。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>程序员年度总结</title>
+    <url>/2020/07/09/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="程序员年度总结"><a href="#程序员年度总结" class="headerlink" title="程序员年度总结"></a>程序员年度总结</h1><p><img src="/Users/datao/CodeDatao_blog/source/images/7a6156849e704519ac25e75527a13bf1.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>如果用一句话形容你的 2020，会是什么？如果用一句话预测你的 2021，又会是什么？</p>
+<p>这一年里，你一共写下了 30 万行 CLI 命令，</p>
+<p>你键盘上磨损最厉害的键位是 command、C 和 V。</p>
+ <a id="more"></a>
+
+<p><img src="/Users/datao/CodeDatao_blog/source/images/5e0b28717e344cb39d0b849b7d347f63.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>过去一年，你编写的代码总量加起来可绕地球两圈，</p>
+<p>但你开发的产品至今用途成谜。</p>
+<p>这一年里，你创建了一个 ID：Crud Boy 的知乎账号，</p>
+<p>“谢邀……以上”是你的常用句式，收到的点赞不多不少刚好 404 个。</p>
+<p><img src="/Users/datao/CodeDatao_blog/source/images/912ab5c5728f4f30862d3757c4ca2967.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>有一个人，微信账单记录你每天都转账给她，</p>
+<p>那个长发披肩的人是——刘姐鸡蛋灌饼。</p>
+<p>这一年里，你听过最多的一首歌是《像我这样的人》，</p>
+<p><img src="/Users/datao/CodeDatao_blog/source/images/1f21deff140e47719ca1afebd4ba3303.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>像我这样的人—毛不易</p>
+<p>2 月 14 日应该是个特别的日子吧，你单曲循环了这首歌 69 遍。</p>
+<p>每天早上醒来，你做的第一件事不是偷蚂蚁森林的能量，</p>
+<p>而是看手机上有没有新的告警——卧槽，又挂了？</p>
+<p>你喜欢和同事一起讨论你们两个都不懂的技术知识，</p>
+<p>并且常常争论得不可开交——“垃圾，我奶奶的代码都比你写得好！”</p>
+<p><img src="/Users/datao/CodeDatao_blog/source/images/85c79d3941ff4a5396b4356d9d7daf6d.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>4 月 1 日这天是你最暴躁的一天，</p>
+<p>你在代码注释里写下了 32 次 “Fuck 产品经理”。</p>
+<p><img src="/Users/datao/CodeDatao_blog/source/images/4490ccc20aa34564a8cecae3faee2ae4.gif" alt="程序员年度代码报告，句句戳心"></p>
+<p>过去一年，你在极客时间上买了 8 个专栏，</p>
+<p>每篇专栏都完成了开篇词的学习。</p>
+<p>小米手环记录你经常入睡的时间在凌晨 2/3 点，</p>
+<p>“熬夜对身体不好，要好好休息哦”，它每天都在 APP 里这样提醒你。</p>
+<p>2020 年，你更爱运动了，</p>
+<p>加入 Keep 1000 天的你，成功获得了 3 次腹肌撕裂者的打卡记录。</p>
+<p><img src="/Users/datao/CodeDatao_blog/source/images/5e3ac7666aa14eddb87a5e416bffa7aa.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>过去一年，你的人际交流能力得到了长足的进步，</p>
+<p>“网络没有问题。”</p>
+<p>“交换机一切正常。”</p>
+<p>“下周一定上线。”</p>
+<p>“在我的机子上没有复现。”</p>
+<p>“你们服务器挂了吧。”</p>
+<p>“你重启试试。”</p>
+<p><img src="/Users/datao/CodeDatao_blog/source/images/ae72288903ed41188a6a3f17cd7387f9.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>这一年，你发朋友圈的频率从一天一发到三天可见，</p>
+<p>你觉得自己不是寡淡了，而是成熟了——很多事没必要让每个人都知道。</p>
+<p>这一年你经常在早晨点开 InfoQ 的推文，</p>
+<p>大多数时候你不会写评论，点个赞也是情分，</p>
+<p>但如果分享转发，那代表这一定是你的真爱。</p>
+<p>这一年里，让你感触最深的一篇文章是《中年程序员都在想什么？》，</p>
+<p>你转给了组里所有程序员——“他居然没秃”。</p>
+<p><img src="/Users/datao/CodeDatao_blog/source/images/dcffe1d8a8654be7ac55e40215e7b110.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>2020 年，跟往年没什么不同。</p>
+<p>2021 年，变化也许也不会那么大。</p>
+<p>好的不一定会更好，差的也不至于更差。</p>
+<p>世界依旧很大，自我还是很小。</p>
+<p>但你仍然是那个写起代码来一路火花带闪电的少年（女）。</p>
+<p>2020 年，你毕业了。</p>
+<p>2020 年，你恋爱了。</p>
+<p>2020 年，你升职了。</p>
+<p>2020 年，你结婚了。</p>
+<p>2020 年，你生子了。</p>
+<p>2020 年，你收获了。</p>
+<p>2021 年的你，会是怎样的？</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>常见的NoSQL数据库以及他们的特点&amp;区别</title>
+    <url>/2020/02/14/%E5%B8%B8%E8%A7%81%E7%9A%84NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5%E5%8F%8A%E4%BB%96%E4%BB%AC%E7%9A%84%E7%89%B9%E7%82%B9&amp;%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h2 id="一、什么是NoSQL"><a href="#一、什么是NoSQL" class="headerlink" title="一、什么是NoSQL"></a>一、什么是NoSQL</h2><p><img src="/images/0.jpeg" alt="NoSQL"></p>
+<p>NoSQL(NoSQL = Not Only SQL)，意即“不仅仅是SQL”，是一项全新的数据库理念，泛指非关系型的数据库。</p>
+<p>关系型数据库（SQL），表与表之间的关系，一个表中字段与字段之间的关系。</p>
+<p>eg：MySQL、Oracle等</p>
+<p>MySQL主子表关系，数据之间是有关系。</p>
+<p>非关系型数据库之间没有任何关系。</p>
+ <a id="more"></a>
+
+
+
+<h2 id="二、NoSQL能够解决三高问题"><a href="#二、NoSQL能够解决三高问题" class="headerlink" title="二、NoSQL能够解决三高问题"></a>二、NoSQL能够解决三高问题</h2><p>High performance - 对数据库高并发读写的需求</p>
+<p>Huge Storage - 对海量数据的高效率存储和访问的需求</p>
+<p>High Scalability &amp;&amp; High Availability- 对数据库的高可扩展性和高可用性的需求</p>
+<h2 id="三、常见的NoSQl"><a href="#三、常见的NoSQl" class="headerlink" title="三、常见的NoSQl"></a>三、常见的NoSQl</h2><table>
+<thead>
+<tr>
+<th>临时性键值存储</th>
+<th>永久性键值存储</th>
+<th>面向文档的数据库</th>
+<th>面向列的数据库</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Memcached</td>
+<td>Tokyo Tyrant</td>
+<td>MangoDB</td>
+<td>Cassandra</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>Flare</td>
+<td>CouchDB</td>
+<td>HBase</td>
+</tr>
+<tr>
+<td></td>
+<td>ROMA</td>
+<td></td>
+<td>HyperTable</td>
+</tr>
+<tr>
+<td></td>
+<td>Redis</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="四、Redis，Memcache，MongoDb的特点"><a href="#四、Redis，Memcache，MongoDb的特点" class="headerlink" title="四、Redis，Memcache，MongoDb的特点"></a>四、Redis，Memcache，MongoDb的特点</h2><h3 id="1-Redis"><a href="#1-Redis" class="headerlink" title="1.Redis"></a>1.Redis</h3><p><strong>优点：</strong></p>
+<p>1.支持多种数据结构，如 string（字符串）、 list(双向链表)、dict(hash表)、set(集合）、zset(排序set)、hyperloglog（基数估算）</p>
+<p>2.支持持久化操作，可以进行aof及rdb数据持久化到磁盘，从而进行数据备份或数据恢复等操作，较好的防止数据丢失的手段。</p>
+<p>3.支持通过Replication进行数据复制，通过master-slave机制，可以实时进行数据的同步复制，支持多级复制和增量复制，master-slave机制是Redis进行HA的重要手段。</p>
+<p>4.单线程请求，所有命令串行执行，并发情况下不需要考虑数据一致性问题。</p>
+<p>5.支持pub/sub消息订阅机制，可以用来进行消息订阅与通知。</p>
+<p>6.支持简单的事务需求，但业界使用场景很少，并不成熟。</p>
+<p><strong>缺点：</strong></p>
+<p>1.Redis只能使用单线程，性能受限于CPU性能，故单实例CPU最高才可能达到5-6wQPS每秒（取决于数据结构，数据大小以及服务器硬件性能，日常环境中QPS高峰大约在1-2w左右）。</p>
+<p>2.支持简单的事务需求，但业界使用场景很少，并不成熟，既是优点也是缺点。</p>
+<p>3.Redis在string类型上会消耗较多内存，可以使用dict（hash表）压缩存储以降低内存的消耗。</p>
+<h3 id="2-Memcache"><a href="#2-Memcache" class="headerlink" title="2.Memcache"></a>2.Memcache</h3><p><strong>优点：</strong></p>
+<p>1.Memcached可以利用多核优势，单实例吞吐量极高，可以达到几十万QPS（取决于key、value的字节大小以及服务器硬件性能，日常环境中QPS高峰大约在4-6w左右）。适用于最大程度数据量。</p>
+<p>2.支持直接配置为session handle。</p>
+<p><strong>缺点：</strong></p>
+<p>1只支持简单的key/value数据结构，不像Redis可以支持丰富的数据类型。</p>
+<p>2.无法进行持久化，数据不能备份，只能用于缓存使用，且重启后数据全部丢失。</p>
+<p>3.无法进行数据同步，不能将MC中的数据迁移到其他MC实例中。</p>
+<p>4.Memcached内存分配采用Slab Allocation机制管理内存，value大小分布差异较大时会造成内存利用率降低，并引发低利用率时依然出现溢出等问题需要用户注重value的设计。</p>
+<h3 id="3-MongoDB"><a href="#3-MongoDB" class="headerlink" title="3.MongoDB"></a>3.MongoDB</h3><p><strong>优点：</strong></p>
+<p>1.更高的写负载，MongoDB拥有更高的插入速度。</p>
+<p>2.处理很大的规模的单表，当数据表太大的时候可以很容易的分割表。</p>
+<p>3.高可用性，设置M-S不仅方便而且很快，MongoDB还可以快速、安全及自动化的实现节点（数据中心）故障转移。</p>
+<p>4.快速的查询，MongoDB支持二维空间索引，比如管道，因此可以快速及精确的从指定位置获取数据。MongoDB在启动后会将数据库中的数据以文件映射的方式加载到内存中。如果内存资源相当丰富的话，这将极大地提高数据库的查询速度。</p>
+<p>5.非结构化数据的爆发增长，增加列在有些情况下可能锁定整个数据库，或者增加负载从而导致性能下降，由于MongoDB的弱数据结构模式，添加1个新字段不会对旧表格有任何影响，整个过程会非常快速。</p>
+<p><strong>缺点：</strong></p>
+<p>1.不支持事务。</p>
+<p>2.MongoDB占用空间过大 。</p>
+<p>3.MongoDB没有成熟的维护工具。</p>
+<h2 id="五、Redis、Memcache和MongoDB的区别"><a href="#五、Redis、Memcache和MongoDB的区别" class="headerlink" title="五、Redis、Memcache和MongoDB的区别"></a>五、Redis、Memcache和MongoDB的区别</h2><p><strong>1.性能</strong></p>
+<p>三者的性能都比较高，总的来讲：Memcache和Redis差不多，要高于MongoDB。</p>
+<p><strong>2.便利性</strong></p>
+<p>memcache数据结构单一。</p>
+<p>redis丰富一些，数据操作方面，redis更好一些，较少的网络IO次数。</p>
+<p>mongodb支持丰富的数据表达，索引，最类似关系型数据库，支持的查询语言非常丰富。</p>
+<p><strong>3,存储空间</strong></p>
+<p>redis在2.0版本后增加了自己的VM特性，突破物理内存的限制；可以对key value设置过期时间（类似memcache）。</p>
+<p>memcache可以修改最大可用内存,采用LRU算法。</p>
+<p>mongoDB适合大数据量的存储，依赖操作系统VM做内存管理，吃内存也比较厉害，服务不要</p>
+<p>和别的服务在一起。</p>
+<p><strong>4.可用性</strong></p>
+<p>redis，依赖客户端来实现分布式读写；主从复制时，每次从节点重新连接主节点都要依赖整个快照,无增量复      制，因性能和效率问题，所以单点问题比较复杂；不支持自动sharding,需要依赖程序设定一致hash 机制。一种替代方案是，不用redis本身的复制机制，采用自己做主动复制（多份存储），或者改成增量复制的方式（需要自己实现），一致性问题和性能的权衡。</p>
+<p>Memcache本身没有数据冗余机制      也没必要；对于故障预防，采用依赖成熟的hash或者环状的算法，解决单点故障引起的抖动问题。</p>
+<p>mongoDB支持master-slave,replicaset（内部采用paxos选举算法，自动故障恢</p>
+<p>复）,auto sharding机制，对客户端屏蔽了故障转移和切分机制。</p>
+<p><strong>5.可靠性</strong></p>
+<p>redis支持（快照、AOF）：依赖快照进行持久化，aof增强了可靠性的同时，对性能有所影响。</p>
+<p>memcache不支持，通常用在做缓存,提升性能。</p>
+<p>MongoDB从1.8版本开始采用binlog方式支持持久化的可靠性。</p>
+<p><strong>6.一致性</strong></p>
+<p>Memcache 在并发场景下，用cas保证一致性。</p>
+<p>redis事务支持比较弱，只能保证事务中的每个操作连续执行。</p>
+<p>mongoDB不支持事务。</p>
+<p><strong>7.数据分析</strong></p>
+<p>mongoDB内置了数据分析的功能(mapreduce),其他两者不支持。</p>
+<p><strong>8.应用场景</strong></p>
+<p>redis：数据量较小的更性能操作和运算上。</p>
+<p>memcache：用于在动态系统中减少数据库负载，提升性能;做缓存，提高性（适合读多写少，对于数据量比较大，可以采用sharding）。</p>
+<p>MongoDB:主要解决海量数据的访问效率问题。</p>
+]]></content>
+      <categories>
+        <category>NoSQL</category>
+      </categories>
+      <tags>
+        <tag>NoSQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>阿里java开发手册中命名规约解读之DOBODTOVOAO</title>
+    <url>/2020/06/30/%E9%98%BF%E9%87%8Cjava%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%E4%B8%AD%E5%91%BD%E5%90%8D%E8%A7%84%E7%BA%A6%E8%A7%A3%E8%AF%BB%E4%B9%8BDOBODTOVOAO/</url>
+    <content><![CDATA[<h1 id="阿里java开发手册中命名规约解读之DO-BO-DTO-VO-AO"><a href="#阿里java开发手册中命名规约解读之DO-BO-DTO-VO-AO" class="headerlink" title="阿里java开发手册中命名规约解读之DO/BO/DTO/VO/AO"></a>阿里java开发手册中命名规约解读之DO/BO/DTO/VO/AO</h1><p>在阅读《阿里巴巴Java开发手册》时，看到命名规则中有这样一条</p>
+<p><img src="/images/961183-20180201113247968-1024195583.png" alt="img"></p>
+<p>虽然知道这些是根据Java对象的角色所分配名称的后缀，但是没有弄清楚分别是什么意思，日常开发中也没有使用到。</p>
+<p>网上查找了一些资料，但是感觉大多数都是一样的，可能大家都是互相copy，篇幅过长并且不易理解。</p>
+<p>别灰心！《阿里巴巴Java开发手册》中对于上面这些在领域模型的命名使用上给出了规范，说的很清楚，分享给大家。</p>
+<p>补充一个链接，内容是《阿里巴巴Java开发手册纪念版》以及历时一年推出的代码规范插件。<a href="https://github.com/alibaba/p3c" target="_blank" rel="noopener">https://github.com/alibaba/p3c</a></p>
+  <a id="more"></a>
+
+<h2 id="领域模型命名规约"><a href="#领域模型命名规约" class="headerlink" title="领域模型命名规约"></a>领域模型命名规约</h2><hr>
+<p>1.数据对象：xxx<strong>DO</strong>，xxx即为<strong>数据表名</strong>；</p>
+<p>2.数据传输对象：xxx<strong>DTO</strong>，xxx为<strong>业务领域</strong>相关的名称；</p>
+<p>3.展示对象：xxx<strong>VO</strong>，xxx一般为<strong>网页</strong>的名称；</p>
+<p>4.<strong>POJO</strong> 是DO/DTO/BO/VO的<strong>统称</strong>，<strong>禁止</strong>命名成xxxPOJO。</p>
+<p><strong>个人解读</strong></p>
+<p>1.如果你写的web应用是一个CRUD的demo，那么一个DO就完全够用。</p>
+<p>例如，写一个用户的增删改查，数据库中有一个user表，你建立一个UserDO，类中的字段和数据库中一致，当你需要对User操作时，就用UserDO进行数据存取。</p>
+<p>那么问题来啦：</p>
+<p>首先，例如user表中有一个叫做passWord的字段，保存了登录密码，这个字段肯定是不需要返回到页面上的，但是如果像上面的操作，直接把UserDO的对象返回给前台，必然会带来安全隐患；</p>
+<p>其次，如果User中有些字段需要<strong>转换</strong>后才能正确显示（例如显示中文，保存的是英文，或者保存的是关联表中的id），直接返回UserDO就只能在页面上用js写if…else…来区分值，很繁琐；</p>
+<p>最后，如果你的页面上显示的数据是一个很大的<strong>结果集</strong>（调用了好几个接口的返回结果），例如除了User信息还有Account信息，一个UserDO显然就不够用了；</p>
+<p>VO的概念应运而生。</p>
+<p>2.VO中我们写的<strong>字段</strong>都是前台所<strong>需要</strong>的，而不是对象的所有字段值；</p>
+<p>VO中的<strong>字段格式</strong>都是符合前台页面显示所需的，需要中文就显示中文；</p>
+<p>对于调用了好几个接口返回的<strong>结果集</strong>，可以封装一个VO，将所有结果整合后再返回给前端页面。</p>
+<p>3.有些人肯定在想，我的DO和VO中字段大多数都是相同的，有必要再写这样一个类吗？</p>
+<p>答案是有的！如果写的是比较小的web应用，字段不多，你觉得没有这个必要。但是如果写的是大一些的系统，字段越多，分层的优势就会越明显。（博主写的web不大，但是拿出一个类也是一百多个字段，深感头疼）</p>
+<h2 id="DO和VO之间的转换"><a href="#DO和VO之间的转换" class="headerlink" title="DO和VO之间的转换"></a>DO和VO之间的转换</h2><hr>
+<p>1.两个POJO之间的属性值进行copy，最原始的方法就是手动复制，但是这样就会产生大量的set，get代码，<strong>业务逻辑</strong>才是重点好吗？！不能喧宾夺主；</p>
+<p>2.还有种方法就是用<strong>Spring</strong>提供的<strong>BeanUtils</strong>，博主现在的项目中用的就是这个，感觉还可以，但是也有点小问题，例如copy日期需要先注册等；</p>
+<p>3.使用<strong>Dozer</strong>。Dozer是一个对象转换工具，可以在两个JavaBean之间进行递归数据复制,并且这些JavaBean可以是不同的复杂的类型。有兴趣的同学可以去学习下。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>简历技术点书写规范</title>
     <url>/2020/01/24/%E7%AE%80%E5%8E%86%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83/</url>
     <content><![CDATA[<h1 id="简历技术点书写规范"><a href="#简历技术点书写规范" class="headerlink" title="简历技术点书写规范"></a>简历技术点书写规范</h1><p><strong>程序员写简历时必须注意的技术词汇拼写</strong></p>
@@ -363,198 +778,127 @@
       </tags>
   </entry>
   <entry>
-    <title>常见的NoSQL数据库以及他们的特点&amp;区别</title>
-    <url>/2020/02/14/%E5%B8%B8%E8%A7%81%E7%9A%84NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5%E5%8F%8A%E4%BB%96%E4%BB%AC%E7%9A%84%E7%89%B9%E7%82%B9&amp;%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<h2 id="一、什么是NoSQL"><a href="#一、什么是NoSQL" class="headerlink" title="一、什么是NoSQL"></a>一、什么是NoSQL</h2><p><img src="/images/0.jpeg" alt="NoSQL"></p>
-<p>NoSQL(NoSQL = Not Only SQL)，意即“不仅仅是SQL”，是一项全新的数据库理念，泛指非关系型的数据库。</p>
-<p>关系型数据库（SQL），表与表之间的关系，一个表中字段与字段之间的关系。</p>
-<p>eg：MySQL、Oracle等</p>
-<p>MySQL主子表关系，数据之间是有关系。</p>
-<p>非关系型数据库之间没有任何关系。</p>
+    <title>mybatis中的foreach中的open=( separator=, close=)不能随意去写</title>
+    <url>/2020/07/27/mybatis%E4%B8%AD%E7%9A%84foreach%E4%B8%AD%E7%9A%84open=(%20separator=,%20close=)%E4%B8%8D%E8%83%BD%E9%9A%8F%E6%84%8F%E5%8E%BB%E5%86%99/</url>
+    <content><![CDATA[<h1 id="mybatis中的foreach中的open-”-“-separator-”-”-close-”-”不能随意去写"><a href="#mybatis中的foreach中的open-”-“-separator-”-”-close-”-”不能随意去写" class="headerlink" title="mybatis中的foreach中的open=”(“ separator=”,” close=”)”不能随意去写"></a>mybatis中的foreach中的open=”(“ separator=”,” close=”)”不能随意去写</h1><h2 id="第一种情况"><a href="#第一种情况" class="headerlink" title="第一种情况"></a>第一种情况</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteData"</span> <span class="attr">parameterType</span>=<span class="string">"java.util.Map"</span> &gt;</span></span><br><span class="line">		delete from oppo_downloading_daily where start_time <span class="symbol">&amp;gt;</span>= #&#123;startTime&#125; and end_time <span class="symbol">&amp;lt;</span>= #&#123;endTime&#125; and channel = #&#123;channels&#125; and owner_id </span><br><span class="line">		in	</span><br><span class="line"> 		<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">collection</span>=<span class="string">"ids"</span>  <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span> </span><br><span class="line">			#&#123;item&#125; </span><br><span class="line"> 		<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此种写法是后面跟着</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> oppo_downloading_daily <span class="keyword">where</span> start_time &amp;gt;= <span class="comment">#&#123;startTime&#125; and end_time &amp;lt;= #&#123;endTime&#125; and channel = #&#123;channels&#125; and owner_id in(?,?,?,?,?)</span></span><br></pre></td></tr></table></figure>
+
  <a id="more"></a>
 
+<h2 id="第二种情况"><a href="#第二种情况" class="headerlink" title="第二种情况"></a>第二种情况</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">insert into $&#123;tableName&#125;</span><br><span class="line">		(date,account_id,account_name,campaign_name,group_name,creative_name,views,clicks,totalCost)</span><br><span class="line">		values</span><br><span class="line">		<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"costReportList"</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">separator</span>=<span class="string">","</span> &gt;</span></span><br><span class="line">		   (#&#123;item.date&#125;,</span><br><span class="line">			#&#123;item.accountId&#125;,</span><br><span class="line">			#&#123;item.accountName&#125;,</span><br><span class="line">			#&#123;item.campaignName&#125;,</span><br><span class="line">			#&#123;item.groupName&#125;,</span><br><span class="line">			#&#123;item.creativeName&#125;,</span><br><span class="line">			#&#123;item.views&#125;,</span><br><span class="line">			#&#123;item.clicks&#125;,</span><br><span class="line">			#&#123;item.totalCost&#125;</span><br><span class="line">			)</span><br><span class="line">		 <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>此种写法 后面会跟</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">insert</span> <span class="keyword">into</span> $&#123;tableName&#125;</span><br><span class="line">        (<span class="built_in">date</span>,account_id,account_name,campaign_name,group_name,creative_name,views,clicks,totalCost)</span><br><span class="line">        <span class="keyword">values</span>(?,?,?,?,?,?),(?,?,?,?,?,?),(?,?,?,?,?,?)</span><br></pre></td></tr></table></figure>
+
+<p><strong>所以在使用时，一定不能随便定义括号的位置</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Update(&#123;&quot;&lt;script&gt;&quot; +</span><br><span class="line">            &quot;&lt;foreach collection&#x3D;\&quot;smsConfigTemplateList\&quot; item&#x3D;\&quot;item\&quot; separator&#x3D;\&quot;;\&quot;&gt;&quot; +</span><br><span class="line">            &quot; UPDATE&quot; +</span><br><span class="line">            &quot; mt_message_template&quot; +</span><br><span class="line">            &quot; SET pushapp_type &#x3D; #&#123;item.pushAppType, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  message_title &#x3D; #&#123;item.messageTitle, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  message_content &#x3D; #&#123;item.messageContent, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  template_id_weixin &#x3D; #&#123;item.emplateIdWeixin, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  template_weixin &#x3D; #&#123;item.templateWeixin, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">              &quot;  template_alipay &#x3D; #&#123;item.templateAlipay, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  template_id_zhifubao &#x3D; #&#123;item.templateIdZhifubao, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  modifiedon &#x3D; #&#123;item.modifiedon, jdbcType&#x3D;TIMESTAMP&#125;, &quot; +</span><br><span class="line">            &quot;  modifiedby &#x3D; #&#123;item.modifiedby, jdbcType&#x3D;VARCHAR&#125; &quot; +</span><br><span class="line">            &quot;  WHERE &quot; +</span><br><span class="line">            &quot;   message_template_id &#x3D; #&#123;item.messageTemplateId, jdbcType&#x3D;VARCHAR&#125; &quot; +</span><br><span class="line">            &quot;  AND deletion_state &#x3D; &#39;0&#39; &quot; +</span><br><span class="line">            &quot;&lt;&#x2F;foreach&gt;&quot; +</span><br><span class="line">            &quot;&lt;&#x2F;script&gt;&quot;&#125;)</span><br><span class="line">    void update(@Param(&quot;smsConfigTemplateList&quot;) List&lt;SmsConfigTemplate&gt; smsConfigTemplateList);</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="二、NoSQL能够解决三高问题"><a href="#二、NoSQL能够解决三高问题" class="headerlink" title="二、NoSQL能够解决三高问题"></a>二、NoSQL能够解决三高问题</h2><p>High performance - 对数据库高并发读写的需求</p>
-<p>Huge Storage - 对海量数据的高效率存储和访问的需求</p>
-<p>High Scalability &amp;&amp; High Availability- 对数据库的高可扩展性和高可用性的需求</p>
-<h2 id="三、常见的NoSQl"><a href="#三、常见的NoSQl" class="headerlink" title="三、常见的NoSQl"></a>三、常见的NoSQl</h2><table>
-<thead>
-<tr>
-<th>临时性键值存储</th>
-<th>永久性键值存储</th>
-<th>面向文档的数据库</th>
-<th>面向列的数据库</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Memcached</td>
-<td>Tokyo Tyrant</td>
-<td>MangoDB</td>
-<td>Cassandra</td>
-</tr>
-<tr>
-<td>Redis</td>
-<td>Flare</td>
-<td>CouchDB</td>
-<td>HBase</td>
-</tr>
-<tr>
-<td></td>
-<td>ROMA</td>
-<td></td>
-<td>HyperTable</td>
-</tr>
-<tr>
-<td></td>
-<td>Redis</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="四、Redis，Memcache，MongoDb的特点"><a href="#四、Redis，Memcache，MongoDb的特点" class="headerlink" title="四、Redis，Memcache，MongoDb的特点"></a>四、Redis，Memcache，MongoDb的特点</h2><h3 id="1-Redis"><a href="#1-Redis" class="headerlink" title="1.Redis"></a>1.Redis</h3><p><strong>优点：</strong></p>
-<p>1.支持多种数据结构，如 string（字符串）、 list(双向链表)、dict(hash表)、set(集合）、zset(排序set)、hyperloglog（基数估算）</p>
-<p>2.支持持久化操作，可以进行aof及rdb数据持久化到磁盘，从而进行数据备份或数据恢复等操作，较好的防止数据丢失　　的手段。</p>
-<p>3.支持通过Replication进行数据复制，通过master-slave机制，可以实时进行数据的同步复制，支持多级复制和增量复制，master-slave机制是Redis进行HA的重要手段。</p>
-<p>4.单线程请求，所有命令串行执行，并发情况下不需要考虑数据一致性问题。</p>
-<p>5.支持pub/sub消息订阅机制，可以用来进行消息订阅与通知。</p>
-<p>6.支持简单的事务需求，但业界使用场景很少，并不成熟。</p>
-<p><strong>缺点：</strong></p>
-<p>1.Redis只能使用单线程，性能受限于CPU性能，故单实例CPU最高才可能达到5-6wQPS每秒（取决于数据结构，数据大小以及服务器硬件性能，日常环境中QPS高峰大约在1-2w左右）。</p>
-<p>2.支持简单的事务需求，但业界使用场景很少，并不成熟，既是优点也是缺点。</p>
-<p>3.Redis在string类型上会消耗较多内存，可以使用dict（hash表）压缩存储以降低内存的消耗。</p>
-<h3 id="2-Memcache"><a href="#2-Memcache" class="headerlink" title="2.Memcache"></a>2.Memcache</h3><p><strong>优点：</strong></p>
-<p>1.Memcached可以利用多核优势，单实例吞吐量极高，可以达到几十万QPS（取决于key、value的字节大小以及服务器硬件性能，日常环境中QPS高峰大约在4-6w左右）。适用于最大程度数据量。</p>
-<p>2.支持直接配置为session handle。</p>
-<p><strong>缺点：</strong></p>
-<p>1只支持简单的key/value数据结构，不像Redis可以支持丰富的数据类型。</p>
-<p>2.无法进行持久化，数据不能备份，只能用于缓存使用，且重启后数据全部丢失。</p>
-<p>3.无法进行数据同步，不能将MC中的数据迁移到其他MC实例中。</p>
-<p>4.Memcached内存分配采用Slab Allocation机制管理内存，value大小分布差异较大时会造成内存利用率降低，并引发低利用率时依然出现溢出等问题需要用户注重value的设计。</p>
-<h3 id="3-MongoDB"><a href="#3-MongoDB" class="headerlink" title="3.MongoDB"></a>3.MongoDB</h3><p><strong>优点：</strong></p>
-<p>1.更高的写负载，MongoDB拥有更高的插入速度。</p>
-<p>2.处理很大的规模的单表，当数据表太大的时候可以很容易的分割表。</p>
-<p>3.高可用性，设置M-S不仅方便而且很快，MongoDB还可以快速、安全及自动化的实现节点（数据中心）故障转移。</p>
-<p>4.快速的查询，MongoDB支持二维空间索引，比如管道，因此可以快速及精确的从指定位置获取数据。MongoDB在启动后会将数据库中的数据以文件映射的方式加载到内存中。如果内存资源相当丰富的话，这将极大地提高数据库的查询速度。</p>
-<p>5.非结构化数据的爆发增长，增加列在有些情况下可能锁定整个数据库，或者增加负载从而导致性能下降，由于MongoDB的弱数据结构模式，添加1个新字段不会对旧表格有任何影响，整个过程会非常快速。</p>
-<p><strong>缺点：</strong></p>
-<p>1.不支持事务。</p>
-<p>2.MongoDB占用空间过大 。</p>
-<p>3.MongoDB没有成熟的维护工具。</p>
-<h2 id="五、Redis、Memcache和MongoDB的区别"><a href="#五、Redis、Memcache和MongoDB的区别" class="headerlink" title="五、Redis、Memcache和MongoDB的区别"></a>五、Redis、Memcache和MongoDB的区别</h2><p><strong>1.性能</strong></p>
-<p>三者的性能都比较高，总的来讲：Memcache和Redis差不多，要高于MongoDB。</p>
-<p><strong>2.便利性</strong></p>
-<p>memcache数据结构单一。</p>
-<p>redis丰富一些，数据操作方面，redis更好一些，较少的网络IO次数。</p>
-<p>mongodb支持丰富的数据表达，索引，最类似关系型数据库，支持的查询语言非常丰富。</p>
-<p><strong>3,存储空间</strong></p>
-<p>redis在2.0版本后增加了自己的VM特性，突破物理内存的限制；可以对key value设置过期时间（类似memcache）。</p>
-<p>memcache可以修改最大可用内存,采用LRU算法。</p>
-<p>mongoDB适合大数据量的存储，依赖操作系统VM做内存管理，吃内存也比较厉害，服务不要</p>
-<p>和别的服务在一起。</p>
-<p><strong>4.可用性</strong></p>
-<p>redis，依赖客户端来实现分布式读写；主从复制时，每次从节点重新连接主节点都要依赖整个快照,无增量复制，因性能和效率问题，所以单点问题比较复杂；不支持自动sharding,需要依赖程序设定一致hash 机制。一种替代方案是，不用redis本身的复制机制，采用自己做主动复制（多份存储），或者改成增量复制的方式（需要自己实现），一致性问题和性能的权衡。</p>
-<p>Memcache本身没有数据冗余机制，也没必要；对于故障预防，采用依赖成熟的hash或者环状的算法，解决单点故障引起的抖动问题。</p>
-<p>mongoDB支持master-slave,replicaset（内部采用paxos选举算法，自动故障恢</p>
-<p>复）,auto sharding机制，对客户端屏蔽了故障转移和切分机制。</p>
-<p><strong>5.可靠性</strong></p>
-<p>redis支持（快照、AOF）：依赖快照进行持久化，aof增强了可靠性的同时，对性能有所影响。</p>
-<p>memcache不支持，通常用在做缓存,提升性能。</p>
-<p>MongoDB从1.8版本开始采用binlog方式支持持久化的可靠性。</p>
-<p><strong>6.一致性</strong></p>
-<p>Memcache 在并发场景下，用cas保证一致性。</p>
-<p>redis事务支持比较弱，只能保证事务中的每个操作连续执行。</p>
-<p>mongoDB不支持事务。</p>
-<p><strong>7.数据分析</strong></p>
-<p>mongoDB内置了数据分析的功能(mapreduce),其他两者不支持。</p>
-<p><strong>8.应用场景</strong></p>
-<p>redis：数据量较小的更性能操作和运算上。</p>
-<p>memcache：用于在动态系统中减少数据库负载，提升性能;做缓存，提高性（适合读多写少，对于数据量比较大，可以采用sharding）。</p>
-<p>MongoDB:主要解决海量数据的访问效率问题。</p>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Insert(&#123;&quot;&lt;script&gt;&quot; +</span><br><span class="line">        &quot;INSERT INTO  mt_message_template (&quot; +</span><br><span class="line">        &quot;message_template_id,\n&quot; +</span><br><span class="line">        &quot;message_template_head_id,\n&quot; +</span><br><span class="line">        &quot;message_title,\n&quot; +</span><br><span class="line">        &quot;message_content,\n&quot; +</span><br><span class="line">        &quot;pushapp_type,\n&quot; +</span><br><span class="line">        &quot;platform_hospital_id,\n&quot; +</span><br><span class="line">        &quot;template_id_weixin,\n&quot; +</span><br><span class="line">        &quot;template_weixin,\n&quot; +</span><br><span class="line">        &quot;template_alipay,\n&quot; +</span><br><span class="line">        &quot;template_id_zhifubao,\n&quot; +</span><br><span class="line">        &quot;createdby,\n&quot; +</span><br><span class="line">        &quot;createdon,\n&quot; +</span><br><span class="line">        &quot;modifiedby,\n&quot; +</span><br><span class="line">        &quot;modifiedon,\n&quot; +</span><br><span class="line">        &quot;deletion_state)&quot; +</span><br><span class="line">        &quot;values  &quot; +</span><br><span class="line">        &quot;&lt;foreach collection&#x3D;\&quot;mtMessageTemplateList\&quot; item&#x3D;\&quot;item\&quot; separator&#x3D;\&quot;,\&quot;&gt;&quot; +</span><br><span class="line">        &quot;(#&#123;item.messageTemplateId&#125;, #&#123;item.messageTemplateHeadId&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.messageTitle&#125;, #&#123;item.messageContent&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.pushAppType&#125;, #&#123;item.platformHospitalId&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.emplateIdWeixin&#125;, #&#123;item.templateWeixin&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.templateAlipay&#125;, #&#123;item.templateIdZhifubao&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.createdby&#125;, #&#123;item.createdon&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.modifiedby&#125;, #&#123;item.modifiedon&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.deletionState&#125;)&quot; +</span><br><span class="line">        &quot;&lt;&#x2F;foreach&gt;&quot; +</span><br><span class="line">        &quot;&lt;&#x2F;script&gt;&quot;&#125;)</span><br><span class="line">void insert(@Param(&quot;mtMessageTemplateList&quot;) List&lt;MtMessageTemplate&gt; mtMessageTemplateList);</span><br></pre></td></tr></table></figure>
+
 ]]></content>
-      <categories>
-        <category>NoSQL</category>
-      </categories>
-      <tags>
-        <tag>NoSQL</tag>
-      </tags>
   </entry>
   <entry>
-    <title>SQL优化</title>
-    <url>/2019/12/13/SQL%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="一、为什么要对SQL进行优化"><a href="#一、为什么要对SQL进行优化" class="headerlink" title="一、为什么要对SQL进行优化"></a>一、为什么要对SQL进行优化</h2><p><img src="/images/MySQL.png" alt="MySQL"></p>
-<p>我们开发项目上线初期，由于业务数据量相对较少，一些SQL的执行效率对程序运行效率的影响不太明显，而开发和运维人员也无法判断SQL对程序的运行效率有多大，故很少针对SQL进行专门的优化，而随着时间的积累，业务数据量的增多，SQL的执行效率对程序的运行效率的影响逐渐增大，此时对SQL的优化就很有必要。</p>
- <a id="more"></a>
+    <title>@RequestParam和@PathVariable的用法与区别</title>
+    <url>/2020/07/29/@RequestParam%E5%92%8C@PathVariable%E7%9A%84%E7%94%A8%E6%B3%95%E4%B8%8E%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h1 id="RequestParam和-PathVariable的用法与区别"><a href="#RequestParam和-PathVariable的用法与区别" class="headerlink" title="@RequestParam和@PathVariable的用法与区别"></a>@RequestParam和@PathVariable的用法与区别</h1><h2 id="SpringBoot——-PathVariable"><a href="#SpringBoot——-PathVariable" class="headerlink" title="SpringBoot——@PathVariable"></a>SpringBoot——@PathVariable</h2><blockquote>
+<p> URL变量</p>
+</blockquote>
+<p>Web应用中的URL通常不是一成不变的，例如微博两个不同用户的个人主页对应两个不同的URL：<a href="http://weibo.com/user1和[http://weibo.com/user2](http://weibo.com/user1)。我们不能对于每一个用户都编写一个被@RequestMapping注解的方法来处理其请求，也就是说，对于相同模式的URL（例如不同用户的主页，他们仅仅是URL中的某一部分不同，为他们各自的用户名，我们说他们具有相同的模式）。" target="_blank" rel="noopener">http://weibo.com/user1和[http://weibo.com/user2](http://weibo.com/user1)。我们不能对于每一个用户都编写一个被@RequestMapping注解的方法来处理其请求，也就是说，对于相同模式的URL（例如不同用户的主页，他们仅仅是URL中的某一部分不同，为他们各自的用户名，我们说他们具有相同的模式）。</a></p>
+<blockquote>
+<p>定义URL变量规则</p>
+</blockquote>
+<p>可以在@RequestMapping注解中用{ }来表明它的变量部分，例如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/user/&#123;username&#125;"</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="二、SQL优化的一些方法"><a href="#二、SQL优化的一些方法" class="headerlink" title="二、SQL优化的一些方法"></a>二、SQL优化的一些方法</h2><ol>
-<li><p>对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。</p>
-</li>
-<li><p>应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：<br>select id from t where num is null   可以在num上设置默认值0，确保表中num列没有null值，然后这样查询：select id from t where num=0 </p>
-</li>
-<li><p>应尽量避免在 where 子句中使用!=或&lt;&gt;操作符，否则将引擎放弃使用索引而进行全表扫描。</p>
-</li>
-<li><p>应尽量避免在 where 子句中使用 or 来连接条件，否则将导致引擎放弃使用索引而进行全表扫描，如：   select id from t where num=10 or num=20</p>
-<p>可以这样查询：</p>
-<p>select id from t where num= 10 union all</p>
-<p>select id from t where num = 20   </p>
-</li>
-<li><p>in 和 not in 也要慎用，否则会导致全表扫描，如：select id from t where num in(1,2,3)   </p>
-<p>对于连续的数值，能用 between 就不要用 in 了：select id from t where num between 1 and 3   </p>
-</li>
-<li><p>下面的查询也将导致全表扫描：<br>select id from t where name like ‘%abc%’   </p>
-</li>
-<li><p>应尽量避免在 where 子句中对字段进行表达式操作，这将导致引擎放弃使用索引而进行全表扫描。如：<br>select id from t where num/2=100   </p>
-<p>应改为:<br>select id from t where num=100*2   </p>
-</li>
-<li><p>应尽量避免在where子句中对字段进行函数操作，这将导致引擎放弃使用索引而进行全表扫描。如：<br>select id from t where substring(name,1,3)=’abc’–name以abc开头的id<br>应改为：select id from t where name like ‘abc%’   </p>
-</li>
-<li><p>不要在 where 子句中的“=”左边进行函数、算术运算或其他表达式运算，否则系统将可能无法正确使用索引。   </p>
-</li>
-<li><p>在使用索引字段作为条件时，如果该索引是复合索引，那么必须使用到该索引中的第一个字段作为条件时才能保证系统使用该索引，否则该索引将不会被使用，并且应尽可能的让字段顺序与索引顺序相一致。   </p>
-</li>
-</ol>
-<ol start="11">
-<li><p>不要写一些没有意义的查询，如需要生成一个空表结构：<br>select col1,col2 into #t from t where 1=0<br>这类代码不会返回任何结果集，但是会消耗系统资源的，应改成这样：create table #t(…)   </p>
-</li>
-<li><p>很多时候用 exists 代替 in 是一个好的选择：</p>
-<p>select num from a where num in(select num from b)<br>用下面的语句替换：</p>
-<p>select num from a where exists(select 1 from b where num=a.num)   </p>
-</li>
-<li><p>并不是所有索引对查询都有效，SQL是根据表中数据来进行查询优化的，当索引列有大量数据重复时，SQL查询可能不会去利用索引，如一表中有字段sex，male、female几乎各一半，那么即使在sex上建了索引也对查询效率起不了作用。   </p>
-</li>
-<li><p>索引并不是越多越好，索引固然可以提高相应的 select 的效率，但同时也降低了 insert 及 update 的效率，因为 insert 或 update 时有可能会重建索引，所以怎样建索引需要慎重考虑，视具体情况而定。一个表的索引数最好不要超过6个，若太多则应考虑一些不常使用到的列上建的索引是否有必要。   </p>
-</li>
-<li><p>尽量使用数字型字段，若只含数值信息的字段尽量不要设计为字符型，这会降低查询和连接的性能，并会增加存储开销。这是因为引擎在处理查询和连接时会逐个比较字符串中每一个字符，而对于数字型而言只需要比较一次就够了。   </p>
-</li>
-<li><p>尽可能的使用 varchar 代替 char ，因为首先变长字段存储空间小，可以节省存储空间，其次对于查询来说，在一个相对较小的字段内搜索效率显然要高些。   </p>
-</li>
-<li><p>任何地方都不要使用 select * from t ，用具体的字段列表代替“*”，不要返回用不到的任何字段。   </p>
-</li>
-<li><p>避免频繁创建和删除临时表，以减少系统表资源的消耗。</p>
-</li>
-<li><p>临时表并不是不可使用，适当地使用它们可以使某些例程更有效，例如，当需要重复引用大型表或常用表中的某个数据集时。但是，对于一次性事件，最好使用导出表。</p>
-</li>
-<li><p>在新建临时表时，如果一次性插入数据量很大，那么可以使用 select into 代替 create table，避免造成大量 log ，以提高速度；如果数据量不大，为了缓和系统表的资源，应先create table，然后insert。</p>
-</li>
-<li><p>如果使用到了临时表，在存储过程的最后务必将所有的临时表显式删除，先 truncate table ，然后 drop table ，这样可以避免系统表的较长时间锁定。</p>
-</li>
-<li><p>尽量避免使用游标，因为游标的效率较差，如果游标操作的数据超过1万行，那么就应该考虑改写。</p>
-</li>
-<li><p>使用基于游标的方法或临时表方法之前，应先寻找基于集的解决方案来解决问题，基于集的方法通常更有效。</p>
-</li>
-<li><p>与临时表一样，游标并不是不可使用。对小型数据集使用 FAST_FORWARD 游标通常要优于其他逐行处理方法，尤其是在必须引用几个表才能获得所需的数据时。在结果集中包括“合计”的例程通常要比使用游标执行的速度快。如果开发时间允许，基于游标的方法和基于集的方法都可以尝试一下，看哪一种方法的效果更好。</p>
-</li>
-<li><p>尽量避免大事务操作，提高系统并发能力。</p>
-</li>
-<li><p>尽量避免向客户端返回大数据量，若数据量过大，应该考虑相应需求是否合理。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
+<p>这里的{username}就是我们定义的变量规则，username是变量的名字，那么这个URL路由可以匹配下列任意URL并进行处理：</p>
+<ul>
+<li>/user/Tom</li>
+<li>/user/Jerry</li>
+<li>/user/Jack2</li>
+</ul>
+<p>需要注意的是，在默认情况下，变量中不可以包含URL的分隔符/，例如路由不能匹配/user/Denny/Jon，即使你认为Denny/Jon是一个存在的用户名。</p>
+<blockquote>
+<p>获取URL变量</p>
+</blockquote>
+<p>在路由中定义变量规则后，通常我们需要在处理方法（也就是@RequestMapping注解的方法）中获取这个URL的具体值，并根据这个值（例如用户名）做相应的操作，SpringMVC提供的@PathVariable可以帮助我们：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/user/&#123;username&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">userProfile</span><span class="params">(@PathVariable(value=<span class="string">"username"</span>)</span> String username) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    	<span class="keyword">return</span> <span class="string">"user"</span>+username;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中，当@Controller处理HTTP请求时，userProfile的参数username会自动设置为URL中对应变量username（同名赋值）的值。例如，当HTTP请求为/user/fpc，URL变量username的值fpc就会被赋值给函数参数username，函数的返回值是userfpc。</p>
+<p>在默认情况下，Spring会对@PathVariable注解的变量进行自动赋值，也可以指定@PathVariable使用哪一个URL中的变量：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"user/&#123;username&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">userProfile</span><span class="params">(@PathVariable(value=<span class="string">"username"</span>)</span> String username) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    	<span class="keyword">return</span> <span class="string">"user"</span>+username;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p><img src="/2020/07/29/@RequestParam%E5%92%8C@PathVariable%E7%9A%84%E7%94%A8%E6%B3%95%E4%B8%8E%E5%8C%BA%E5%88%AB/@PathVariable.png" alt="img"></p>
+<blockquote>
+<p>定义多个URL变量 </p>
+</blockquote>
+<p> 可以定义URL路由，其中包含多个URL变量：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/user/&#123;username&#125;/blog/&#123;blogId&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserBlog</span><span class="params">(@PathVariable String username, @PathVariable <span class="keyword">int</span> blogId)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    	<span class="keyword">return</span> <span class="string">"user:"</span> + username + <span class="string">"blog-&gt;"</span> + blogId;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p> 这种情况下，Spring能够根据名字自动赋值对应的函数参数值，当然也可以在@PathVariable中显示地表明具体的URL变量值。</p>
+<p>在默认情况下，@PathVariable注解的参数可以是一些基本的简单类型：int，long，Date，String等，Spring能够根据URL变量的具体值及函数参数类型来进行转换。例如/user/fpc/blog/1，会将fpc的值赋给username，而1赋给int变量blogId。</p>
+<p>运行结果：</p>
+<p><img src="https://img-blog.csdnimg.cn/20181213091713663.PNG" alt="img"></p>
+<blockquote>
+<p>匹配正则表达式</p>
+</blockquote>
+<p> 很多时候，需要对URL变量进行更加精确的定义。例如，用户名只可能包含大小写字母，数字，下划线，我们希望：</p>
+<ul>
+<li>/user/fpc是一个合法的URL</li>
+<li>/user/#$$$则是一个不合法的URL</li>
+</ul>
+<p>除了简单地定义{username}变量，还可以定义正则表达式进行更精确地控制，定义语法是{变量名: 正则表达式}。[a-zA-Z0-9_]+是一个正则表达式，表示只能包含小写字母，大写字母，数字，下划线。如此设置URL变量规则后，不合法的URL则不会被处理，直接由SpringMVC框架返回404NotFound。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/user/&#123;username: [a-zA-Z0-9]+&#125;/blog/&#123;blogId&#125;"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="SpringBoot——-RequestParam"><a href="#SpringBoot——-RequestParam" class="headerlink" title="SpringBoot——@RequestParam"></a>SpringBoot——@RequestParam</h2><blockquote>
+<p>Request参数</p>
+</blockquote>
+<p> 在访问各种各样的网站时，经常会发现网站的URL的最后一部分形如：?xx=yy&amp;zz=ww。这就是HTTP协议中的Request参数，它有什么用呢？先看一个例子：</p>
+<ul>
+<li>在知乎中搜索web</li>
+<li>浏览器跳转到新页面后，URL变为<a href="https://www.zhihu.com/search?type=content&amp;q=web" target="_blank" rel="noopener">https://www.zhihu.com/search?type=content&amp;q=web</a></li>
+<li>在知乎中搜索java</li>
+<li>浏览器跳转到新页面后，URL变为<a href="https://www.zhihu.com/search?type=content&amp;q=java" target="_blank" rel="noopener">https://www.zhihu.com/search?type=content&amp;q=java</a></li>
+</ul>
+<p>这里的type=content&amp;q=web就是搜索请求的参数，不同参数之间用&amp;分隔，每个参数形如name=value的形式，分别表示参数名字和参数值。在这个例子中，我们输入不同的搜索关键词，在搜索结果页面的URL的q参数是不同的。也就是说，HTTP参数实际上可以认为是一种用户的输入，根据不同的用户输入，服务器经过处理后返回不同的输出（例如搜索spring和搜索java，显示结果是不一样的）。</p>
+<blockquote>
+<p>Spring MVC中的Request参数</p>
+</blockquote>
+<p> 在SpringMVC框架中，可以通过定义@RequestMapping来处理URL请求。和@PathVariable一样，需要在处理URL的函数中获取URL中的参数，也就是?key1=value1&amp;key2=value2这样的参数列表。通过注解@RequestParam可以轻松地将URL中的参数绑定到处理函数方法的变量中：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/user"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getUserBlog</span><span class="params">(@RequestParam(value=<span class="string">"id"</span>)</span> <span class="keyword">int</span> blogId) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="string">"blogId="</span>+blogId;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 这样，当我们访问/user/?id=123时，SpringMVC帮助我们将Request参数id的值绑定到了处理函数的参数blogId上。这样就能够轻松获取用户输入，并根据它的值进行计算并返回了。</p>
+<p>运行结果：</p>
+<p><img src="https://img-blog.csdnimg.cn/20181212174746325.PNG" alt="img"></p>
+<h2 id="RequestParam和-PathVariable"><a href="#RequestParam和-PathVariable" class="headerlink" title="@RequestParam和@PathVariable"></a>@RequestParam和@PathVariable</h2><blockquote>
+<p> 相同点与区别</p>
+</blockquote>
+<p> @RequestParam和@PathVariable都能够完成类似的功能——因为本质上，它们都是用户的输入，只不过输入的部分不同，一个在URL路径部分，另一个在参数部分。要访问一篇博客文章，这两种URL设计都是可以的：</p>
+<ul>
+<li>通过@PathVariable，例如/blogs/1</li>
+<li>通过@RequestParam，例如blogs?blogId=1</li>
+</ul>
+<p>那么究竟应该选择哪一种呢？建议：</p>
+<p>1、当URL指向的是某一具体业务资源（或资源列表），例如博客，用户时，使用@PathVariable</p>
+<p>2、当URL需要对资源或者资源列表进行过滤，筛选时，用@RequestParam</p>
+<p>例如我们会这样设计URL：</p>
+<ul>
+<li>/blogs/{blogId}</li>
+<li>/blogs?state=publish而不是/blogs/state/publish来表示处于发布状态的博客文章</li>
+</ul>
+<blockquote>
+<p>更多用法</p>
+</blockquote>
+<p> 一旦我们在方法中定义了@RequestParam变量，如果访问的URL中不带有相应的参数，就会抛出异常——这是显然的，Spring尝试帮我们进行绑定，然而没有成功。但有的时候，参数确实不一定永远都存在，这时我们可以通过定义required属性：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestParam</span>(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>)</span><br></pre></td></tr></table></figure>
+
+<p>当然，在参数不存在的情况下，可能希望变量有一个默认值：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestParam</span>(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>, defaultValue = <span class="string">"0"</span>)</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
 </search>

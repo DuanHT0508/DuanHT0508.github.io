@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="程序员年度总结 如果用一句话形容你的 2020，会是什么？如果用一句话预测你的 2021，又会是什么？ 这一年里，你一共写下了 30 万行 CLI 命令， 你键盘上磨损最厉害的键位是 command、C 和 V。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序员年度总结">
+<meta property="og:url" content="http://yoursite.com/2020/07/09/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="CodeDatao">
+<meta property="og:description" content="程序员年度总结 如果用一句话形容你的 2020，会是什么？如果用一句话预测你的 2021，又会是什么？ 这一年里，你一共写下了 30 万行 CLI 命令， 你键盘上磨损最厉害的键位是 command、C 和 V。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/Users/datao/CodeDatao_blog/source/images/7a6156849e704519ac25e75527a13bf1.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/datao/CodeDatao_blog/source/images/5e0b28717e344cb39d0b849b7d347f63.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/datao/CodeDatao_blog/source/images/912ab5c5728f4f30862d3757c4ca2967.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/datao/CodeDatao_blog/source/images/1f21deff140e47719ca1afebd4ba3303.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/datao/CodeDatao_blog/source/images/85c79d3941ff4a5396b4356d9d7daf6d.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/datao/CodeDatao_blog/source/images/4490ccc20aa34564a8cecae3faee2ae4.gif">
+<meta property="og:image" content="http://yoursite.com/Users/datao/CodeDatao_blog/source/images/5e3ac7666aa14eddb87a5e416bffa7aa.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/datao/CodeDatao_blog/source/images/ae72288903ed41188a6a3f17cd7387f9.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/datao/CodeDatao_blog/source/images/dcffe1d8a8654be7ac55e40215e7b110.jpeg">
+<meta property="article:published_time" content="2020-07-09T12:42:11.472Z">
+<meta property="article:modified_time" content="2020-07-09T12:56:41.766Z">
+<meta property="article:author" content="CodeDatao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/Users/datao/CodeDatao_blog/source/images/7a6156849e704519ac25e75527a13bf1.jpeg">
+
+<link rel="canonical" href="http://yoursite.com/2020/07/09/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>程序员年度总结 | CodeDatao</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">CodeDatao</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/09/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
+      <meta itemprop="name" content="CodeDatao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodeDatao">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          程序员年度总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-09 20:42:11 / 修改时间：20:56:41" itemprop="dateCreated datePublished" datetime="2020-07-09T20:42:11+08:00">2020-07-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="程序员年度总结"><a href="#程序员年度总结" class="headerlink" title="程序员年度总结"></a>程序员年度总结</h1><p><img src="/Users/datao/CodeDatao_blog/source/images/7a6156849e704519ac25e75527a13bf1.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>如果用一句话形容你的 2020，会是什么？如果用一句话预测你的 2021，又会是什么？</p>
+<p>这一年里，你一共写下了 30 万行 CLI 命令，</p>
+<p>你键盘上磨损最厉害的键位是 command、C 和 V。</p>
+ <a id="more"></a>
+
+<p><img src="/Users/datao/CodeDatao_blog/source/images/5e0b28717e344cb39d0b849b7d347f63.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>过去一年，你编写的代码总量加起来可绕地球两圈，</p>
+<p>但你开发的产品至今用途成谜。</p>
+<p>这一年里，你创建了一个 ID：Crud Boy 的知乎账号，</p>
+<p>“谢邀……以上”是你的常用句式，收到的点赞不多不少刚好 404 个。</p>
+<p><img src="/Users/datao/CodeDatao_blog/source/images/912ab5c5728f4f30862d3757c4ca2967.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>有一个人，微信账单记录你每天都转账给她，</p>
+<p>那个长发披肩的人是——刘姐鸡蛋灌饼。</p>
+<p>这一年里，你听过最多的一首歌是《像我这样的人》，</p>
+<p><img src="/Users/datao/CodeDatao_blog/source/images/1f21deff140e47719ca1afebd4ba3303.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>像我这样的人—毛不易</p>
+<p>2 月 14 日应该是个特别的日子吧，你单曲循环了这首歌 69 遍。</p>
+<p>每天早上醒来，你做的第一件事不是偷蚂蚁森林的能量，</p>
+<p>而是看手机上有没有新的告警——卧槽，又挂了？</p>
+<p>你喜欢和同事一起讨论你们两个都不懂的技术知识，</p>
+<p>并且常常争论得不可开交——“垃圾，我奶奶的代码都比你写得好！”</p>
+<p><img src="/Users/datao/CodeDatao_blog/source/images/85c79d3941ff4a5396b4356d9d7daf6d.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>4 月 1 日这天是你最暴躁的一天，</p>
+<p>你在代码注释里写下了 32 次 “Fuck 产品经理”。</p>
+<p><img src="/Users/datao/CodeDatao_blog/source/images/4490ccc20aa34564a8cecae3faee2ae4.gif" alt="程序员年度代码报告，句句戳心"></p>
+<p>过去一年，你在极客时间上买了 8 个专栏，</p>
+<p>每篇专栏都完成了开篇词的学习。</p>
+<p>小米手环记录你经常入睡的时间在凌晨 2/3 点，</p>
+<p>“熬夜对身体不好，要好好休息哦”，它每天都在 APP 里这样提醒你。</p>
+<p>2020 年，你更爱运动了，</p>
+<p>加入 Keep 1000 天的你，成功获得了 3 次腹肌撕裂者的打卡记录。</p>
+<p><img src="/Users/datao/CodeDatao_blog/source/images/5e3ac7666aa14eddb87a5e416bffa7aa.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>过去一年，你的人际交流能力得到了长足的进步，</p>
+<p>“网络没有问题。”</p>
+<p>“交换机一切正常。”</p>
+<p>“下周一定上线。”</p>
+<p>“在我的机子上没有复现。”</p>
+<p>“你们服务器挂了吧。”</p>
+<p>“你重启试试。”</p>
+<p><img src="/Users/datao/CodeDatao_blog/source/images/ae72288903ed41188a6a3f17cd7387f9.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>这一年，你发朋友圈的频率从一天一发到三天可见，</p>
+<p>你觉得自己不是寡淡了，而是成熟了——很多事没必要让每个人都知道。</p>
+<p>这一年你经常在早晨点开 InfoQ 的推文，</p>
+<p>大多数时候你不会写评论，点个赞也是情分，</p>
+<p>但如果分享转发，那代表这一定是你的真爱。</p>
+<p>这一年里，让你感触最深的一篇文章是《中年程序员都在想什么？》，</p>
+<p>你转给了组里所有程序员——“他居然没秃”。</p>
+<p><img src="/Users/datao/CodeDatao_blog/source/images/dcffe1d8a8654be7ac55e40215e7b110.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>2020 年，跟往年没什么不同。</p>
+<p>2021 年，变化也许也不会那么大。</p>
+<p>好的不一定会更好，差的也不至于更差。</p>
+<p>世界依旧很大，自我还是很小。</p>
+<p>但你仍然是那个写起代码来一路火花带闪电的少年（女）。</p>
+<p>2020 年，你毕业了。</p>
+<p>2020 年，你恋爱了。</p>
+<p>2020 年，你升职了。</p>
+<p>2020 年，你结婚了。</p>
+<p>2020 年，你生子了。</p>
+<p>2020 年，你收获了。</p>
+<p>2021 年的你，会是怎样的？</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/08/JavaWeb/" rel="prev" title="JavaWeb">
+      <i class="fa fa-chevron-left"></i> JavaWeb
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/27/mybatis%E4%B8%AD%E7%9A%84foreach%E4%B8%AD%E7%9A%84open=(%20separator=,%20close=)%E4%B8%8D%E8%83%BD%E9%9A%8F%E6%84%8F%E5%8E%BB%E5%86%99/" rel="next" title="mybatis中的foreach中的open=( separator=, close=)不能随意去写">
+      mybatis中的foreach中的open=( separator=, close=)不能随意去写 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#程序员年度总结"><span class="nav-text">程序员年度总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CodeDatao"
+      src="/images/apple-touch-icon-next.png">
+  <p class="site-author-name" itemprop="name">CodeDatao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:duanht0508@gmail.com" title="E-Mail → mailto:duanht0508@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CodeDatao</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

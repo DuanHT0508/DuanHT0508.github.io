@@ -190,10 +190,536 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/29/@RequestParam%E5%92%8C@PathVariable%E7%9A%84%E7%94%A8%E6%B3%95%E4%B8%8E%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
+      <meta itemprop="name" content="CodeDatao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodeDatao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/29/@RequestParam%E5%92%8C@PathVariable%E7%9A%84%E7%94%A8%E6%B3%95%E4%B8%8E%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">@RequestParam和@PathVariable的用法与区别</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-29 14:05:58" itemprop="dateCreated datePublished" datetime="2020-07-29T14:05:58+08:00">2020-07-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="RequestParam和-PathVariable的用法与区别"><a href="#RequestParam和-PathVariable的用法与区别" class="headerlink" title="@RequestParam和@PathVariable的用法与区别"></a>@RequestParam和@PathVariable的用法与区别</h1><h2 id="SpringBoot——-PathVariable"><a href="#SpringBoot——-PathVariable" class="headerlink" title="SpringBoot——@PathVariable"></a>SpringBoot——@PathVariable</h2><blockquote>
+<p> URL变量</p>
+</blockquote>
+<p>Web应用中的URL通常不是一成不变的，例如微博两个不同用户的个人主页对应两个不同的URL：<a href="http://weibo.com/user1和[http://weibo.com/user2](http://weibo.com/user1)。我们不能对于每一个用户都编写一个被@RequestMapping注解的方法来处理其请求，也就是说，对于相同模式的URL（例如不同用户的主页，他们仅仅是URL中的某一部分不同，为他们各自的用户名，我们说他们具有相同的模式）。" target="_blank" rel="noopener">http://weibo.com/user1和[http://weibo.com/user2](http://weibo.com/user1)。我们不能对于每一个用户都编写一个被@RequestMapping注解的方法来处理其请求，也就是说，对于相同模式的URL（例如不同用户的主页，他们仅仅是URL中的某一部分不同，为他们各自的用户名，我们说他们具有相同的模式）。</a></p>
+<blockquote>
+<p>定义URL变量规则</p>
+</blockquote>
+<p>可以在@RequestMapping注解中用{ }来表明它的变量部分，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/user/&#123;username&#125;"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这里的{username}就是我们定义的变量规则，username是变量的名字，那么这个URL路由可以匹配下列任意URL并进行处理：</p>
+<ul>
+<li>/user/Tom</li>
+<li>/user/Jerry</li>
+<li>/user/Jack2</li>
+</ul>
+<p>需要注意的是，在默认情况下，变量中不可以包含URL的分隔符/，例如路由不能匹配/user/Denny/Jon，即使你认为Denny/Jon是一个存在的用户名。</p>
+<blockquote>
+<p>获取URL变量</p>
+</blockquote>
+<p>在路由中定义变量规则后，通常我们需要在处理方法（也就是@RequestMapping注解的方法）中获取这个URL的具体值，并根据这个值（例如用户名）做相应的操作，SpringMVC提供的@PathVariable可以帮助我们：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/user/&#123;username&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">userProfile</span><span class="params">(@PathVariable(value=<span class="string">"username"</span>)</span> String username) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    	<span class="keyword">return</span> <span class="string">"user"</span>+username;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中，当@Controller处理HTTP请求时，userProfile的参数username会自动设置为URL中对应变量username（同名赋值）的值。例如，当HTTP请求为/user/fpc，URL变量username的值fpc就会被赋值给函数参数username，函数的返回值是userfpc。</p>
+<p>在默认情况下，Spring会对@PathVariable注解的变量进行自动赋值，也可以指定@PathVariable使用哪一个URL中的变量：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"user/&#123;username&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">userProfile</span><span class="params">(@PathVariable(value=<span class="string">"username"</span>)</span> String username) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    	<span class="keyword">return</span> <span class="string">"user"</span>+username;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p><img src="/2020/07/29/@RequestParam%E5%92%8C@PathVariable%E7%9A%84%E7%94%A8%E6%B3%95%E4%B8%8E%E5%8C%BA%E5%88%AB/@PathVariable.png" alt="img"></p>
+<blockquote>
+<p>定义多个URL变量 </p>
+</blockquote>
+<p> 可以定义URL路由，其中包含多个URL变量：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/user/&#123;username&#125;/blog/&#123;blogId&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserBlog</span><span class="params">(@PathVariable String username, @PathVariable <span class="keyword">int</span> blogId)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    	<span class="keyword">return</span> <span class="string">"user:"</span> + username + <span class="string">"blog-&gt;"</span> + blogId;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p> 这种情况下，Spring能够根据名字自动赋值对应的函数参数值，当然也可以在@PathVariable中显示地表明具体的URL变量值。</p>
+<p>在默认情况下，@PathVariable注解的参数可以是一些基本的简单类型：int，long，Date，String等，Spring能够根据URL变量的具体值及函数参数类型来进行转换。例如/user/fpc/blog/1，会将fpc的值赋给username，而1赋给int变量blogId。</p>
+<p>运行结果：</p>
+<p><img src="https://img-blog.csdnimg.cn/20181213091713663.PNG" alt="img"></p>
+<blockquote>
+<p>匹配正则表达式</p>
+</blockquote>
+<p> 很多时候，需要对URL变量进行更加精确的定义。例如，用户名只可能包含大小写字母，数字，下划线，我们希望：</p>
+<ul>
+<li>/user/fpc是一个合法的URL</li>
+<li>/user/#$$$则是一个不合法的URL</li>
+</ul>
+<p>除了简单地定义{username}变量，还可以定义正则表达式进行更精确地控制，定义语法是{变量名: 正则表达式}。[a-zA-Z0-9_]+是一个正则表达式，表示只能包含小写字母，大写字母，数字，下划线。如此设置URL变量规则后，不合法的URL则不会被处理，直接由SpringMVC框架返回404NotFound。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/user/&#123;username: [a-zA-Z0-9]+&#125;/blog/&#123;blogId&#125;"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="SpringBoot——-RequestParam"><a href="#SpringBoot——-RequestParam" class="headerlink" title="SpringBoot——@RequestParam"></a>SpringBoot——@RequestParam</h2><blockquote>
+<p>Request参数</p>
+</blockquote>
+<p> 在访问各种各样的网站时，经常会发现网站的URL的最后一部分形如：?xx=yy&amp;zz=ww。这就是HTTP协议中的Request参数，它有什么用呢？先看一个例子：</p>
+<ul>
+<li>在知乎中搜索web</li>
+<li>浏览器跳转到新页面后，URL变为<a href="https://www.zhihu.com/search?type=content&amp;q=web" target="_blank" rel="noopener">https://www.zhihu.com/search?type=content&amp;q=web</a></li>
+<li>在知乎中搜索java</li>
+<li>浏览器跳转到新页面后，URL变为<a href="https://www.zhihu.com/search?type=content&amp;q=java" target="_blank" rel="noopener">https://www.zhihu.com/search?type=content&amp;q=java</a></li>
+</ul>
+<p>这里的type=content&amp;q=web就是搜索请求的参数，不同参数之间用&amp;分隔，每个参数形如name=value的形式，分别表示参数名字和参数值。在这个例子中，我们输入不同的搜索关键词，在搜索结果页面的URL的q参数是不同的。也就是说，HTTP参数实际上可以认为是一种用户的输入，根据不同的用户输入，服务器经过处理后返回不同的输出（例如搜索spring和搜索java，显示结果是不一样的）。</p>
+<blockquote>
+<p>Spring MVC中的Request参数</p>
+</blockquote>
+<p> 在SpringMVC框架中，可以通过定义@RequestMapping来处理URL请求。和@PathVariable一样，需要在处理URL的函数中获取URL中的参数，也就是?key1=value1&amp;key2=value2这样的参数列表。通过注解@RequestParam可以轻松地将URL中的参数绑定到处理函数方法的变量中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/user"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getUserBlog</span><span class="params">(@RequestParam(value=<span class="string">"id"</span>)</span> <span class="keyword">int</span> blogId) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="string">"blogId="</span>+blogId;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 这样，当我们访问/user/?id=123时，SpringMVC帮助我们将Request参数id的值绑定到了处理函数的参数blogId上。这样就能够轻松获取用户输入，并根据它的值进行计算并返回了。</p>
+<p>运行结果：</p>
+<p><img src="https://img-blog.csdnimg.cn/20181212174746325.PNG" alt="img"></p>
+<h2 id="RequestParam和-PathVariable"><a href="#RequestParam和-PathVariable" class="headerlink" title="@RequestParam和@PathVariable"></a>@RequestParam和@PathVariable</h2><blockquote>
+<p> 相同点与区别</p>
+</blockquote>
+<p> @RequestParam和@PathVariable都能够完成类似的功能——因为本质上，它们都是用户的输入，只不过输入的部分不同，一个在URL路径部分，另一个在参数部分。要访问一篇博客文章，这两种URL设计都是可以的：</p>
+<ul>
+<li>通过@PathVariable，例如/blogs/1</li>
+<li>通过@RequestParam，例如blogs?blogId=1</li>
+</ul>
+<p>那么究竟应该选择哪一种呢？建议：</p>
+<p>1、当URL指向的是某一具体业务资源（或资源列表），例如博客，用户时，使用@PathVariable</p>
+<p>2、当URL需要对资源或者资源列表进行过滤，筛选时，用@RequestParam</p>
+<p>例如我们会这样设计URL：</p>
+<ul>
+<li>/blogs/{blogId}</li>
+<li>/blogs?state=publish而不是/blogs/state/publish来表示处于发布状态的博客文章</li>
+</ul>
+<blockquote>
+<p>更多用法</p>
+</blockquote>
+<p> 一旦我们在方法中定义了@RequestParam变量，如果访问的URL中不带有相应的参数，就会抛出异常——这是显然的，Spring尝试帮我们进行绑定，然而没有成功。但有的时候，参数确实不一定永远都存在，这时我们可以通过定义required属性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestParam</span>(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>)</span><br></pre></td></tr></table></figure>
+
+<p>当然，在参数不存在的情况下，可能希望变量有一个默认值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestParam</span>(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>, defaultValue = <span class="string">"0"</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/27/mybatis%E4%B8%AD%E7%9A%84foreach%E4%B8%AD%E7%9A%84open=(%20separator=,%20close=)%E4%B8%8D%E8%83%BD%E9%9A%8F%E6%84%8F%E5%8E%BB%E5%86%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
+      <meta itemprop="name" content="CodeDatao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodeDatao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/27/mybatis%E4%B8%AD%E7%9A%84foreach%E4%B8%AD%E7%9A%84open=(%20separator=,%20close=)%E4%B8%8D%E8%83%BD%E9%9A%8F%E6%84%8F%E5%8E%BB%E5%86%99/" class="post-title-link" itemprop="url">mybatis中的foreach中的open=( separator=, close=)不能随意去写</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-27 23:55:54" itemprop="dateCreated datePublished" datetime="2020-07-27T23:55:54+08:00">2020-07-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-29 10:38:13" itemprop="dateModified" datetime="2020-07-29T10:38:13+08:00">2020-07-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="mybatis中的foreach中的open-”-“-separator-”-”-close-”-”不能随意去写"><a href="#mybatis中的foreach中的open-”-“-separator-”-”-close-”-”不能随意去写" class="headerlink" title="mybatis中的foreach中的open=”(“ separator=”,” close=”)”不能随意去写"></a>mybatis中的foreach中的open=”(“ separator=”,” close=”)”不能随意去写</h1><h2 id="第一种情况"><a href="#第一种情况" class="headerlink" title="第一种情况"></a>第一种情况</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteData"</span> <span class="attr">parameterType</span>=<span class="string">"java.util.Map"</span> &gt;</span></span><br><span class="line">		delete from oppo_downloading_daily where start_time <span class="symbol">&amp;gt;</span>= #&#123;startTime&#125; and end_time <span class="symbol">&amp;lt;</span>= #&#123;endTime&#125; and channel = #&#123;channels&#125; and owner_id </span><br><span class="line">		in	</span><br><span class="line"> 		<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">collection</span>=<span class="string">"ids"</span>  <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span> </span><br><span class="line">			#&#123;item&#125; </span><br><span class="line"> 		<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此种写法是后面跟着</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> oppo_downloading_daily <span class="keyword">where</span> start_time &amp;gt;= <span class="comment">#&#123;startTime&#125; and end_time &amp;lt;= #&#123;endTime&#125; and channel = #&#123;channels&#125; and owner_id in(?,?,?,?,?)</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/27/mybatis%E4%B8%AD%E7%9A%84foreach%E4%B8%AD%E7%9A%84open=(%20separator=,%20close=)%E4%B8%8D%E8%83%BD%E9%9A%8F%E6%84%8F%E5%8E%BB%E5%86%99/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/09/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
+      <meta itemprop="name" content="CodeDatao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodeDatao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/09/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">程序员年度总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-09 20:42:11 / 修改时间：20:56:41" itemprop="dateCreated datePublished" datetime="2020-07-09T20:42:11+08:00">2020-07-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="程序员年度总结"><a href="#程序员年度总结" class="headerlink" title="程序员年度总结"></a>程序员年度总结</h1><p><img src="/Users/datao/CodeDatao_blog/source/images/7a6156849e704519ac25e75527a13bf1.jpeg" alt="程序员年度代码报告，句句戳心"></p>
+<p>如果用一句话形容你的 2020，会是什么？如果用一句话预测你的 2021，又会是什么？</p>
+<p>这一年里，你一共写下了 30 万行 CLI 命令，</p>
+<p>你键盘上磨损最厉害的键位是 command、C 和 V。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/09/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/08/JavaWeb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
+      <meta itemprop="name" content="CodeDatao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodeDatao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/08/JavaWeb/" class="post-title-link" itemprop="url">JavaWeb</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-08 23:58:29" itemprop="dateCreated datePublished" datetime="2020-07-08T23:58:29+08:00">2020-07-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-09 20:56:30" itemprop="dateModified" datetime="2020-07-09T20:56:30+08:00">2020-07-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-Web/" itemprop="url" rel="index"><span itemprop="name">Java Web</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="JavaWeb"><a href="#JavaWeb" class="headerlink" title="JavaWeb"></a>JavaWeb</h1><h2 id="1、基本概念"><a href="#1、基本概念" class="headerlink" title="1、基本概念"></a>1、基本概念</h2><h3 id="1-1、前言"><a href="#1-1、前言" class="headerlink" title="1.1、前言"></a>1.1、前言</h3><p>Web开发</p>
+<ul>
+<li>Web，网页的意思，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></li>
+<li>静态web<ul>
+<li>html，css</li>
+<li>提供给所有人看的数据不会发生变化</li>
+</ul>
+</li>
+<li>动态Web<ul>
+<li>淘宝，几乎左右的网站</li>
+<li>提供给所有人看的数据会发生变化，每个人在不同时间，不同地点看到的信息各不相同！</li>
+<li>技术栈：Servlet、JSP，ASP.NET，PHP</li>
+</ul>
+</li>
+</ul>
+<p>在Java中，动态Web资源开发的技术统称为JavaWeb；</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/08/JavaWeb/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/30/%E9%98%BF%E9%87%8Cjava%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%E4%B8%AD%E5%91%BD%E5%90%8D%E8%A7%84%E7%BA%A6%E8%A7%A3%E8%AF%BB%E4%B9%8BDOBODTOVOAO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
+      <meta itemprop="name" content="CodeDatao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodeDatao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/30/%E9%98%BF%E9%87%8Cjava%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%E4%B8%AD%E5%91%BD%E5%90%8D%E8%A7%84%E7%BA%A6%E8%A7%A3%E8%AF%BB%E4%B9%8BDOBODTOVOAO/" class="post-title-link" itemprop="url">阿里java开发手册中命名规约解读之DOBODTOVOAO</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-30 15:11:53" itemprop="dateCreated datePublished" datetime="2020-06-30T15:11:53+08:00">2020-06-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-09 20:56:17" itemprop="dateModified" datetime="2020-07-09T20:56:17+08:00">2020-07-09</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="阿里java开发手册中命名规约解读之DO-BO-DTO-VO-AO"><a href="#阿里java开发手册中命名规约解读之DO-BO-DTO-VO-AO" class="headerlink" title="阿里java开发手册中命名规约解读之DO/BO/DTO/VO/AO"></a>阿里java开发手册中命名规约解读之DO/BO/DTO/VO/AO</h1><p>在阅读《阿里巴巴Java开发手册》时，看到命名规则中有这样一条</p>
+<p><img src="/images/961183-20180201113247968-1024195583.png" alt="img"></p>
+<p>虽然知道这些是根据Java对象的角色所分配名称的后缀，但是没有弄清楚分别是什么意思，日常开发中也没有使用到。</p>
+<p>网上查找了一些资料，但是感觉大多数都是一样的，可能大家都是互相copy，篇幅过长并且不易理解。</p>
+<p>别灰心！《阿里巴巴Java开发手册》中对于上面这些在领域模型的命名使用上给出了规范，说的很清楚，分享给大家。</p>
+<p>补充一个链接，内容是《阿里巴巴Java开发手册纪念版》以及历时一年推出的代码规范插件。<a href="https://github.com/alibaba/p3c" target="_blank" rel="noopener">https://github.com/alibaba/p3c</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/30/%E9%98%BF%E9%87%8Cjava%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%E4%B8%AD%E5%91%BD%E5%90%8D%E8%A7%84%E7%BA%A6%E8%A7%A3%E8%AF%BB%E4%B9%8BDOBODTOVOAO/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/25/AMP%E4%B9%8BSkyWalking/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
+      <meta itemprop="name" content="CodeDatao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodeDatao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/25/AMP%E4%B9%8BSkyWalking/" class="post-title-link" itemprop="url">AMP之SkyWalking</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-25 11:35:30" itemprop="dateCreated datePublished" datetime="2020-05-25T11:35:30+08:00">2020-05-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="AMP之SkyWalking"><a href="#AMP之SkyWalking" class="headerlink" title="AMP之SkyWalking"></a>AMP之SkyWalking</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/25/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_0139.JPG">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
       <meta itemprop="name" content="CodeDatao">
       <meta itemprop="description" content="">
     </span>
@@ -268,7 +794,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/%E5%B8%B8%E8%A7%81%E7%9A%84NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5%E5%8F%8A%E4%BB%96%E4%BB%AC%E7%9A%84%E7%89%B9%E7%82%B9&%E5%8C%BA%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_0139.JPG">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
       <meta itemprop="name" content="CodeDatao">
       <meta itemprop="description" content="">
     </span>
@@ -296,7 +822,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-25 02:08:54" itemprop="dateModified" datetime="2020-05-25T02:08:54+08:00">2020-05-25</time>
+                <time title="修改时间：2020-05-28 10:09:37" itemprop="dateModified" datetime="2020-05-28T10:09:37+08:00">2020-05-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -354,7 +880,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/24/%E7%AE%80%E5%8E%86%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_0139.JPG">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
       <meta itemprop="name" content="CodeDatao">
       <meta itemprop="description" content="">
     </span>
@@ -437,7 +963,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/13/SQL%E4%BC%98%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_0139.JPG">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
       <meta itemprop="name" content="CodeDatao">
       <meta itemprop="description" content="">
     </span>
@@ -571,7 +1097,7 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="CodeDatao"
-      src="/images/IMG_0139.JPG">
+      src="/images/apple-touch-icon-next.png">
   <p class="site-author-name" itemprop="name">CodeDatao</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -580,20 +1106,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -671,6 +1197,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 
