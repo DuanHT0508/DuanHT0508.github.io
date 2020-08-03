@@ -903,4 +903,19 @@
 <p>当然，在参数不存在的情况下，可能希望变量有一个默认值：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestParam</span>(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>, defaultValue = <span class="string">"0"</span>)</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
+  <entry>
+    <title>mybatis中的作用</title>
+    <url>/2020/08/03/mybatis%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="mybatis中的作用"><a href="#mybatis中的作用" class="headerlink" title="mybatis中的作用"></a>mybatis中的作用</h1><p>在使用mybatis 时我们sql是写在xml 映射文件中，如果写的sql中有一些特殊的字符的话，在解析xml文件的时候会被转义，但我们不希望他被转义，所以我们要使用 <!--[CDATA[ ]]-->来解决。</p>
+<!--[CDATA[  ]]--><p> 是什么，这是XML语法。在CDATA内部的所有内容都会被解析器忽略。</p>
+<p>如果文本包含了很多的”&lt;”字符 &lt;=和”&amp;”字符——就象程序代码一样，那么最好把他们都放到CDATA部件中。</p>
+<p>但是有个问题那就是 <if test>  </if>  <where>  </where>  <choose>  </choose>  <trim>  </trim> 等这些标签都不会被解析，所以我们只把有特殊字符的语句放在 <!--[CDATA[  ]]-->  尽量缩小 <!--[CDATA[  ]]--> 的范围。</p>
+<p>实例如下：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">&lt;select id="allUserInfo" parameterType="java.util.HashMap" resultMap="userInfo1"&gt;</span><br><span class="line">&lt;![CDATA[</span><br><span class="line"><span class="keyword">SELECT</span> newsEdit,newsId, newstitle <span class="keyword">FROM</span> shoppingGuide <span class="keyword">WHERE</span> <span class="number">1</span>=<span class="number">1</span> <span class="keyword">AND</span> newsday &gt; <span class="comment">#&#123;startTime&#125; AND newsday &lt;= #&#123;endTime&#125;</span></span><br><span class="line">]]&gt;</span><br><span class="line">&lt;<span class="keyword">if</span> <span class="keyword">test</span>=<span class="string">"etidName!=''"</span>&gt;</span><br><span class="line"><span class="keyword">AND</span> newsEdit=<span class="comment">#&#123;etidName&#125;</span></span><br><span class="line">&lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>因为这里有 “&gt;”  “&lt;=” 特殊字符所以要使用 <!--[CDATA[  ]]--> 来注释，但是有<if> 标签，所以把<if>等 放外面</if></if></p>
+]]></content>
+  </entry>
 </search>
