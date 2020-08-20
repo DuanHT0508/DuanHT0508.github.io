@@ -1,9 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>AMP之SkyWalking</title>
-    <url>/2020/05/25/AMP%E4%B9%8BSkyWalking/</url>
-    <content><![CDATA[<h1 id="AMP之SkyWalking"><a href="#AMP之SkyWalking" class="headerlink" title="AMP之SkyWalking"></a>AMP之SkyWalking</h1>]]></content>
+    <title>Mac应用”已损坏，打不开解决办法</title>
+    <url>/2020/08/20/Mac%E5%BA%94%E7%94%A8%E2%80%9D%E5%B7%B2%E6%8D%9F%E5%9D%8F%EF%BC%8C%E6%89%93%E4%B8%8D%E5%BC%80%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="Mac应用”已损坏，打不开解决办法"><a href="#Mac应用”已损坏，打不开解决办法" class="headerlink" title="Mac应用”已损坏，打不开解决办法"></a>Mac应用”已损坏，打不开解决办法</h1><h2 id="问题说明："><a href="#问题说明：" class="headerlink" title="问题说明："></a>问题说明：</h2><p>通常在非 Mac App Store下载的软件都会提示“xxx已损坏，打不开。您应将它移到废纸篓”或者“<a href="https://www.macdo.cn/16552.html" target="_blank" rel="noopener">打不开 xxx，因为它来自身份不明的开发者”</a>。</p>
+<p><img src="https://image.iicheese.com/kxulb.jpg" alt="“Mac应用”已损坏，打不开解决办法 Mac疑难解决 第2张"></p>
+<h2 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h2><p>Mac电脑启用了安全机制，默认只信任Mac App Store下载的软件以及拥有开发者 ID 签名的软件，但是同时也阻止了没有开发者签名的 “老实软件”</p>
+<a id="more"></a>
+
+<h3 id="1-macOS-Mojave-10-14及以下系统："><a href="#1-macOS-Mojave-10-14及以下系统：" class="headerlink" title="1. macOS Mojave 10.14及以下系统："></a>1. macOS Mojave 10.14及以下系统：</h3><p>打开「终端.app」，输入以下命令并回车，输入开机密码回车</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo spctl --master-disable</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://image.iicheese.com/2fnt4.jpg" alt="“Mac应用”已损坏，打不开解决办法 Mac疑难解决 第3张"></p>
+<h3 id="2-macOS-Catalina-10-15系统："><a href="#2-macOS-Catalina-10-15系统：" class="headerlink" title="2. macOS Catalina 10.15系统："></a>2. macOS Catalina 10.15系统：</h3><p>打开「终端.app」，输入以下命令并回车，输入开机密码回车</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo xattr -rd com.apple.quarantine 空格 软件的路径</span><br></pre></td></tr></table></figure>
+
+<p>如Sketch.app</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo xattr -rd com.apple.quarantine /Applications/Sketch.app</span><br></pre></td></tr></table></figure>
+
+<p>如CleanMyMac X.app</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo xattr -rd com.apple.quarantine /Applications/CleanMyMac X.app</span><br></pre></td></tr></table></figure>
+
+<p>附1：</p>
+<p>/Applications/Sketch.app</p>
+<p>与</p>
+<p>/Applications/CleanMyMac X.app</p>
+<p>就是</p>
+<p>软件的路径</p>
+<p>附2：</p>
+<p>软件路径快速获取方法：</p>
+<p>将软件拖入「终端app」即可获得路径</p>
+<p><img src="https://image.iicheese.com/z0pz5.gif" alt="“Mac应用”已损坏，打不开解决办法 Mac疑难解决 第4张"></p>
+<h3 id="3-macOS-Catalina-10-15-4-系统："><a href="#3-macOS-Catalina-10-15-4-系统：" class="headerlink" title="3. macOS Catalina 10.15.4 系统："></a>3. macOS Catalina 10.15.4 系统：</h3><p>更新10.15.4系统后软件出现意外退出，可按照下面的方法给软件签名</p>
+<p><strong>1.安装Command Line Tools 工具</strong></p>
+<p>打开「终端app」输入如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.给软件签名</strong></p>
+<p>打开终端工具输入并执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo codesign --force --deep --sign - (应用路径)</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://image.iicheese.com/vb4wo.jpg" target="_blank" rel="noopener"><img src="https://image.iicheese.com/vb4wo.jpg" alt="“Mac应用”已损坏，打不开解决办法 Mac疑难解决 第5张"></a></p>
+<p>注意：空格不能漏<a href="https://image.iicheese.com/de6yg.jpg" target="_blank" rel="noopener"><img src="https://image.iicheese.com/de6yg.jpg" alt="“Mac应用”已损坏，打不开解决办法 Mac疑难解决 第6张"></a></p>
+<p><strong>3.错误解决</strong></p>
+<p>如出现以下错误提示：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/文件位置 : replacing existing signature</span><br><span class="line">/文件位置 : resource fork,Finder information,or similar detritus not allowed</span><br></pre></td></tr></table></figure>
+
+<p>那么，先在终端执行：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">xattr -cr /文件位置（直接将应用拖进去即可）</span><br></pre></td></tr></table></figure>
+
+<p>然后再次执行如下指令即可：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">codesign --force --deep --sign - /文件位置（直接将应用拖进去即可）</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>JavaWeb</title>
+    <url>/2020/07/08/JavaWeb/</url>
+    <content><![CDATA[<h1 id="JavaWeb"><a href="#JavaWeb" class="headerlink" title="JavaWeb"></a>JavaWeb</h1><h2 id="1、基本概念"><a href="#1、基本概念" class="headerlink" title="1、基本概念"></a>1、基本概念</h2><h3 id="1-1、前言"><a href="#1-1、前言" class="headerlink" title="1.1、前言"></a>1.1、前言</h3><p>Web开发</p>
+<ul>
+<li>Web，网页的意思，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></li>
+<li>静态web<ul>
+<li>html，css</li>
+<li>提供给所有人看的数据不会发生变化</li>
+</ul>
+</li>
+<li>动态Web<ul>
+<li>淘宝，几乎左右的网站</li>
+<li>提供给所有人看的数据会发生变化，每个人在不同时间，不同地点看到的信息各不相同！</li>
+<li>技术栈：Servlet、JSP，ASP.NET，PHP</li>
+</ul>
+</li>
+</ul>
+<p>在Java中，动态Web资源开发的技术统称为JavaWeb；</p>
+ <a id="more"></a>
+
+<h3 id="1-2、Web应用程序"><a href="#1-2、Web应用程序" class="headerlink" title="1.2、Web应用程序"></a>1.2、Web应用程序</h3><p>Web应用程序可以提供浏览器访问的程序；</p>
+<ul>
+<li>a.html、b.html…….多个web资源，这些web资源可以被外界访问，对外界提供服务；</li>
+<li>你们能访问到的任何一个页面或者资源，都存在于这个世界的某一个角落的计算机上。</li>
+<li>URL</li>
+<li>这个同意的web资源会被放在同一个文件夹下，web应用程序–&gt;Tomcat：服务器</li>
+<li>一个web应用由多部分组成（静态web，动态web）<ul>
+<li>HTML，CSS，JS</li>
+<li>JSP，Servlet</li>
+<li>Java程序</li>
+<li>Jar包</li>
+<li>配置文件（Properties）</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-静态Web"><a href="#1-3-静态Web" class="headerlink" title="1.3 静态Web"></a>1.3 静态Web</h3><ul>
+<li>*.html, *.hrm这些都是网页后缀，如果服务器上存在这些东西，我们可以直接进行读取</li>
+</ul>
+<p><img src="/images/image-20200708101532141.png" alt="image-20200708101532141"></p>
+<ul>
+<li>静态web存在的缺点<ul>
+<li>Web页面无法动态更新，所有用户看到都是同一个页面<ul>
+<li>轮播图，点击特效：伪动态</li>
+<li>JavaScript[实际开发中，它用的最多]</li>
+<li>VBScript</li>
+</ul>
+</li>
+<li>它无法和数据库交互（数据无法持久化，用户无法交互）</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4-动态Web"><a href="#1-4-动态Web" class="headerlink" title="1.4 动态Web"></a>1.4 动态Web</h3><p>页面会动态展示：“Web的页面展示效果因人而异”；</p>
+<p><img src="/images/image-20200708104041965.png" alt="image-20200708104041965"></p>
+<p>缺点</p>
+<ul>
+<li>加入服务器的动态web资源出现了村务，我们需要重新编写我们的后台程序，重新发布</li>
+<li>它可以与数据库交互（数据持久化：注册，用户信息，商品信息，订单等）</li>
+</ul>
+<p><img src="/images/image-20200708112653776.png" alt="image-20200708112653776"></p>
+<h2 id="2、web服务器"><a href="#2、web服务器" class="headerlink" title="2、web服务器"></a>2、web服务器</h2><h3 id="2-1-、技术讲解"><a href="#2-1-、技术讲解" class="headerlink" title="2.1 、技术讲解"></a>2.1 、技术讲解</h3><p>ASP：</p>
+<ul>
+<li>微软：国内最早出现的web服务器</li>
+<li>在HTML中嵌入了VB的脚本，ASP+COM</li>
+<li>在ASP开发中，基本一个页面都有几千行的代码，极其混乱</li>
+<li>维护成本高</li>
+<li>C#</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%</span></span></span><br><span class="line"><span class="tag">		<span class="attr">System.out.println</span>("<span class="attr">hello</span>")</span></span><br><span class="line"><span class="tag">    %&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>PHP</p>
+<ul>
+<li>PHP开发速度很快，功能很强大，跨平台，代码很简单（）</li>
+<li>无法承载大访问量的情况（局限性）</li>
+</ul>
+<p>JSP/Servlet：</p>
+<p>B/S架构：浏览器端和服务端</p>
+<p>C/S架构：客户端和服务端</p>
+<ul>
+<li>sun公司主推的B/S架构</li>
+<li>基于Java语言的（所有的大公司都是用Java，开源组件也都是用Java来写的）</li>
+<li>能够承载三高</li>
+<li>语法和ASP很像</li>
+</ul>
+<h3 id="2-2、web服务器"><a href="#2-2、web服务器" class="headerlink" title="2.2、web服务器"></a>2.2、web服务器</h3><p>服务器是一种被动操作，用来处理用户的一些请求和给用户一些响应信息；</p>
+<p><strong>IIS</strong></p>
+<p><strong>Tomcat</strong></p>
+<p>Tomcat实际上运行JSP页面和Servlet。Tomcat最 新版本为9.0。</p>
+<h2 id="3、Tomcat"><a href="#3、Tomcat" class="headerlink" title="3、Tomcat"></a>3、Tomcat</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4、Http"><a href="#4、Http" class="headerlink" title="4、Http"></a>4、Http</h2><h3 id="4-1、什么是HTTP"><a href="#4-1、什么是HTTP" class="headerlink" title="4.1、什么是HTTP"></a>4.1、什么是HTTP</h3><p>HTTP（超文本传输协议）是一个简单的请求-响应协议，它通常运行在TCP之上</p>
+<ul>
+<li>文本：文本：html,字符串…</li>
+<li>超文本：图片，音乐，视频，定位，地图…</li>
+<li>默认端口：80</li>
+</ul>
+<p>Https：安全的          默认端口：443</p>
+<h3 id="4-2、两个时代"><a href="#4-2、两个时代" class="headerlink" title="4.2、两个时代"></a>4.2、两个时代</h3><ul>
+<li>http1.0</li>
+<li>http2.0<ul>
+<li>HTTP222</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java Web</category>
+      </categories>
+      <tags>
+        <tag>Java Web</tag>
+      </tags>
   </entry>
   <entry>
     <title>Linux常用命令</title>
@@ -202,118 +363,111 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaWeb</title>
-    <url>/2020/07/08/JavaWeb/</url>
-    <content><![CDATA[<h1 id="JavaWeb"><a href="#JavaWeb" class="headerlink" title="JavaWeb"></a>JavaWeb</h1><h2 id="1、基本概念"><a href="#1、基本概念" class="headerlink" title="1、基本概念"></a>1、基本概念</h2><h3 id="1-1、前言"><a href="#1-1、前言" class="headerlink" title="1.1、前言"></a>1.1、前言</h3><p>Web开发</p>
-<ul>
-<li>Web，网页的意思，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></li>
-<li>静态web<ul>
-<li>html，css</li>
-<li>提供给所有人看的数据不会发生变化</li>
-</ul>
-</li>
-<li>动态Web<ul>
-<li>淘宝，几乎左右的网站</li>
-<li>提供给所有人看的数据会发生变化，每个人在不同时间，不同地点看到的信息各不相同！</li>
-<li>技术栈：Servlet、JSP，ASP.NET，PHP</li>
-</ul>
-</li>
-</ul>
-<p>在Java中，动态Web资源开发的技术统称为JavaWeb；</p>
+    <title>AMP之SkyWalking</title>
+    <url>/2020/05/25/AMP%E4%B9%8BSkyWalking/</url>
+    <content><![CDATA[<h1 id="AMP之SkyWalking"><a href="#AMP之SkyWalking" class="headerlink" title="AMP之SkyWalking"></a>AMP之SkyWalking</h1>]]></content>
+  </entry>
+  <entry>
+    <title>@RequestParam和@PathVariable的用法与区别</title>
+    <url>/2020/07/29/@RequestParam%E5%92%8C@PathVariable%E7%9A%84%E7%94%A8%E6%B3%95%E4%B8%8E%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h1 id="RequestParam和-PathVariable的用法与区别"><a href="#RequestParam和-PathVariable的用法与区别" class="headerlink" title="@RequestParam和@PathVariable的用法与区别"></a>@RequestParam和@PathVariable的用法与区别</h1><h2 id="SpringBoot——-PathVariable"><a href="#SpringBoot——-PathVariable" class="headerlink" title="SpringBoot——@PathVariable"></a>SpringBoot——@PathVariable</h2><blockquote>
+<p> URL变量</p>
+</blockquote>
+<p>Web应用中的URL通常不是一成不变的，例如微博两个不同用户的个人主页对应两个不同的URL：<a href="http://weibo.com/user1和[http://weibo.com/user2](http://weibo.com/user1)。我们不能对于每一个用户都编写一个被@RequestMapping注解的方法来处理其请求，也就是说，对于相同模式的URL（例如不同用户的主页，他们仅仅是URL中的某一部分不同，为他们各自的用户名，我们说他们具有相同的模式）。" target="_blank" rel="noopener">http://weibo.com/user1和[http://weibo.com/user2](http://weibo.com/user1)。我们不能对于每一个用户都编写一个被@RequestMapping注解的方法来处理其请求，也就是说，对于相同模式的URL（例如不同用户的主页，他们仅仅是URL中的某一部分不同，为他们各自的用户名，我们说他们具有相同的模式）。</a></p>
  <a id="more"></a>
 
-<h3 id="1-2、Web应用程序"><a href="#1-2、Web应用程序" class="headerlink" title="1.2、Web应用程序"></a>1.2、Web应用程序</h3><p>Web应用程序可以提供浏览器访问的程序；</p>
-<ul>
-<li>a.html、b.html…….多个web资源，这些web资源可以被外界访问，对外界提供服务；</li>
-<li>你们能访问到的任何一个页面或者资源，都存在于这个世界的某一个角落的计算机上。</li>
-<li>URL</li>
-<li>这个同意的web资源会被放在同一个文件夹下，web应用程序–&gt;Tomcat：服务器</li>
-<li>一个web应用由多部分组成（静态web，动态web）<ul>
-<li>HTML，CSS，JS</li>
-<li>JSP，Servlet</li>
-<li>Java程序</li>
-<li>Jar包</li>
-<li>配置文件（Properties）</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-3-静态Web"><a href="#1-3-静态Web" class="headerlink" title="1.3 静态Web"></a>1.3 静态Web</h3><ul>
-<li>*.html, *.hrm这些都是网页后缀，如果服务器上存在这些东西，我们可以直接进行读取</li>
-</ul>
-<p><img src="/images/image-20200708101532141.png" alt="image-20200708101532141"></p>
-<ul>
-<li>静态web存在的缺点<ul>
-<li>Web页面无法动态更新，所有用户看到都是同一个页面<ul>
-<li>轮播图，点击特效：伪动态</li>
-<li>JavaScript[实际开发中，它用的最多]</li>
-<li>VBScript</li>
-</ul>
-</li>
-<li>它无法和数据库交互（数据无法持久化，用户无法交互）</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-4-动态Web"><a href="#1-4-动态Web" class="headerlink" title="1.4 动态Web"></a>1.4 动态Web</h3><p>页面会动态展示：“Web的页面展示效果因人而异”；</p>
-<p><img src="/images/image-20200708104041965.png" alt="image-20200708104041965"></p>
-<p>缺点</p>
-<ul>
-<li>加入服务器的动态web资源出现了村务，我们需要重新编写我们的后台程序，重新发布</li>
-<li>它可以与数据库交互（数据持久化：注册，用户信息，商品信息，订单等）</li>
-</ul>
-<p><img src="/images/image-20200708112653776.png" alt="image-20200708112653776"></p>
-<h2 id="2、web服务器"><a href="#2、web服务器" class="headerlink" title="2、web服务器"></a>2、web服务器</h2><h3 id="2-1-、技术讲解"><a href="#2-1-、技术讲解" class="headerlink" title="2.1 、技术讲解"></a>2.1 、技术讲解</h3><p>ASP：</p>
-<ul>
-<li>微软：国内最早出现的web服务器</li>
-<li>在HTML中嵌入了VB的脚本，ASP+COM</li>
-<li>在ASP开发中，基本一个页面都有几千行的代码，极其混乱</li>
-<li>维护成本高</li>
-<li>C#</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%</span></span></span><br><span class="line"><span class="tag">		<span class="attr">System.out.println</span>("<span class="attr">hello</span>")</span></span><br><span class="line"><span class="tag">    %&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>定义URL变量规则</p>
+</blockquote>
+<p>可以在@RequestMapping注解中用{ }来表明它的变量部分，例如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/user/&#123;username&#125;"</span>)</span><br></pre></td></tr></table></figure>
 
-<p>PHP</p>
+<p>这里的{username}就是我们定义的变量规则，username是变量的名字，那么这个URL路由可以匹配下列任意URL并进行处理：</p>
 <ul>
-<li>PHP开发速度很快，功能很强大，跨平台，代码很简单（）</li>
-<li>无法承载大访问量的情况（局限性）</li>
+<li>/user/Tom</li>
+<li>/user/Jerry</li>
+<li>/user/Jack2</li>
 </ul>
-<p>JSP/Servlet：</p>
-<p>B/S架构：浏览器端和服务端</p>
-<p>C/S架构：客户端和服务端</p>
+<p>需要注意的是，在默认情况下，变量中不可以包含URL的分隔符/，例如路由不能匹配/user/Denny/Jon，即使你认为Denny/Jon是一个存在的用户名。</p>
+<blockquote>
+<p>获取URL变量</p>
+</blockquote>
+<p>在路由中定义变量规则后，通常我们需要在处理方法（也就是@RequestMapping注解的方法）中获取这个URL的具体值，并根据这个值（例如用户名）做相应的操作，SpringMVC提供的@PathVariable可以帮助我们：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/user/&#123;username&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">userProfile</span><span class="params">(@PathVariable(value=<span class="string">"username"</span>)</span> String username) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    	<span class="keyword">return</span> <span class="string">"user"</span>+username;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中，当@Controller处理HTTP请求时，userProfile的参数username会自动设置为URL中对应变量username（同名赋值）的值。例如，当HTTP请求为/user/fpc，URL变量username的值fpc就会被赋值给函数参数username，函数的返回值是userfpc。</p>
+<p>在默认情况下，Spring会对@PathVariable注解的变量进行自动赋值，也可以指定@PathVariable使用哪一个URL中的变量：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"user/&#123;username&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">userProfile</span><span class="params">(@PathVariable(value=<span class="string">"username"</span>)</span> String username) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    	<span class="keyword">return</span> <span class="string">"user"</span>+username;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p><img src="/images/@PathVariable.png" alt></p>
+<blockquote>
+<p>定义多个URL变量 </p>
+</blockquote>
+<p> 可以定义URL路由，其中包含多个URL变量：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/user/&#123;username&#125;/blog/&#123;blogId&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserBlog</span><span class="params">(@PathVariable String username, @PathVariable <span class="keyword">int</span> blogId)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    	<span class="keyword">return</span> <span class="string">"user:"</span> + username + <span class="string">"blog-&gt;"</span> + blogId;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p> 这种情况下，Spring能够根据名字自动赋值对应的函数参数值，当然也可以在@PathVariable中显示地表明具体的URL变量值。</p>
+<p>在默认情况下，@PathVariable注解的参数可以是一些基本的简单类型：int，long，Date，String等，Spring能够根据URL变量的具体值及函数参数类型来进行转换。例如/user/fpc/blog/1，会将fpc的值赋给username，而1赋给int变量blogId。</p>
+<p>运行结果：</p>
+<p><img src="https://img-blog.csdnimg.cn/20181213091713663.PNG" alt="img"></p>
+<blockquote>
+<p>匹配正则表达式</p>
+</blockquote>
+<p> 很多时候，需要对URL变量进行更加精确的定义。例如，用户名只可能包含大小写字母，数字，下划线，我们希望：</p>
 <ul>
-<li>sun公司主推的B/S架构</li>
-<li>基于Java语言的（所有的大公司都是用Java，开源组件也都是用Java来写的）</li>
-<li>能够承载三高</li>
-<li>语法和ASP很像</li>
+<li>/user/fpc是一个合法的URL</li>
+<li>/user/#$$$则是一个不合法的URL</li>
 </ul>
-<h3 id="2-2、web服务器"><a href="#2-2、web服务器" class="headerlink" title="2.2、web服务器"></a>2.2、web服务器</h3><p>服务器是一种被动操作，用来处理用户的一些请求和给用户一些响应信息；</p>
-<p><strong>IIS</strong></p>
-<p><strong>Tomcat</strong></p>
-<p>Tomcat实际上运行JSP页面和Servlet。Tomcat最 新版本为9.0。</p>
-<h2 id="3、Tomcat"><a href="#3、Tomcat" class="headerlink" title="3、Tomcat"></a>3、Tomcat</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>除了简单地定义{username}变量，还可以定义正则表达式进行更精确地控制，定义语法是{变量名: 正则表达式}。[a-zA-Z0-9_]+是一个正则表达式，表示只能包含小写字母，大写字母，数字，下划线。如此设置URL变量规则后，不合法的URL则不会被处理，直接由SpringMVC框架返回404NotFound。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/user/&#123;username: [a-zA-Z0-9]+&#125;/blog/&#123;blogId&#125;"</span>)</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="4、Http"><a href="#4、Http" class="headerlink" title="4、Http"></a>4、Http</h2><h3 id="4-1、什么是HTTP"><a href="#4-1、什么是HTTP" class="headerlink" title="4.1、什么是HTTP"></a>4.1、什么是HTTP</h3><p>HTTP（超文本传输协议）是一个简单的请求-响应协议，它通常运行在TCP之上</p>
+<h2 id="SpringBoot——-RequestParam"><a href="#SpringBoot——-RequestParam" class="headerlink" title="SpringBoot——@RequestParam"></a>SpringBoot——@RequestParam</h2><blockquote>
+<p>Request参数</p>
+</blockquote>
+<p> 在访问各种各样的网站时，经常会发现网站的URL的最后一部分形如：?xx=yy&amp;zz=ww。这就是HTTP协议中的Request参数，它有什么用呢？先看一个例子：</p>
 <ul>
-<li>文本：文本：html,字符串…</li>
-<li>超文本：图片，音乐，视频，定位，地图…</li>
-<li>默认端口：80</li>
+<li>在知乎中搜索web</li>
+<li>浏览器跳转到新页面后，URL变为<a href="https://www.zhihu.com/search?type=content&amp;q=web" target="_blank" rel="noopener">https://www.zhihu.com/search?type=content&amp;q=web</a></li>
+<li>在知乎中搜索java</li>
+<li>浏览器跳转到新页面后，URL变为<a href="https://www.zhihu.com/search?type=content&amp;q=java" target="_blank" rel="noopener">https://www.zhihu.com/search?type=content&amp;q=java</a></li>
 </ul>
-<p>Https：安全的          默认端口：443</p>
-<h3 id="4-2、两个时代"><a href="#4-2、两个时代" class="headerlink" title="4.2、两个时代"></a>4.2、两个时代</h3><ul>
-<li>http1.0</li>
-<li>http2.0<ul>
-<li>HTTP222</li>
+<p>这里的type=content&amp;q=web就是搜索请求的参数，不同参数之间用&amp;分隔，每个参数形如name=value的形式，分别表示参数名字和参数值。在这个例子中，我们输入不同的搜索关键词，在搜索结果页面的URL的q参数是不同的。也就是说，HTTP参数实际上可以认为是一种用户的输入，根据不同的用户输入，服务器经过处理后返回不同的输出（例如搜索spring和搜索java，显示结果是不一样的）。</p>
+<blockquote>
+<p>Spring MVC中的Request参数</p>
+</blockquote>
+<p> 在SpringMVC框架中，可以通过定义@RequestMapping来处理URL请求。和@PathVariable一样，需要在处理URL的函数中获取URL中的参数，也就是?key1=value1&amp;key2=value2这样的参数列表。通过注解@RequestParam可以轻松地将URL中的参数绑定到处理函数方法的变量中：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/user"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getUserBlog</span><span class="params">(@RequestParam(value=<span class="string">"id"</span>)</span> <span class="keyword">int</span> blogId) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="string">"blogId="</span>+blogId;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 这样，当我们访问/user/?id=123时，SpringMVC帮助我们将Request参数id的值绑定到了处理函数的参数blogId上。这样就能够轻松获取用户输入，并根据它的值进行计算并返回了。</p>
+<p>运行结果：</p>
+<p><img src="https://img-blog.csdnimg.cn/20181212174746325.PNG" alt="img"></p>
+<h2 id="RequestParam和-PathVariable"><a href="#RequestParam和-PathVariable" class="headerlink" title="@RequestParam和@PathVariable"></a>@RequestParam和@PathVariable</h2><blockquote>
+<p> 相同点与区别</p>
+</blockquote>
+<p> @RequestParam和@PathVariable都能够完成类似的功能——因为本质上，它们都是用户的输入，只不过输入的部分不同，一个在URL路径部分，另一个在参数部分。要访问一篇博客文章，这两种URL设计都是可以的：</p>
+<ul>
+<li>通过@PathVariable，例如/blogs/1</li>
+<li>通过@RequestParam，例如blogs?blogId=1</li>
 </ul>
-</li>
+<p>那么究竟应该选择哪一种呢？建议：</p>
+<p>1、当URL指向的是某一具体业务资源（或资源列表），例如博客，用户时，使用@PathVariable</p>
+<p>2、当URL需要对资源或者资源列表进行过滤，筛选时，用@RequestParam</p>
+<p>例如我们会这样设计URL：</p>
+<ul>
+<li>/blogs/{blogId}</li>
+<li>/blogs?state=publish而不是/blogs/state/publish来表示处于发布状态的博客文章</li>
 </ul>
-]]></content>
-      <categories>
-        <category>Java Web</category>
-      </categories>
-      <tags>
-        <tag>Java Web</tag>
-      </tags>
+<blockquote>
+<p>更多用法</p>
+</blockquote>
+<p> 一旦我们在方法中定义了@RequestParam变量，如果访问的URL中不带有相应的参数，就会抛出异常——这是显然的，Spring尝试帮我们进行绑定，然而没有成功。但有的时候，参数确实不一定永远都存在，这时我们可以通过定义required属性：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestParam</span>(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>)</span><br></pre></td></tr></table></figure>
+
+<p>当然，在参数不存在的情况下，可能希望变量有一个默认值：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestParam</span>(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>, defaultValue = <span class="string">"0"</span>)</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
     <title>SQL优化</title>
@@ -392,6 +546,528 @@
       <tags>
         <tag>MySQL</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>mybatis中的foreach中的open=( separator=, close=)不能随意去写</title>
+    <url>/2020/07/27/mybatis%E4%B8%AD%E7%9A%84foreach%E4%B8%AD%E7%9A%84open=(%20separator=,%20close=)%E4%B8%8D%E8%83%BD%E9%9A%8F%E6%84%8F%E5%8E%BB%E5%86%99/</url>
+    <content><![CDATA[<h1 id="mybatis中的foreach中的open-”-“-separator-”-”-close-”-”不能随意去写"><a href="#mybatis中的foreach中的open-”-“-separator-”-”-close-”-”不能随意去写" class="headerlink" title="mybatis中的foreach中的open=”(“ separator=”,” close=”)”不能随意去写"></a>mybatis中的foreach中的open=”(“ separator=”,” close=”)”不能随意去写</h1><h2 id="第一种情况"><a href="#第一种情况" class="headerlink" title="第一种情况"></a>第一种情况</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteData"</span> <span class="attr">parameterType</span>=<span class="string">"java.util.Map"</span> &gt;</span></span><br><span class="line">		delete from oppo_downloading_daily where start_time <span class="symbol">&amp;gt;</span>= #&#123;startTime&#125; and end_time <span class="symbol">&amp;lt;</span>= #&#123;endTime&#125; and channel = #&#123;channels&#125; and owner_id </span><br><span class="line">		in	</span><br><span class="line"> 		<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">collection</span>=<span class="string">"ids"</span>  <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span> </span><br><span class="line">			#&#123;item&#125; </span><br><span class="line"> 		<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此种写法是后面跟着</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> oppo_downloading_daily <span class="keyword">where</span> start_time &amp;gt;= <span class="comment">#&#123;startTime&#125; and end_time &amp;lt;= #&#123;endTime&#125; and channel = #&#123;channels&#125; and owner_id in(?,?,?,?,?)</span></span><br></pre></td></tr></table></figure>
+
+ <a id="more"></a>
+
+<h2 id="第二种情况"><a href="#第二种情况" class="headerlink" title="第二种情况"></a>第二种情况</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">insert into $&#123;tableName&#125;</span><br><span class="line">		(date,account_id,account_name,campaign_name,group_name,creative_name,views,clicks,totalCost)</span><br><span class="line">		values</span><br><span class="line">		<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"costReportList"</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">separator</span>=<span class="string">","</span> &gt;</span></span><br><span class="line">		   (#&#123;item.date&#125;,</span><br><span class="line">			#&#123;item.accountId&#125;,</span><br><span class="line">			#&#123;item.accountName&#125;,</span><br><span class="line">			#&#123;item.campaignName&#125;,</span><br><span class="line">			#&#123;item.groupName&#125;,</span><br><span class="line">			#&#123;item.creativeName&#125;,</span><br><span class="line">			#&#123;item.views&#125;,</span><br><span class="line">			#&#123;item.clicks&#125;,</span><br><span class="line">			#&#123;item.totalCost&#125;</span><br><span class="line">			)</span><br><span class="line">		 <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>此种写法 后面会跟</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">insert</span> <span class="keyword">into</span> $&#123;tableName&#125;</span><br><span class="line">        (<span class="built_in">date</span>,account_id,account_name,campaign_name,group_name,creative_name,views,clicks,totalCost)</span><br><span class="line">        <span class="keyword">values</span>(?,?,?,?,?,?),(?,?,?,?,?,?),(?,?,?,?,?,?)</span><br></pre></td></tr></table></figure>
+
+<p><strong>所以在使用时，一定不能随便定义括号的位置</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Update(&#123;&quot;&lt;script&gt;&quot; +</span><br><span class="line">            &quot;&lt;foreach collection&#x3D;\&quot;smsConfigTemplateList\&quot; item&#x3D;\&quot;item\&quot; separator&#x3D;\&quot;;\&quot;&gt;&quot; +</span><br><span class="line">            &quot; UPDATE&quot; +</span><br><span class="line">            &quot; mt_message_template&quot; +</span><br><span class="line">            &quot; SET pushapp_type &#x3D; #&#123;item.pushAppType, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  message_title &#x3D; #&#123;item.messageTitle, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  message_content &#x3D; #&#123;item.messageContent, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  template_id_weixin &#x3D; #&#123;item.emplateIdWeixin, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  template_weixin &#x3D; #&#123;item.templateWeixin, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">              &quot;  template_alipay &#x3D; #&#123;item.templateAlipay, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  template_id_zhifubao &#x3D; #&#123;item.templateIdZhifubao, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  modifiedon &#x3D; #&#123;item.modifiedon, jdbcType&#x3D;TIMESTAMP&#125;, &quot; +</span><br><span class="line">            &quot;  modifiedby &#x3D; #&#123;item.modifiedby, jdbcType&#x3D;VARCHAR&#125; &quot; +</span><br><span class="line">            &quot;  WHERE &quot; +</span><br><span class="line">            &quot;   message_template_id &#x3D; #&#123;item.messageTemplateId, jdbcType&#x3D;VARCHAR&#125; &quot; +</span><br><span class="line">            &quot;  AND deletion_state &#x3D; &#39;0&#39; &quot; +</span><br><span class="line">            &quot;&lt;&#x2F;foreach&gt;&quot; +</span><br><span class="line">            &quot;&lt;&#x2F;script&gt;&quot;&#125;)</span><br><span class="line">    void update(@Param(&quot;smsConfigTemplateList&quot;) List&lt;SmsConfigTemplate&gt; smsConfigTemplateList);</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Insert(&#123;&quot;&lt;script&gt;&quot; +</span><br><span class="line">        &quot;INSERT INTO  mt_message_template (&quot; +</span><br><span class="line">        &quot;message_template_id,\n&quot; +</span><br><span class="line">        &quot;message_template_head_id,\n&quot; +</span><br><span class="line">        &quot;message_title,\n&quot; +</span><br><span class="line">        &quot;message_content,\n&quot; +</span><br><span class="line">        &quot;pushapp_type,\n&quot; +</span><br><span class="line">        &quot;platform_hospital_id,\n&quot; +</span><br><span class="line">        &quot;template_id_weixin,\n&quot; +</span><br><span class="line">        &quot;template_weixin,\n&quot; +</span><br><span class="line">        &quot;template_alipay,\n&quot; +</span><br><span class="line">        &quot;template_id_zhifubao,\n&quot; +</span><br><span class="line">        &quot;createdby,\n&quot; +</span><br><span class="line">        &quot;createdon,\n&quot; +</span><br><span class="line">        &quot;modifiedby,\n&quot; +</span><br><span class="line">        &quot;modifiedon,\n&quot; +</span><br><span class="line">        &quot;deletion_state)&quot; +</span><br><span class="line">        &quot;values  &quot; +</span><br><span class="line">        &quot;&lt;foreach collection&#x3D;\&quot;mtMessageTemplateList\&quot; item&#x3D;\&quot;item\&quot; separator&#x3D;\&quot;,\&quot;&gt;&quot; +</span><br><span class="line">        &quot;(#&#123;item.messageTemplateId&#125;, #&#123;item.messageTemplateHeadId&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.messageTitle&#125;, #&#123;item.messageContent&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.pushAppType&#125;, #&#123;item.platformHospitalId&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.emplateIdWeixin&#125;, #&#123;item.templateWeixin&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.templateAlipay&#125;, #&#123;item.templateIdZhifubao&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.createdby&#125;, #&#123;item.createdon&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.modifiedby&#125;, #&#123;item.modifiedon&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.deletionState&#125;)&quot; +</span><br><span class="line">        &quot;&lt;&#x2F;foreach&gt;&quot; +</span><br><span class="line">        &quot;&lt;&#x2F;script&gt;&quot;&#125;)</span><br><span class="line">void insert(@Param(&quot;mtMessageTemplateList&quot;) List&lt;MtMessageTemplate&gt; mtMessageTemplateList);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>SpringBoot 接收参数的几种常用方式</title>
+    <url>/2020/08/03/SpringBoot%20%E6%8E%A5%E6%94%B6%E5%8F%82%E6%95%B0%E7%9A%84%E5%87%A0%E7%A7%8D%E5%B8%B8%E7%94%A8%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="SpringBoot-接收参数的几种常用方式"><a href="#SpringBoot-接收参数的几种常用方式" class="headerlink" title="SpringBoot 接收参数的几种常用方式"></a>SpringBoot 接收参数的几种常用方式</h1><h2 id="1、-PathVariable"><a href="#1、-PathVariable" class="headerlink" title="1、@PathVariable"></a>1、@PathVariable</h2><p>支持restful风格的传参、即：url/{name}</p>
+<h2 id="2、-RequestParam"><a href="#2、-RequestParam" class="headerlink" title="2、@RequestParam"></a>2、@RequestParam</h2><p>即：url?name=</p>
+<p>即可以支持get请求也可以支持post请求获取参数</p>
+<h2 id="3-RequestBody"><a href="#3-RequestBody" class="headerlink" title="3.@RequestBody"></a>3.@RequestBody</h2><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">处理HttpEntity传递过来的数据，一般用来处理非Content-Type</span>: <span class="string">application/x-www-form-urlencoded编码格式的数据。</span></span><br><span class="line"><span class="attr">•GET请求中，因为没有HttpEntity，所以@RequestBody并不适用。</span></span><br><span class="line"><span class="meta">•POST请求中，通过HttpEntity传递的参数，必须要在请求头中声明数据的类型Content-Type，SpringMVC通过使用HandlerAdapter</span> <span class="string">配置的HttpMessageConverters来解析HttpEntity中的数据，然后绑定到相应的bean上。</span></span><br><span class="line"></span><br><span class="line"><span class="attr">总结</span></span><br><span class="line"><span class="attr">•在GET请求中，不能使用@RequestBody。</span></span><br><span class="line"><span class="attr">•在POST请求，可以使用@RequestBody和@RequestParam，但是如果使用@RequestBody，对于参数转化的配置必须统一。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-无注解的情况下、以form表单的方式进行传参"><a href="#4-无注解的情况下、以form表单的方式进行传参" class="headerlink" title="4.无注解的情况下、以form表单的方式进行传参"></a>4.无注解的情况下、以form表单的方式进行传参</h2>]]></content>
+  </entry>
+  <entry>
+    <title>mybatis中的作用</title>
+    <url>/2020/08/03/mybatis%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="MyBatis中-CDATA-的作用"><a href="#MyBatis中-CDATA-的作用" class="headerlink" title="MyBatis中[CDATA[  ]]的作用"></a>MyBatis中[CDATA[  ]]的作用</h1><p>在使用MyBatis 时我们sql是写在xml 映射文件中，如果写的sql中有一些特殊的字符的话，在解析xml文件的时候会被转义，但我们不希望他被转义，所以我们要使用 <!--[CDATA[ ]]-->来解决。</p>
+<!--[CDATA[  ]]--><p> 是什么，这是XML语法。在CDATA内部的所有内容都会被解析器忽略。</p>
+<p>如果文本包含了很多的”&lt;”字符 &lt;=和”&amp;”字符——就象程序代码一样，那么最好把他们都放到CDATA部件中。</p>
+<p>但是有个问题那就是 <if test>  </if>  <where>  </where>  <choose>  </choose>  <trim>  </trim> 等这些标签都不会被解析，所以我们只把有特殊字符的语句放在 <!--[CDATA[  ]]-->  尽量缩小 <!--[CDATA[  ]]--> 的范围。</p>
+<p>实例如下：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">&lt;select id="allUserInfo" parameterType="java.util.HashMap" resultMap="userInfo1"&gt;</span><br><span class="line">&lt;![CDATA[</span><br><span class="line"><span class="keyword">SELECT</span> newsEdit,newsId, newstitle <span class="keyword">FROM</span> shoppingGuide <span class="keyword">WHERE</span> <span class="number">1</span>=<span class="number">1</span> <span class="keyword">AND</span> newsday &gt; <span class="comment">#&#123;startTime&#125; AND newsday &lt;= #&#123;endTime&#125;</span></span><br><span class="line">]]&gt;</span><br><span class="line">&lt;<span class="keyword">if</span> <span class="keyword">test</span>=<span class="string">"etidName!=''"</span>&gt;</span><br><span class="line"><span class="keyword">AND</span> newsEdit=<span class="comment">#&#123;etidName&#125;</span></span><br><span class="line">&lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>因为这里有 “&gt;”  “&lt;=” 特殊字符所以要使用 <!--[CDATA[  ]]--> 来注释，但是有<if> 标签，所以把<if>等 放外面</if></if></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>springboot找不到启动类解决方案</title>
+    <url>/2020/08/16/springboot%E6%89%BE%E4%B8%8D%E5%88%B0%E5%90%AF%E5%8A%A8%E7%B1%BB%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h1 id="springboot找不到启动类解决方案"><a href="#springboot找不到启动类解决方案" class="headerlink" title="springboot找不到启动类解决方案"></a>springboot找不到启动类解决方案</h1><p><img src="/images/image-20200816214224192.png" alt="image-20200816214224192"></p>
+<p><img src="/images/Snipaste_2020-08-17_09-49-29.png" alt></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">--配置上你的启动类包路径就可以找到了--</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.joinutech.eshop.pay.PayApplication<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>eshop-pay<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">source</span>&gt;</span>$&#123;java.version&#125;<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">target</span>&gt;</span>$&#123;java.version&#125;<span class="tag">&lt;/<span class="name">target</span>&gt;</span>	</span><br><span class="line">                    <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>yum与apt的区别</title>
+    <url>/2020/08/17/yum%E4%B8%8Eapt%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h1 id="yum与apt的区别"><a href="#yum与apt的区别" class="headerlink" title="yum与apt的区别"></a>yum与apt的区别</h1><p>一般来说著名的 Linux 系统基本上分两大类：<br>RedHat 系列：Redhat、Centos、Fedora 等<br>Debian 系列：Debian、Ubuntu 等</p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>rpm</th>
+<th>yum</th>
+<th>dpkg</th>
+<th>apt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>系列</td>
+<td>RedHat系</td>
+<td>RedHat系</td>
+<td>Debian系</td>
+<td>Debian系</td>
+</tr>
+<tr>
+<td>区别</td>
+<td>包安装工具</td>
+<td>依赖管理工具</td>
+<td>包安装工具</td>
+<td>依赖管理工具</td>
+</tr>
+<tr>
+<td>查询已安装</td>
+<td>rpm -qa</td>
+<td>yum list installed</td>
+<td>dkpg -l</td>
+<td>apt list –installed</td>
+</tr>
+<tr>
+<td>安装</td>
+<td>rpm -i package.rpm 或 rpm –ivh <a href="http://www.xxx.net/package.rpm" target="_blank" rel="noopener">http://www.xxx.net/package.rpm</a></td>
+<td>yum install -y</td>
+<td>dpkg -i package.deb</td>
+<td>apt-get install package</td>
+</tr>
+<tr>
+<td>更新</td>
+<td>rpm –U software.rpm</td>
+<td>yum update</td>
+<td></td>
+<td>apt upgrade</td>
+</tr>
+<tr>
+<td>移除软件包</td>
+<td>rpm -e [module1][module2]…</td>
+<td>yum -remove</td>
+<td>dpkg -r package</td>
+<td>apt remove package</td>
+</tr>
+<tr>
+<td>移除软件包及配置</td>
+<td></td>
+<td></td>
+<td>dpkg -P</td>
+<td>apt purge package</td>
+</tr>
+<tr>
+<td>下载的包存放位置</td>
+<td></td>
+<td></td>
+<td></td>
+<td>/var/cache/apt/archives</td>
+</tr>
+<tr>
+<td>软件安装默认位置</td>
+<td>rpm -ql</td>
+<td></td>
+<td></td>
+<td>/usr/share</td>
+</tr>
+<tr>
+<td>可执行文件位置</td>
+<td>/usr/bin</td>
+<td></td>
+<td></td>
+<td>/usr/bin</td>
+</tr>
+<tr>
+<td>配置文件位置</td>
+<td>/etc</td>
+<td></td>
+<td></td>
+<td>/etc</td>
+</tr>
+<tr>
+<td>lib文件位置</td>
+<td>/usr/lib</td>
+<td></td>
+<td></td>
+<td>/usr/lib</td>
+</tr>
+<tr>
+<td>使用手册</td>
+<td>/usr/share/doc</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>帮助文档</td>
+<td>/usr/share/man</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>更新</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+]]></content>
+  </entry>
+  <entry>
+    <title>简历技术点书写规范</title>
+    <url>/2020/01/24/%E7%AE%80%E5%8E%86%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83/</url>
+    <content><![CDATA[<h1 id="简历技术点书写规范"><a href="#简历技术点书写规范" class="headerlink" title="简历技术点书写规范"></a>简历技术点书写规范</h1><p><strong>程序员写简历时必须注意的技术词汇拼写</strong></p>
+<p><img src="/images/%E9%87%91%E4%B8%89%E9%93%B6%E5%9B%9B.jpeg" alt></p>
+<p>每年到了三四月时为找工作的旺季，也就是大家熟知所谓的的“金三银四”。尤其对于程序员来说，这个时候也是最好找工作和跳槽的时机，工作岗位的选择很多。很多程序员用了太多的时间在 自己的技术水平提升和笔试、面试题准备之上，却忽略了找工作最终要的第一部分-简历书写，因此造成最终结果是 技术没问题，但投出去的简历惨不忍睹，有的甚至连面试的机会可能都没有。</p>
+ <a id="more"></a>
+
+<p>而我觉得程序员书写简历的第一步也是最要的一步就是需要注意严谨而规范地使用各种技术词汇，但是我发现很多个人博客或者是个人简历很多人可能都是想当然的凭自己想法来拼写技术词汇， 因此本篇文章就几个大的技术点来总结一下程序员写简历时必须注意的词汇拼写注意事项。</p>
+<p>当然这里列出的词汇数量可能有限，大家可以集思广益，一起提交和补充！</p>
+<h2 id="后端开发技术点"><a href="#后端开发技术点" class="headerlink" title="后端开发技术点"></a>后端开发技术点</h2><table>
+<thead>
+<tr>
+<th align="center">正确拼写</th>
+<th align="center">错误拼写举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">RESTful</td>
+<td align="center">Restful、RestFul</td>
+</tr>
+<tr>
+<td align="center">Web</td>
+<td align="center">web、WEB</td>
+</tr>
+<tr>
+<td align="center">Java</td>
+<td align="center">JAVA、java</td>
+</tr>
+<tr>
+<td align="center">Java Web</td>
+<td align="center">javaweb、Javaweb</td>
+</tr>
+<tr>
+<td align="center">Linux</td>
+<td align="center">LINUX、linux</td>
+</tr>
+<tr>
+<td align="center">Runtime</td>
+<td align="center">runtime</td>
+</tr>
+<tr>
+<td align="center">MySQL</td>
+<td align="center">mysql</td>
+</tr>
+<tr>
+<td align="center">SQLite</td>
+<td align="center">sqlite</td>
+</tr>
+<tr>
+<td align="center">Spring</td>
+<td align="center">spring</td>
+</tr>
+<tr>
+<td align="center">Spring Boot</td>
+<td align="center">Springboot、SpringBoot</td>
+</tr>
+<tr>
+<td align="center">Spring Cloud</td>
+<td align="center">Springcloud、SpringCloud</td>
+</tr>
+<tr>
+<td align="center">Spring MVC</td>
+<td align="center">SpringMVC、Springmvc</td>
+</tr>
+<tr>
+<td align="center">NoSQL</td>
+<td align="center">nosql、NOSQL</td>
+</tr>
+<tr>
+<td align="center">MyBatis</td>
+<td align="center">mybatis、Mybatis</td>
+</tr>
+<tr>
+<td align="center">Redis</td>
+<td align="center">redis</td>
+</tr>
+<tr>
+<td align="center">Elasticsearch</td>
+<td align="center">elasticsearch、ElasticSearch</td>
+</tr>
+<tr>
+<td align="center">ZooKeeper</td>
+<td align="center">zookeeper、Zookeeper</td>
+</tr>
+<tr>
+<td align="center">Spring Data Redis</td>
+<td align="center">SpringDataRedis、SpringdataRedis</td>
+</tr>
+<tr>
+<td align="center">Spring Security</td>
+<td align="center">SpringSecurity、Springsecurity</td>
+</tr>
+<tr>
+<td align="center">Elasticsearch</td>
+<td align="center">ElasticSearch、elasticsearch</td>
+</tr>
+</tbody></table>
+<h2 id="前端开发技术点"><a href="#前端开发技术点" class="headerlink" title="前端开发技术点"></a>前端开发技术点</h2><table>
+<thead>
+<tr>
+<th align="center">正确拼写</th>
+<th align="center">错误拼写举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">HTML</td>
+<td align="center">Html、html</td>
+</tr>
+<tr>
+<td align="center">HTTP</td>
+<td align="center">Http、http</td>
+</tr>
+<tr>
+<td align="center">CSS</td>
+<td align="center">Css、css</td>
+</tr>
+<tr>
+<td align="center">JavaScript</td>
+<td align="center">javascript、Javascript、js、JS</td>
+</tr>
+<tr>
+<td align="center">Node.js</td>
+<td align="center">node、Node、NodeJS、nodejs</td>
+</tr>
+<tr>
+<td align="center">Vue.js</td>
+<td align="center">vue、VUE 、vue.js</td>
+</tr>
+</tbody></table>
+<h2 id="其他技术点"><a href="#其他技术点" class="headerlink" title="其他技术点"></a>其他技术点</h2><table>
+<thead>
+<tr>
+<th align="center">正确拼写</th>
+<th align="center">错误拼写举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Git</td>
+<td align="center">GIT、git</td>
+</tr>
+<tr>
+<td align="center">Eclipse</td>
+<td align="center">eclipse</td>
+</tr>
+<tr>
+<td align="center">IntelliJ IDEA</td>
+<td align="center">IntelliJ idea、idea</td>
+</tr>
+<tr>
+<td align="center">Maven</td>
+<td align="center">maven</td>
+</tr>
+<tr>
+<td align="center">JDK</td>
+<td align="center">jdk、Jdk</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>技术点书写规范</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>代码审查（Code Review）最佳实践</title>
+    <url>/2020/08/20/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5%EF%BC%88Code%20Review%EF%BC%89%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</url>
+    <content><![CDATA[<h1 id="代码审查（Code-Review）最佳实践"><a href="#代码审查（Code-Review）最佳实践" class="headerlink" title="代码审查（Code Review）最佳实践"></a>代码审查（Code Review）最佳实践</h1><p>如今<a href="javascript:;"><strong>敏捷开发</strong></a>盛行，<a href="javascript:;"><strong>代码审查</strong></a>非常重要！</p>
+<hr>
+<p>代码审查可以帮助提高代码质量，避免由于代码习惯而造成的 <a href="javascript:;"><strong>bug</strong></a>。</p>
+<p>下面列出的这些要点因该可以作为大部分代码审查的指导，如果是 Java 应用的话，这些建议应该被视作最佳实践。</p>
+<a id="more"></a>
+
+<p><strong>文档</strong></p>
+<ol>
+<li><p>Javadoc 应该在每一个类和方法中添加。</p>
+</li>
+<li><p>如果是修复某个 bug，应该添加 bug ID。</p>
+</li>
+<li><p>走捷径的方法或者复杂的逻辑要有解释。</p>
+</li>
+<li><p>如果代码会被公开，每个文件头都要标注版权信息。</p>
+</li>
+<li><p>复杂的 HTML，JavaScript，CSS 应该包含文档。</p>
+</li>
+</ol>
+<p><strong>功能</strong></p>
+<ol>
+<li><p>如果类似的逻辑被使用了多次，应该把它写成一个帮助类，然后在多出调用。</p>
+</li>
+<li><p>鼓励使用 API 而不是重复编写代码解决相同的问题。</p>
+</li>
+<li><p>要强调代码的<a href="javascript:;"><strong>单元测试</strong></a>。</p>
+</li>
+<li><p>任何新加的代码不应该破坏已有的代码。</p>
+</li>
+<li><p>假如是 Web 应用，JSP 不应该包含 Java 代码。</p>
+</li>
+</ol>
+<p><strong>安全</strong></p>
+<ol>
+<li><p>任何代码都不能执行用户的输入，除非转义过了。这个常常包含 JavaScript. 的 eval 函数和 <a href="javascript:;"><strong>SQL</strong></a> 语句。</p>
+</li>
+<li><p>禁止那些在短时间内提交非常多请求的 IP。</p>
+</li>
+<li><p>任何类，变量，还有方法都应该有正确的访问域。</p>
+</li>
+<li><p>尽量避免使用 iframe。</p>
+</li>
+</ol>
+<p><strong>性能</strong></p>
+<ol>
+<li><p>所有<a href="javascript:;"><strong>数据库</strong></a>和文件操句柄在不需要的时候都应该被关闭。</p>
+</li>
+<li><p>SQL 语句的写法会导致性能千差万别。</p>
+</li>
+<li><p>鼓励创建不可变（immutable）的类。</p>
+</li>
+<li><p>类似的逻辑代码，尽量通过 if else 语句来实现更多的重用。</p>
+</li>
+<li><p>尽量避免使用重对象（heavy objects）。</p>
+</li>
+<li><p>如果是 Web 项目，请检查是否使用了合适的图片尺寸，CSS sprites 和<a href="javascript:;"><strong>浏览器</strong></a>缓存等<a href="javascript:;"><strong>技术</strong></a>。</p>
+</li>
+<li><p>全局都需要的信息保存在 application context 中。</p>
+</li>
+</ol>
+<h2 id="编码习惯"><a href="#编码习惯" class="headerlink" title="编码习惯"></a>编码习惯</h2><ol>
+<li><p>没有被使用的变量要删除。</p>
+</li>
+<li><p>针对不同的 Exception 要用不同的 catch 语句，而不是一个 Exception 解决所有问题。</p>
+</li>
+<li><p>针对变量，方法和类要用相同的命名方法。</p>
+</li>
+<li><p>常量应该被写在独立的常量类中。</p>
+</li>
+<li><p>每行代码的尾部不要有多余的空格。</p>
+</li>
+<li><p>对于括号，循环，if语句等等要用统一的格式。</p>
+</li>
+<li><p>每一个单独的方法不应该超过100行。</p>
+</li>
+<li><p>一个单独的语句不应该超过编辑器的可视区域，它可以被拆分成几行。</p>
+</li>
+<li><p>检查 String 对象既不是null也不是空的最好方法是 if(“”.equals(str))</p>
+</li>
+<li><p>假如类有很多成员变量，并且实例化的时候只需要少数变量传入的话，最好使用静态工厂方法，而不是重载构造函数。</p>
+</li>
+<li><p>给方法添加适当的访问控制，而不是所有都是 public。</p>
+</li>
+<li><p>遵守项目中使用的框架的最佳实践建议，例如 Spring，Struts，Hibernate，jQuery。</p>
+</li>
+</ol>
+<p>以上的某些注意点可以通过静态代码检查工具完成，例如 CheckStyle，FindBugs 和 JTest。</p>
+<h2 id="Code-Review-主要Revivew什么"><a href="#Code-Review-主要Revivew什么" class="headerlink" title="Code Review 主要Revivew什么"></a>Code Review 主要Revivew什么</h2><h3 id="Architecture-Design（架构、设计）"><a href="#Architecture-Design（架构、设计）" class="headerlink" title="Architecture/Design（架构、设计）"></a>Architecture/Design（架构、设计）</h3><ul>
+<li>单一职责原则<ul>
+<li>这是经常被违背的原则。一个类只能干一个事情, 一个方法最好也只干一件事情。 比较常见的违背是一个类既干UI的事情，又干逻辑的事情, 这个在低质量的客户端代码里很常见。</li>
+</ul>
+</li>
+<li>行为是否统一<ul>
+<li>比如缓存是否统一，错误处理是否统一， 错误提示是否统一， 弹出框是否统一 等等。</li>
+<li>同一逻辑/同一行为 有没有走同一Code Path？低质量程序的另一个特征是，同一行为/同一逻辑，因为出现在不同的地方或者被不同的方式触发，没有走同一Code Path 或者各处有一份copy的实现， 导致非常难以维护。</li>
+</ul>
+</li>
+<li>代码污染<ul>
+<li>代码有没有对其他模块强耦合 ？</li>
+</ul>
+</li>
+<li>重复代码<ul>
+<li>主要看有没有把公用组件，可复用的代码，函数抽取出来。</li>
+</ul>
+</li>
+<li>Open/Closed 原则<ul>
+<li>就是好不好扩展。 Open for extension, closed for modification.</li>
+</ul>
+</li>
+<li>面向接口<a href="http://www.kuqin.com/" target="_blank" rel="noopener">编程</a> 和 不是 面向实现编程<ul>
+<li>主要就是看有没有进行合适的抽象， 把一些行为抽象为接口。</li>
+</ul>
+</li>
+<li>健壮性<ul>
+<li>有没有考虑线程安全性， 数据访问的一致性</li>
+<li>对Corner case有没有考虑完整，逻辑是否健壮？有没有潜在的bug？</li>
+<li>有没有内存泄漏？有没有循环依赖?（针对特定语言，比如Objective-C) ？有没有野指针？</li>
+</ul>
+</li>
+<li>错误处理<ul>
+<li>有没有很好的Error Handling？比如网络出错，IO出错。</li>
+</ul>
+</li>
+<li>改动是不是对代码的提升<ul>
+<li>新的改动是打补丁，让代码质量继续恶化，还是对代码质量做了修复？</li>
+</ul>
+</li>
+<li>效率/性能<ul>
+<li>关键算法的时间复杂度多少？有没有可能有潜在的性能瓶颈。</li>
+<li>客户端程序 对频繁消息 和较大数据等耗时操作是否处理得当。</li>
+</ul>
+</li>
+</ul>
+<p>其中有一部分问题，比如一些设计原则， 可预见的效率问题， 开发模式一致性的问题 应该尽早在Design Review阶段解决。如果Design阶段没有解决，那至少在Code Review阶段也要把它找出来。</p>
+<h3 id="Style"><a href="#Style" class="headerlink" title="Style"></a>Style</h3><ul>
+<li>可读性<ul>
+<li>衡量可读性的可以有很好实践的标准，就是Reviewer能否非常容易的理解这个代码。 如果不是，那意味着代码的可读性要进行改进。</li>
+</ul>
+</li>
+<li>命名<ul>
+<li>命名对可读性非常重要，我倾向于函数名/方法名长一点都没关系，必须是能自我阐述的。</li>
+<li>英语用词尽量准确一点（哪怕有时候需要借助<a href="javascript:;"><strong>Google</strong></a> Translate，是值得的）</li>
+</ul>
+</li>
+<li>函数长度/类长度<ul>
+<li>函数太长的不好阅读。 类太长了，比如超过了1000行，那你要看一下是否违反的“单一职责” 原则。</li>
+</ul>
+</li>
+<li>注释<ul>
+<li>恰到好处的注释。 但更多我看到比较差质量的工程的一个特点是缺少注释。</li>
+</ul>
+</li>
+<li>参数个数<ul>
+<li>不要太多， 一般不要超过3个。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Review-Your-Own-Code-First"><a href="#Review-Your-Own-Code-First" class="headerlink" title="Review Your Own Code First"></a>Review Your Own Code First</h3><ul>
+<li>跟著名的橡皮鸭调试法（Rubber Duck Debugging）一样，每次提交前整体把自己的代码过一遍非常有帮助，尤其是看看有没有犯低级错误。</li>
+</ul>
+<h3 id="如何进行Code-Review"><a href="#如何进行Code-Review" class="headerlink" title="如何进行Code Review"></a>如何进行Code Review</h3><ul>
+<li>多问问题。多问 “这块儿是怎么<a href="javascript:;"><strong>工作</strong></a>的？” “如果有XXX case，你这个怎么处理？”</li>
+<li>每次提交的代码不要太多，最好不要超过1000行，否则review起来效率会非常低。</li>
+<li>当面讨论代替Comments。 大部分情况下小组内的同事是坐在一起的，face to face的 code review是非常有效的。</li>
+<li>区分重点，不要舍本逐末。 优先抓住 设计，可读性，健壮性等重点问题。</li>
+</ul>
+<h3 id="Code-Review的意识"><a href="#Code-Review的意识" class="headerlink" title="Code Review的意识"></a>Code Review的意识</h3><ul>
+<li>作为一个Developer , 不仅要Deliver working code, 还要Deliver maintainable code.</li>
+<li>必要时进行重构，随着项目的迭代，在计划新增功能的同时，开发要主动计划重构的工作项。</li>
+<li>开放的心态，虚心接受大家的Review Comments。</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>程序员年度总结</title>
@@ -609,313 +1285,6 @@
 <p>1.两个POJO之间的属性值进行copy，最原始的方法就是手动复制，但是这样就会产生大量的set，get代码，<strong>业务逻辑</strong>才是重点好吗？！不能喧宾夺主；</p>
 <p>2.还有种方法就是用<strong>Spring</strong>提供的<strong>BeanUtils</strong>，博主现在的项目中用的就是这个，感觉还可以，但是也有点小问题，例如copy日期需要先注册等；</p>
 <p>3.使用<strong>Dozer</strong>。Dozer是一个对象转换工具，可以在两个JavaBean之间进行递归数据复制,并且这些JavaBean可以是不同的复杂的类型。有兴趣的同学可以去学习下。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>简历技术点书写规范</title>
-    <url>/2020/01/24/%E7%AE%80%E5%8E%86%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83/</url>
-    <content><![CDATA[<h1 id="简历技术点书写规范"><a href="#简历技术点书写规范" class="headerlink" title="简历技术点书写规范"></a>简历技术点书写规范</h1><p><strong>程序员写简历时必须注意的技术词汇拼写</strong></p>
-<p><img src="/images/%E9%87%91%E4%B8%89%E9%93%B6%E5%9B%9B.jpeg" alt></p>
-<p>每年到了三四月时为找工作的旺季，也就是大家熟知所谓的的“金三银四”。尤其对于程序员来说，这个时候也是最好找工作和跳槽的时机，工作岗位的选择很多。很多程序员用了太多的时间在 自己的技术水平提升和笔试、面试题准备之上，却忽略了找工作最终要的第一部分-简历书写，因此造成最终结果是 技术没问题，但投出去的简历惨不忍睹，有的甚至连面试的机会可能都没有。</p>
- <a id="more"></a>
-
-<p>而我觉得程序员书写简历的第一步也是最要的一步就是需要注意严谨而规范地使用各种技术词汇，但是我发现很多个人博客或者是个人简历很多人可能都是想当然的凭自己想法来拼写技术词汇， 因此本篇文章就几个大的技术点来总结一下程序员写简历时必须注意的词汇拼写注意事项。</p>
-<p>当然这里列出的词汇数量可能有限，大家可以集思广益，一起提交和补充！</p>
-<h2 id="后端开发技术点"><a href="#后端开发技术点" class="headerlink" title="后端开发技术点"></a>后端开发技术点</h2><table>
-<thead>
-<tr>
-<th align="center">正确拼写</th>
-<th align="center">错误拼写举例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">RESTful</td>
-<td align="center">Restful、RestFul</td>
-</tr>
-<tr>
-<td align="center">Web</td>
-<td align="center">web、WEB</td>
-</tr>
-<tr>
-<td align="center">Java</td>
-<td align="center">JAVA、java</td>
-</tr>
-<tr>
-<td align="center">Java Web</td>
-<td align="center">javaweb、Javaweb</td>
-</tr>
-<tr>
-<td align="center">Linux</td>
-<td align="center">LINUX、linux</td>
-</tr>
-<tr>
-<td align="center">Runtime</td>
-<td align="center">runtime</td>
-</tr>
-<tr>
-<td align="center">MySQL</td>
-<td align="center">mysql</td>
-</tr>
-<tr>
-<td align="center">SQLite</td>
-<td align="center">sqlite</td>
-</tr>
-<tr>
-<td align="center">Spring</td>
-<td align="center">spring</td>
-</tr>
-<tr>
-<td align="center">Spring Boot</td>
-<td align="center">Springboot、SpringBoot</td>
-</tr>
-<tr>
-<td align="center">Spring Cloud</td>
-<td align="center">Springcloud、SpringCloud</td>
-</tr>
-<tr>
-<td align="center">Spring MVC</td>
-<td align="center">SpringMVC、Springmvc</td>
-</tr>
-<tr>
-<td align="center">NoSQL</td>
-<td align="center">nosql、NOSQL</td>
-</tr>
-<tr>
-<td align="center">MyBatis</td>
-<td align="center">mybatis、Mybatis</td>
-</tr>
-<tr>
-<td align="center">Redis</td>
-<td align="center">redis</td>
-</tr>
-<tr>
-<td align="center">Elasticsearch</td>
-<td align="center">elasticsearch、ElasticSearch</td>
-</tr>
-<tr>
-<td align="center">ZooKeeper</td>
-<td align="center">zookeeper、Zookeeper</td>
-</tr>
-<tr>
-<td align="center">Spring Data Redis</td>
-<td align="center">SpringDataRedis、SpringdataRedis</td>
-</tr>
-<tr>
-<td align="center">Spring Security</td>
-<td align="center">SpringSecurity、Springsecurity</td>
-</tr>
-<tr>
-<td align="center">Elasticsearch</td>
-<td align="center">ElasticSearch、elasticsearch</td>
-</tr>
-</tbody></table>
-<h2 id="前端开发技术点"><a href="#前端开发技术点" class="headerlink" title="前端开发技术点"></a>前端开发技术点</h2><table>
-<thead>
-<tr>
-<th align="center">正确拼写</th>
-<th align="center">错误拼写举例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">HTML</td>
-<td align="center">Html、html</td>
-</tr>
-<tr>
-<td align="center">HTTP</td>
-<td align="center">Http、http</td>
-</tr>
-<tr>
-<td align="center">CSS</td>
-<td align="center">Css、css</td>
-</tr>
-<tr>
-<td align="center">JavaScript</td>
-<td align="center">javascript、Javascript、js、JS</td>
-</tr>
-<tr>
-<td align="center">Node.js</td>
-<td align="center">node、Node、NodeJS、nodejs</td>
-</tr>
-<tr>
-<td align="center">Vue.js</td>
-<td align="center">vue、VUE 、vue.js</td>
-</tr>
-</tbody></table>
-<h2 id="其他技术点"><a href="#其他技术点" class="headerlink" title="其他技术点"></a>其他技术点</h2><table>
-<thead>
-<tr>
-<th align="center">正确拼写</th>
-<th align="center">错误拼写举例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Git</td>
-<td align="center">GIT、git</td>
-</tr>
-<tr>
-<td align="center">Eclipse</td>
-<td align="center">eclipse</td>
-</tr>
-<tr>
-<td align="center">IntelliJ IDEA</td>
-<td align="center">IntelliJ idea、idea</td>
-</tr>
-<tr>
-<td align="center">Maven</td>
-<td align="center">maven</td>
-</tr>
-<tr>
-<td align="center">JDK</td>
-<td align="center">jdk、Jdk</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>面试</category>
-      </categories>
-      <tags>
-        <tag>技术点书写规范</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mybatis中的foreach中的open=( separator=, close=)不能随意去写</title>
-    <url>/2020/07/27/mybatis%E4%B8%AD%E7%9A%84foreach%E4%B8%AD%E7%9A%84open=(%20separator=,%20close=)%E4%B8%8D%E8%83%BD%E9%9A%8F%E6%84%8F%E5%8E%BB%E5%86%99/</url>
-    <content><![CDATA[<h1 id="mybatis中的foreach中的open-”-“-separator-”-”-close-”-”不能随意去写"><a href="#mybatis中的foreach中的open-”-“-separator-”-”-close-”-”不能随意去写" class="headerlink" title="mybatis中的foreach中的open=”(“ separator=”,” close=”)”不能随意去写"></a>mybatis中的foreach中的open=”(“ separator=”,” close=”)”不能随意去写</h1><h2 id="第一种情况"><a href="#第一种情况" class="headerlink" title="第一种情况"></a>第一种情况</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteData"</span> <span class="attr">parameterType</span>=<span class="string">"java.util.Map"</span> &gt;</span></span><br><span class="line">		delete from oppo_downloading_daily where start_time <span class="symbol">&amp;gt;</span>= #&#123;startTime&#125; and end_time <span class="symbol">&amp;lt;</span>= #&#123;endTime&#125; and channel = #&#123;channels&#125; and owner_id </span><br><span class="line">		in	</span><br><span class="line"> 		<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">collection</span>=<span class="string">"ids"</span>  <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span> </span><br><span class="line">			#&#123;item&#125; </span><br><span class="line"> 		<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>此种写法是后面跟着</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> oppo_downloading_daily <span class="keyword">where</span> start_time &amp;gt;= <span class="comment">#&#123;startTime&#125; and end_time &amp;lt;= #&#123;endTime&#125; and channel = #&#123;channels&#125; and owner_id in(?,?,?,?,?)</span></span><br></pre></td></tr></table></figure>
-
- <a id="more"></a>
-
-<h2 id="第二种情况"><a href="#第二种情况" class="headerlink" title="第二种情况"></a>第二种情况</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">insert into $&#123;tableName&#125;</span><br><span class="line">		(date,account_id,account_name,campaign_name,group_name,creative_name,views,clicks,totalCost)</span><br><span class="line">		values</span><br><span class="line">		<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"costReportList"</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">separator</span>=<span class="string">","</span> &gt;</span></span><br><span class="line">		   (#&#123;item.date&#125;,</span><br><span class="line">			#&#123;item.accountId&#125;,</span><br><span class="line">			#&#123;item.accountName&#125;,</span><br><span class="line">			#&#123;item.campaignName&#125;,</span><br><span class="line">			#&#123;item.groupName&#125;,</span><br><span class="line">			#&#123;item.creativeName&#125;,</span><br><span class="line">			#&#123;item.views&#125;,</span><br><span class="line">			#&#123;item.clicks&#125;,</span><br><span class="line">			#&#123;item.totalCost&#125;</span><br><span class="line">			)</span><br><span class="line">		 <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>此种写法 后面会跟</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">insert</span> <span class="keyword">into</span> $&#123;tableName&#125;</span><br><span class="line">        (<span class="built_in">date</span>,account_id,account_name,campaign_name,group_name,creative_name,views,clicks,totalCost)</span><br><span class="line">        <span class="keyword">values</span>(?,?,?,?,?,?),(?,?,?,?,?,?),(?,?,?,?,?,?)</span><br></pre></td></tr></table></figure>
-
-<p><strong>所以在使用时，一定不能随便定义括号的位置</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Update(&#123;&quot;&lt;script&gt;&quot; +</span><br><span class="line">            &quot;&lt;foreach collection&#x3D;\&quot;smsConfigTemplateList\&quot; item&#x3D;\&quot;item\&quot; separator&#x3D;\&quot;;\&quot;&gt;&quot; +</span><br><span class="line">            &quot; UPDATE&quot; +</span><br><span class="line">            &quot; mt_message_template&quot; +</span><br><span class="line">            &quot; SET pushapp_type &#x3D; #&#123;item.pushAppType, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  message_title &#x3D; #&#123;item.messageTitle, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  message_content &#x3D; #&#123;item.messageContent, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  template_id_weixin &#x3D; #&#123;item.emplateIdWeixin, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  template_weixin &#x3D; #&#123;item.templateWeixin, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">              &quot;  template_alipay &#x3D; #&#123;item.templateAlipay, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  template_id_zhifubao &#x3D; #&#123;item.templateIdZhifubao, jdbcType&#x3D;VARCHAR&#125;, &quot; +</span><br><span class="line">            &quot;  modifiedon &#x3D; #&#123;item.modifiedon, jdbcType&#x3D;TIMESTAMP&#125;, &quot; +</span><br><span class="line">            &quot;  modifiedby &#x3D; #&#123;item.modifiedby, jdbcType&#x3D;VARCHAR&#125; &quot; +</span><br><span class="line">            &quot;  WHERE &quot; +</span><br><span class="line">            &quot;   message_template_id &#x3D; #&#123;item.messageTemplateId, jdbcType&#x3D;VARCHAR&#125; &quot; +</span><br><span class="line">            &quot;  AND deletion_state &#x3D; &#39;0&#39; &quot; +</span><br><span class="line">            &quot;&lt;&#x2F;foreach&gt;&quot; +</span><br><span class="line">            &quot;&lt;&#x2F;script&gt;&quot;&#125;)</span><br><span class="line">    void update(@Param(&quot;smsConfigTemplateList&quot;) List&lt;SmsConfigTemplate&gt; smsConfigTemplateList);</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Insert(&#123;&quot;&lt;script&gt;&quot; +</span><br><span class="line">        &quot;INSERT INTO  mt_message_template (&quot; +</span><br><span class="line">        &quot;message_template_id,\n&quot; +</span><br><span class="line">        &quot;message_template_head_id,\n&quot; +</span><br><span class="line">        &quot;message_title,\n&quot; +</span><br><span class="line">        &quot;message_content,\n&quot; +</span><br><span class="line">        &quot;pushapp_type,\n&quot; +</span><br><span class="line">        &quot;platform_hospital_id,\n&quot; +</span><br><span class="line">        &quot;template_id_weixin,\n&quot; +</span><br><span class="line">        &quot;template_weixin,\n&quot; +</span><br><span class="line">        &quot;template_alipay,\n&quot; +</span><br><span class="line">        &quot;template_id_zhifubao,\n&quot; +</span><br><span class="line">        &quot;createdby,\n&quot; +</span><br><span class="line">        &quot;createdon,\n&quot; +</span><br><span class="line">        &quot;modifiedby,\n&quot; +</span><br><span class="line">        &quot;modifiedon,\n&quot; +</span><br><span class="line">        &quot;deletion_state)&quot; +</span><br><span class="line">        &quot;values  &quot; +</span><br><span class="line">        &quot;&lt;foreach collection&#x3D;\&quot;mtMessageTemplateList\&quot; item&#x3D;\&quot;item\&quot; separator&#x3D;\&quot;,\&quot;&gt;&quot; +</span><br><span class="line">        &quot;(#&#123;item.messageTemplateId&#125;, #&#123;item.messageTemplateHeadId&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.messageTitle&#125;, #&#123;item.messageContent&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.pushAppType&#125;, #&#123;item.platformHospitalId&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.emplateIdWeixin&#125;, #&#123;item.templateWeixin&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.templateAlipay&#125;, #&#123;item.templateIdZhifubao&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.createdby&#125;, #&#123;item.createdon&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.modifiedby&#125;, #&#123;item.modifiedon&#125;, &quot; +</span><br><span class="line">        &quot;#&#123;item.deletionState&#125;)&quot; +</span><br><span class="line">        &quot;&lt;&#x2F;foreach&gt;&quot; +</span><br><span class="line">        &quot;&lt;&#x2F;script&gt;&quot;&#125;)</span><br><span class="line">void insert(@Param(&quot;mtMessageTemplateList&quot;) List&lt;MtMessageTemplate&gt; mtMessageTemplateList);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-  </entry>
-  <entry>
-    <title>@RequestParam和@PathVariable的用法与区别</title>
-    <url>/2020/07/29/@RequestParam%E5%92%8C@PathVariable%E7%9A%84%E7%94%A8%E6%B3%95%E4%B8%8E%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<h1 id="RequestParam和-PathVariable的用法与区别"><a href="#RequestParam和-PathVariable的用法与区别" class="headerlink" title="@RequestParam和@PathVariable的用法与区别"></a>@RequestParam和@PathVariable的用法与区别</h1><h2 id="SpringBoot——-PathVariable"><a href="#SpringBoot——-PathVariable" class="headerlink" title="SpringBoot——@PathVariable"></a>SpringBoot——@PathVariable</h2><blockquote>
-<p> URL变量</p>
-</blockquote>
-<p>Web应用中的URL通常不是一成不变的，例如微博两个不同用户的个人主页对应两个不同的URL：<a href="http://weibo.com/user1和[http://weibo.com/user2](http://weibo.com/user1)。我们不能对于每一个用户都编写一个被@RequestMapping注解的方法来处理其请求，也就是说，对于相同模式的URL（例如不同用户的主页，他们仅仅是URL中的某一部分不同，为他们各自的用户名，我们说他们具有相同的模式）。" target="_blank" rel="noopener">http://weibo.com/user1和[http://weibo.com/user2](http://weibo.com/user1)。我们不能对于每一个用户都编写一个被@RequestMapping注解的方法来处理其请求，也就是说，对于相同模式的URL（例如不同用户的主页，他们仅仅是URL中的某一部分不同，为他们各自的用户名，我们说他们具有相同的模式）。</a></p>
- <a id="more"></a>
-
-<blockquote>
-<p>定义URL变量规则</p>
-</blockquote>
-<p>可以在@RequestMapping注解中用{ }来表明它的变量部分，例如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/user/&#123;username&#125;"</span>)</span><br></pre></td></tr></table></figure>
-
-<p>这里的{username}就是我们定义的变量规则，username是变量的名字，那么这个URL路由可以匹配下列任意URL并进行处理：</p>
-<ul>
-<li>/user/Tom</li>
-<li>/user/Jerry</li>
-<li>/user/Jack2</li>
-</ul>
-<p>需要注意的是，在默认情况下，变量中不可以包含URL的分隔符/，例如路由不能匹配/user/Denny/Jon，即使你认为Denny/Jon是一个存在的用户名。</p>
-<blockquote>
-<p>获取URL变量</p>
-</blockquote>
-<p>在路由中定义变量规则后，通常我们需要在处理方法（也就是@RequestMapping注解的方法）中获取这个URL的具体值，并根据这个值（例如用户名）做相应的操作，SpringMVC提供的@PathVariable可以帮助我们：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/user/&#123;username&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">userProfile</span><span class="params">(@PathVariable(value=<span class="string">"username"</span>)</span> String username) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    	<span class="keyword">return</span> <span class="string">"user"</span>+username;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>在上面的例子中，当@Controller处理HTTP请求时，userProfile的参数username会自动设置为URL中对应变量username（同名赋值）的值。例如，当HTTP请求为/user/fpc，URL变量username的值fpc就会被赋值给函数参数username，函数的返回值是userfpc。</p>
-<p>在默认情况下，Spring会对@PathVariable注解的变量进行自动赋值，也可以指定@PathVariable使用哪一个URL中的变量：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"user/&#123;username&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">userProfile</span><span class="params">(@PathVariable(value=<span class="string">"username"</span>)</span> String username) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    	<span class="keyword">return</span> <span class="string">"user"</span>+username;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行结果：</p>
-<p><img src="/images/@PathVariable.png" alt></p>
-<blockquote>
-<p>定义多个URL变量 </p>
-</blockquote>
-<p> 可以定义URL路由，其中包含多个URL变量：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/user/&#123;username&#125;/blog/&#123;blogId&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserBlog</span><span class="params">(@PathVariable String username, @PathVariable <span class="keyword">int</span> blogId)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    	<span class="keyword">return</span> <span class="string">"user:"</span> + username + <span class="string">"blog-&gt;"</span> + blogId;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p> 这种情况下，Spring能够根据名字自动赋值对应的函数参数值，当然也可以在@PathVariable中显示地表明具体的URL变量值。</p>
-<p>在默认情况下，@PathVariable注解的参数可以是一些基本的简单类型：int，long，Date，String等，Spring能够根据URL变量的具体值及函数参数类型来进行转换。例如/user/fpc/blog/1，会将fpc的值赋给username，而1赋给int变量blogId。</p>
-<p>运行结果：</p>
-<p><img src="https://img-blog.csdnimg.cn/20181213091713663.PNG" alt="img"></p>
-<blockquote>
-<p>匹配正则表达式</p>
-</blockquote>
-<p> 很多时候，需要对URL变量进行更加精确的定义。例如，用户名只可能包含大小写字母，数字，下划线，我们希望：</p>
-<ul>
-<li>/user/fpc是一个合法的URL</li>
-<li>/user/#$$$则是一个不合法的URL</li>
-</ul>
-<p>除了简单地定义{username}变量，还可以定义正则表达式进行更精确地控制，定义语法是{变量名: 正则表达式}。[a-zA-Z0-9_]+是一个正则表达式，表示只能包含小写字母，大写字母，数字，下划线。如此设置URL变量规则后，不合法的URL则不会被处理，直接由SpringMVC框架返回404NotFound。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/user/&#123;username: [a-zA-Z0-9]+&#125;/blog/&#123;blogId&#125;"</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="SpringBoot——-RequestParam"><a href="#SpringBoot——-RequestParam" class="headerlink" title="SpringBoot——@RequestParam"></a>SpringBoot——@RequestParam</h2><blockquote>
-<p>Request参数</p>
-</blockquote>
-<p> 在访问各种各样的网站时，经常会发现网站的URL的最后一部分形如：?xx=yy&amp;zz=ww。这就是HTTP协议中的Request参数，它有什么用呢？先看一个例子：</p>
-<ul>
-<li>在知乎中搜索web</li>
-<li>浏览器跳转到新页面后，URL变为<a href="https://www.zhihu.com/search?type=content&amp;q=web" target="_blank" rel="noopener">https://www.zhihu.com/search?type=content&amp;q=web</a></li>
-<li>在知乎中搜索java</li>
-<li>浏览器跳转到新页面后，URL变为<a href="https://www.zhihu.com/search?type=content&amp;q=java" target="_blank" rel="noopener">https://www.zhihu.com/search?type=content&amp;q=java</a></li>
-</ul>
-<p>这里的type=content&amp;q=web就是搜索请求的参数，不同参数之间用&amp;分隔，每个参数形如name=value的形式，分别表示参数名字和参数值。在这个例子中，我们输入不同的搜索关键词，在搜索结果页面的URL的q参数是不同的。也就是说，HTTP参数实际上可以认为是一种用户的输入，根据不同的用户输入，服务器经过处理后返回不同的输出（例如搜索spring和搜索java，显示结果是不一样的）。</p>
-<blockquote>
-<p>Spring MVC中的Request参数</p>
-</blockquote>
-<p> 在SpringMVC框架中，可以通过定义@RequestMapping来处理URL请求。和@PathVariable一样，需要在处理URL的函数中获取URL中的参数，也就是?key1=value1&amp;key2=value2这样的参数列表。通过注解@RequestParam可以轻松地将URL中的参数绑定到处理函数方法的变量中：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/user"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getUserBlog</span><span class="params">(@RequestParam(value=<span class="string">"id"</span>)</span> <span class="keyword">int</span> blogId) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="string">"blogId="</span>+blogId;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 这样，当我们访问/user/?id=123时，SpringMVC帮助我们将Request参数id的值绑定到了处理函数的参数blogId上。这样就能够轻松获取用户输入，并根据它的值进行计算并返回了。</p>
-<p>运行结果：</p>
-<p><img src="https://img-blog.csdnimg.cn/20181212174746325.PNG" alt="img"></p>
-<h2 id="RequestParam和-PathVariable"><a href="#RequestParam和-PathVariable" class="headerlink" title="@RequestParam和@PathVariable"></a>@RequestParam和@PathVariable</h2><blockquote>
-<p> 相同点与区别</p>
-</blockquote>
-<p> @RequestParam和@PathVariable都能够完成类似的功能——因为本质上，它们都是用户的输入，只不过输入的部分不同，一个在URL路径部分，另一个在参数部分。要访问一篇博客文章，这两种URL设计都是可以的：</p>
-<ul>
-<li>通过@PathVariable，例如/blogs/1</li>
-<li>通过@RequestParam，例如blogs?blogId=1</li>
-</ul>
-<p>那么究竟应该选择哪一种呢？建议：</p>
-<p>1、当URL指向的是某一具体业务资源（或资源列表），例如博客，用户时，使用@PathVariable</p>
-<p>2、当URL需要对资源或者资源列表进行过滤，筛选时，用@RequestParam</p>
-<p>例如我们会这样设计URL：</p>
-<ul>
-<li>/blogs/{blogId}</li>
-<li>/blogs?state=publish而不是/blogs/state/publish来表示处于发布状态的博客文章</li>
-</ul>
-<blockquote>
-<p>更多用法</p>
-</blockquote>
-<p> 一旦我们在方法中定义了@RequestParam变量，如果访问的URL中不带有相应的参数，就会抛出异常——这是显然的，Spring尝试帮我们进行绑定，然而没有成功。但有的时候，参数确实不一定永远都存在，这时我们可以通过定义required属性：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestParam</span>(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>)</span><br></pre></td></tr></table></figure>
-
-<p>当然，在参数不存在的情况下，可能希望变量有一个默认值：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestParam</span>(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>, defaultValue = <span class="string">"0"</span>)</span><br></pre></td></tr></table></figure>]]></content>
-  </entry>
-  <entry>
-    <title>mybatis中的作用</title>
-    <url>/2020/08/03/mybatis%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="MyBatis中的作用"><a href="#MyBatis中的作用" class="headerlink" title="MyBatis中的作用"></a>MyBatis中的作用</h1><p>在使用MyBatis 时我们sql是写在xml 映射文件中，如果写的sql中有一些特殊的字符的话，在解析xml文件的时候会被转义，但我们不希望他被转义，所以我们要使用 <!--[CDATA[ ]]-->来解决。</p>
-<!--[CDATA[  ]]--><p> 是什么，这是XML语法。在CDATA内部的所有内容都会被解析器忽略。</p>
-<p>如果文本包含了很多的”&lt;”字符 &lt;=和”&amp;”字符——就象程序代码一样，那么最好把他们都放到CDATA部件中。</p>
-<p>但是有个问题那就是 <if test>  </if>  <where>  </where>  <choose>  </choose>  <trim>  </trim> 等这些标签都不会被解析，所以我们只把有特殊字符的语句放在 <!--[CDATA[  ]]-->  尽量缩小 <!--[CDATA[  ]]--> 的范围。</p>
-<p>实例如下：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">&lt;select id="allUserInfo" parameterType="java.util.HashMap" resultMap="userInfo1"&gt;</span><br><span class="line">&lt;![CDATA[</span><br><span class="line"><span class="keyword">SELECT</span> newsEdit,newsId, newstitle <span class="keyword">FROM</span> shoppingGuide <span class="keyword">WHERE</span> <span class="number">1</span>=<span class="number">1</span> <span class="keyword">AND</span> newsday &gt; <span class="comment">#&#123;startTime&#125; AND newsday &lt;= #&#123;endTime&#125;</span></span><br><span class="line">]]&gt;</span><br><span class="line">&lt;<span class="keyword">if</span> <span class="keyword">test</span>=<span class="string">"etidName!=''"</span>&gt;</span><br><span class="line"><span class="keyword">AND</span> newsEdit=<span class="comment">#&#123;etidName&#125;</span></span><br><span class="line">&lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>因为这里有 “&gt;”  “&lt;=” 特殊字符所以要使用 <!--[CDATA[  ]]--> 来注释，但是有<if> 标签，所以把<if>等 放外面</if></if></p>
 ]]></content>
   </entry>
 </search>

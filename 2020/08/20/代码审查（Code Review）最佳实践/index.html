@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="代码审查（Code Review）最佳实践如今敏捷开发盛行，代码审查非常重要！  代码审查可以帮助提高代码质量，避免由于代码习惯而造成的 bug。 下面列出的这些要点因该可以作为大部分代码审查的指导，如果是 Java 应用的话，这些建议应该被视作最佳实践。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码审查（Code Review）最佳实践">
+<meta property="og:url" content="http://yoursite.com/2020/08/20/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5%EF%BC%88Code%20Review%EF%BC%89%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="CodeDatao">
+<meta property="og:description" content="代码审查（Code Review）最佳实践如今敏捷开发盛行，代码审查非常重要！  代码审查可以帮助提高代码质量，避免由于代码习惯而造成的 bug。 下面列出的这些要点因该可以作为大部分代码审查的指导，如果是 Java 应用的话，这些建议应该被视作最佳实践。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-20T01:42:18.979Z">
+<meta property="article:modified_time" content="2020-08-20T01:46:29.984Z">
+<meta property="article:author" content="CodeDatao">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/08/20/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5%EF%BC%88Code%20Review%EF%BC%89%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>代码审查（Code Review）最佳实践 | CodeDatao</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">CodeDatao</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/20/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5%EF%BC%88Code%20Review%EF%BC%89%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
+      <meta itemprop="name" content="CodeDatao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodeDatao">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          代码审查（Code Review）最佳实践
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-20 09:42:18 / 修改时间：09:46:29" itemprop="dateCreated datePublished" datetime="2020-08-20T09:42:18+08:00">2020-08-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="代码审查（Code-Review）最佳实践"><a href="#代码审查（Code-Review）最佳实践" class="headerlink" title="代码审查（Code Review）最佳实践"></a>代码审查（Code Review）最佳实践</h1><p>如今<a href="javascript:;"><strong>敏捷开发</strong></a>盛行，<a href="javascript:;"><strong>代码审查</strong></a>非常重要！</p>
+<hr>
+<p>代码审查可以帮助提高代码质量，避免由于代码习惯而造成的 <a href="javascript:;"><strong>bug</strong></a>。</p>
+<p>下面列出的这些要点因该可以作为大部分代码审查的指导，如果是 Java 应用的话，这些建议应该被视作最佳实践。</p>
+<a id="more"></a>
+
+<p><strong>文档</strong></p>
+<ol>
+<li><p>Javadoc 应该在每一个类和方法中添加。</p>
+</li>
+<li><p>如果是修复某个 bug，应该添加 bug ID。</p>
+</li>
+<li><p>走捷径的方法或者复杂的逻辑要有解释。</p>
+</li>
+<li><p>如果代码会被公开，每个文件头都要标注版权信息。</p>
+</li>
+<li><p>复杂的 HTML，JavaScript，CSS 应该包含文档。</p>
+</li>
+</ol>
+<p><strong>功能</strong></p>
+<ol>
+<li><p>如果类似的逻辑被使用了多次，应该把它写成一个帮助类，然后在多出调用。</p>
+</li>
+<li><p>鼓励使用 API 而不是重复编写代码解决相同的问题。</p>
+</li>
+<li><p>要强调代码的<a href="javascript:;"><strong>单元测试</strong></a>。</p>
+</li>
+<li><p>任何新加的代码不应该破坏已有的代码。</p>
+</li>
+<li><p>假如是 Web 应用，JSP 不应该包含 Java 代码。</p>
+</li>
+</ol>
+<p><strong>安全</strong></p>
+<ol>
+<li><p>任何代码都不能执行用户的输入，除非转义过了。这个常常包含 JavaScript. 的 eval 函数和 <a href="javascript:;"><strong>SQL</strong></a> 语句。</p>
+</li>
+<li><p>禁止那些在短时间内提交非常多请求的 IP。</p>
+</li>
+<li><p>任何类，变量，还有方法都应该有正确的访问域。</p>
+</li>
+<li><p>尽量避免使用 iframe。</p>
+</li>
+</ol>
+<p><strong>性能</strong></p>
+<ol>
+<li><p>所有<a href="javascript:;"><strong>数据库</strong></a>和文件操句柄在不需要的时候都应该被关闭。</p>
+</li>
+<li><p>SQL 语句的写法会导致性能千差万别。</p>
+</li>
+<li><p>鼓励创建不可变（immutable）的类。</p>
+</li>
+<li><p>类似的逻辑代码，尽量通过 if else 语句来实现更多的重用。</p>
+</li>
+<li><p>尽量避免使用重对象（heavy objects）。</p>
+</li>
+<li><p>如果是 Web 项目，请检查是否使用了合适的图片尺寸，CSS sprites 和<a href="javascript:;"><strong>浏览器</strong></a>缓存等<a href="javascript:;"><strong>技术</strong></a>。</p>
+</li>
+<li><p>全局都需要的信息保存在 application context 中。</p>
+</li>
+</ol>
+<h2 id="编码习惯"><a href="#编码习惯" class="headerlink" title="编码习惯"></a>编码习惯</h2><ol>
+<li><p>没有被使用的变量要删除。</p>
+</li>
+<li><p>针对不同的 Exception 要用不同的 catch 语句，而不是一个 Exception 解决所有问题。</p>
+</li>
+<li><p>针对变量，方法和类要用相同的命名方法。</p>
+</li>
+<li><p>常量应该被写在独立的常量类中。</p>
+</li>
+<li><p>每行代码的尾部不要有多余的空格。</p>
+</li>
+<li><p>对于括号，循环，if语句等等要用统一的格式。</p>
+</li>
+<li><p>每一个单独的方法不应该超过100行。</p>
+</li>
+<li><p>一个单独的语句不应该超过编辑器的可视区域，它可以被拆分成几行。</p>
+</li>
+<li><p>检查 String 对象既不是null也不是空的最好方法是 if(“”.equals(str))</p>
+</li>
+<li><p>假如类有很多成员变量，并且实例化的时候只需要少数变量传入的话，最好使用静态工厂方法，而不是重载构造函数。</p>
+</li>
+<li><p>给方法添加适当的访问控制，而不是所有都是 public。</p>
+</li>
+<li><p>遵守项目中使用的框架的最佳实践建议，例如 Spring，Struts，Hibernate，jQuery。</p>
+</li>
+</ol>
+<p>以上的某些注意点可以通过静态代码检查工具完成，例如 CheckStyle，FindBugs 和 JTest。</p>
+<h2 id="Code-Review-主要Revivew什么"><a href="#Code-Review-主要Revivew什么" class="headerlink" title="Code Review 主要Revivew什么"></a>Code Review 主要Revivew什么</h2><h3 id="Architecture-Design（架构、设计）"><a href="#Architecture-Design（架构、设计）" class="headerlink" title="Architecture/Design（架构、设计）"></a>Architecture/Design（架构、设计）</h3><ul>
+<li>单一职责原则<ul>
+<li>这是经常被违背的原则。一个类只能干一个事情, 一个方法最好也只干一件事情。 比较常见的违背是一个类既干UI的事情，又干逻辑的事情, 这个在低质量的客户端代码里很常见。</li>
+</ul>
+</li>
+<li>行为是否统一<ul>
+<li>比如缓存是否统一，错误处理是否统一， 错误提示是否统一， 弹出框是否统一 等等。</li>
+<li>同一逻辑/同一行为 有没有走同一Code Path？低质量程序的另一个特征是，同一行为/同一逻辑，因为出现在不同的地方或者被不同的方式触发，没有走同一Code Path 或者各处有一份copy的实现， 导致非常难以维护。</li>
+</ul>
+</li>
+<li>代码污染<ul>
+<li>代码有没有对其他模块强耦合 ？</li>
+</ul>
+</li>
+<li>重复代码<ul>
+<li>主要看有没有把公用组件，可复用的代码，函数抽取出来。</li>
+</ul>
+</li>
+<li>Open/Closed 原则<ul>
+<li>就是好不好扩展。 Open for extension, closed for modification.</li>
+</ul>
+</li>
+<li>面向接口<a href="http://www.kuqin.com/" target="_blank" rel="noopener">编程</a> 和 不是 面向实现编程<ul>
+<li>主要就是看有没有进行合适的抽象， 把一些行为抽象为接口。</li>
+</ul>
+</li>
+<li>健壮性<ul>
+<li>有没有考虑线程安全性， 数据访问的一致性</li>
+<li>对Corner case有没有考虑完整，逻辑是否健壮？有没有潜在的bug？</li>
+<li>有没有内存泄漏？有没有循环依赖?（针对特定语言，比如Objective-C) ？有没有野指针？</li>
+</ul>
+</li>
+<li>错误处理<ul>
+<li>有没有很好的Error Handling？比如网络出错，IO出错。</li>
+</ul>
+</li>
+<li>改动是不是对代码的提升<ul>
+<li>新的改动是打补丁，让代码质量继续恶化，还是对代码质量做了修复？</li>
+</ul>
+</li>
+<li>效率/性能<ul>
+<li>关键算法的时间复杂度多少？有没有可能有潜在的性能瓶颈。</li>
+<li>客户端程序 对频繁消息 和较大数据等耗时操作是否处理得当。</li>
+</ul>
+</li>
+</ul>
+<p>其中有一部分问题，比如一些设计原则， 可预见的效率问题， 开发模式一致性的问题 应该尽早在Design Review阶段解决。如果Design阶段没有解决，那至少在Code Review阶段也要把它找出来。</p>
+<h3 id="Style"><a href="#Style" class="headerlink" title="Style"></a>Style</h3><ul>
+<li>可读性<ul>
+<li>衡量可读性的可以有很好实践的标准，就是Reviewer能否非常容易的理解这个代码。 如果不是，那意味着代码的可读性要进行改进。</li>
+</ul>
+</li>
+<li>命名<ul>
+<li>命名对可读性非常重要，我倾向于函数名/方法名长一点都没关系，必须是能自我阐述的。</li>
+<li>英语用词尽量准确一点（哪怕有时候需要借助<a href="javascript:;"><strong>Google</strong></a> Translate，是值得的）</li>
+</ul>
+</li>
+<li>函数长度/类长度<ul>
+<li>函数太长的不好阅读。 类太长了，比如超过了1000行，那你要看一下是否违反的“单一职责” 原则。</li>
+</ul>
+</li>
+<li>注释<ul>
+<li>恰到好处的注释。 但更多我看到比较差质量的工程的一个特点是缺少注释。</li>
+</ul>
+</li>
+<li>参数个数<ul>
+<li>不要太多， 一般不要超过3个。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Review-Your-Own-Code-First"><a href="#Review-Your-Own-Code-First" class="headerlink" title="Review Your Own Code First"></a>Review Your Own Code First</h3><ul>
+<li>跟著名的橡皮鸭调试法（Rubber Duck Debugging）一样，每次提交前整体把自己的代码过一遍非常有帮助，尤其是看看有没有犯低级错误。</li>
+</ul>
+<h3 id="如何进行Code-Review"><a href="#如何进行Code-Review" class="headerlink" title="如何进行Code Review"></a>如何进行Code Review</h3><ul>
+<li>多问问题。多问 “这块儿是怎么<a href="javascript:;"><strong>工作</strong></a>的？” “如果有XXX case，你这个怎么处理？”</li>
+<li>每次提交的代码不要太多，最好不要超过1000行，否则review起来效率会非常低。</li>
+<li>当面讨论代替Comments。 大部分情况下小组内的同事是坐在一起的，face to face的 code review是非常有效的。</li>
+<li>区分重点，不要舍本逐末。 优先抓住 设计，可读性，健壮性等重点问题。</li>
+</ul>
+<h3 id="Code-Review的意识"><a href="#Code-Review的意识" class="headerlink" title="Code Review的意识"></a>Code Review的意识</h3><ul>
+<li>作为一个Developer , 不仅要Deliver working code, 还要Deliver maintainable code.</li>
+<li>必要时进行重构，随着项目的迭代，在计划新增功能的同时，开发要主动计划重构的工作项。</li>
+<li>开放的心态，虚心接受大家的Review Comments。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/17/yum%E4%B8%8Eapt%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="prev" title="yum与apt的区别">
+      <i class="fa fa-chevron-left"></i> yum与apt的区别
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/20/Mac%E5%BA%94%E7%94%A8%E2%80%9D%E5%B7%B2%E6%8D%9F%E5%9D%8F%EF%BC%8C%E6%89%93%E4%B8%8D%E5%BC%80%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" rel="next" title="Mac应用”已损坏，打不开解决办法">
+      Mac应用”已损坏，打不开解决办法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#代码审查（Code-Review）最佳实践"><span class="nav-text">代码审查（Code Review）最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编码习惯"><span class="nav-text">编码习惯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Review-主要Revivew什么"><span class="nav-text">Code Review 主要Revivew什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Architecture-Design（架构、设计）"><span class="nav-text">Architecture&#x2F;Design（架构、设计）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Style"><span class="nav-text">Style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Review-Your-Own-Code-First"><span class="nav-text">Review Your Own Code First</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何进行Code-Review"><span class="nav-text">如何进行Code Review</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-Review的意识"><span class="nav-text">Code Review的意识</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CodeDatao"
+      src="/images/apple-touch-icon-next.png">
+  <p class="site-author-name" itemprop="name">CodeDatao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:duanht0508@gmail.com" title="E-Mail → mailto:duanht0508@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CodeDatao</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

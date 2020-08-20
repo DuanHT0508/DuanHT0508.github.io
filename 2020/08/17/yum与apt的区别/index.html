@@ -22,15 +22,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="CodeDatao">
-<meta property="og:url" content="http://yoursite.com/tags/Linux/index.html">
+  <meta name="description" content="yum与apt的区别一般来说著名的 Linux 系统基本上分两大类：RedHat 系列：Redhat、Centos、Fedora 等Debian 系列：Debian、Ubuntu 等    对比项 rpm yum dpkg apt    系列 RedHat系 RedHat系 Debian系 Debian系   区别 包安装工具 依赖管理工具 包安装工具 依赖管理工具   查询已安装 rpm -qa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="yum与apt的区别">
+<meta property="og:url" content="http://yoursite.com/2020/08/17/yum%E4%B8%8Eapt%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="CodeDatao">
+<meta property="og:description" content="yum与apt的区别一般来说著名的 Linux 系统基本上分两大类：RedHat 系列：Redhat、Centos、Fedora 等Debian 系列：Debian、Ubuntu 等    对比项 rpm yum dpkg apt    系列 RedHat系 RedHat系 Debian系 Debian系   区别 包安装工具 依赖管理工具 包安装工具 依赖管理工具   查询已安装 rpm -qa">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-17T04:01:00.550Z">
+<meta property="article:modified_time" content="2020-08-17T04:01:06.310Z">
 <meta property="article:author" content="CodeDatao">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/tags/Linux/">
+<link rel="canonical" href="http://yoursite.com/2020/08/17/yum%E4%B8%8Eapt%E7%9A%84%E5%8C%BA%E5%88%AB/">
 
 
 <script id="page-configurations">
@@ -38,12 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: Linux | CodeDatao</title>
+  <title>yum与apt的区别 | CodeDatao</title>
   
 
 
@@ -184,51 +188,196 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Linux
-          <small>标签</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/17/yum%E4%B8%8Eapt%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
+      <meta itemprop="name" content="CodeDatao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodeDatao">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          yum与apt的区别
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-17 12:01:00 / 修改时间：12:01:06" itemprop="dateCreated datePublished" datetime="2020-08-17T12:01:00+08:00">2020-08-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+        <h1 id="yum与apt的区别"><a href="#yum与apt的区别" class="headerlink" title="yum与apt的区别"></a>yum与apt的区别</h1><p>一般来说著名的 Linux 系统基本上分两大类：<br>RedHat 系列：Redhat、Centos、Fedora 等<br>Debian 系列：Debian、Ubuntu 等</p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>rpm</th>
+<th>yum</th>
+<th>dpkg</th>
+<th>apt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>系列</td>
+<td>RedHat系</td>
+<td>RedHat系</td>
+<td>Debian系</td>
+<td>Debian系</td>
+</tr>
+<tr>
+<td>区别</td>
+<td>包安装工具</td>
+<td>依赖管理工具</td>
+<td>包安装工具</td>
+<td>依赖管理工具</td>
+</tr>
+<tr>
+<td>查询已安装</td>
+<td>rpm -qa</td>
+<td>yum list installed</td>
+<td>dkpg -l</td>
+<td>apt list –installed</td>
+</tr>
+<tr>
+<td>安装</td>
+<td>rpm -i package.rpm 或 rpm –ivh <a href="http://www.xxx.net/package.rpm" target="_blank" rel="noopener">http://www.xxx.net/package.rpm</a></td>
+<td>yum install -y</td>
+<td>dpkg -i package.deb</td>
+<td>apt-get install package</td>
+</tr>
+<tr>
+<td>更新</td>
+<td>rpm –U software.rpm</td>
+<td>yum update</td>
+<td></td>
+<td>apt upgrade</td>
+</tr>
+<tr>
+<td>移除软件包</td>
+<td>rpm -e [module1][module2]…</td>
+<td>yum -remove</td>
+<td>dpkg -r package</td>
+<td>apt remove package</td>
+</tr>
+<tr>
+<td>移除软件包及配置</td>
+<td></td>
+<td></td>
+<td>dpkg -P</td>
+<td>apt purge package</td>
+</tr>
+<tr>
+<td>下载的包存放位置</td>
+<td></td>
+<td></td>
+<td></td>
+<td>/var/cache/apt/archives</td>
+</tr>
+<tr>
+<td>软件安装默认位置</td>
+<td>rpm -ql</td>
+<td></td>
+<td></td>
+<td>/usr/share</td>
+</tr>
+<tr>
+<td>可执行文件位置</td>
+<td>/usr/bin</td>
+<td></td>
+<td></td>
+<td>/usr/bin</td>
+</tr>
+<tr>
+<td>配置文件位置</td>
+<td>/etc</td>
+<td></td>
+<td></td>
+<td>/etc</td>
+</tr>
+<tr>
+<td>lib文件位置</td>
+<td>/usr/lib</td>
+<td></td>
+<td></td>
+<td>/usr/lib</td>
+</tr>
+<tr>
+<td>使用手册</td>
+<td>/usr/share/doc</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>帮助文档</td>
+<td>/usr/share/man</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>更新</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-25T01:14:29+08:00"
-              content="2020-05-25">
-          05-25
-        </time>
-      </div>
+      <footer class="post-footer">
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/05/25/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" itemprop="url">
-            <span itemprop="name">Linux常用命令</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/16/springboot%E6%89%BE%E4%B8%8D%E5%88%B0%E5%90%AF%E5%8A%A8%E7%B1%BB%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="prev" title="springboot找不到启动类解决方案">
+      <i class="fa fa-chevron-left"></i> springboot找不到启动类解决方案
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/20/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5%EF%BC%88Code%20Review%EF%BC%89%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" rel="next" title="代码审查（Code Review）最佳实践">
+      代码审查（Code Review）最佳实践 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -281,6 +430,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#yum与apt的区别"><span class="nav-text">yum与apt的区别</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
